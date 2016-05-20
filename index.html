@@ -277,23 +277,19 @@
       
         
           
-            <h2 id="CenterOS-nodejs-配置说明"><a href="#CenterOS-nodejs-配置说明" class="headerlink" title="#CenterOS nodejs 配置说明"></a>#CenterOS nodejs 配置说明</h2><p>&gt;<br>&gt;</p>
-<blockquote>
+            <h2 id="CenterOS-nodejs-配置说明"><a href="#CenterOS-nodejs-配置说明" class="headerlink" title="#CenterOS nodejs 配置说明"></a>#CenterOS nodejs 配置说明</h2><blockquote>
 <p>vps:搬瓦工</p>
 <p>os:centeros 6.5 x86</p>
 </blockquote>
-<p>#####1. 安装node:</p>
-<p>从EPEL库安装Node.js</p>
+<h3 id="1-安装node"><a href="#1-安装node" class="headerlink" title="1. 安装node:"></a>1. 安装node:</h3><p>从EPEL库安装Node.js</p>
 <p>另一个有效且简单的方法来安装Node.js就是从官方库。这同样确保您可以访问到EPEL库，可以通过运行以下命令。</p>
 <pre><code>sudo yum install epel-release
 </code></pre><p>现在可以使用yum命令安装Node.js了。</p>
 <pre><code>sudo yum install nodejs
 </code></pre><p>因为在开发过程中我需要管理节点包，我还要安装新公共管理的软件包管理器，使用以下命令。</p>
 <pre><code>sudo yum install npm
-</code></pre><p>#####2. 安装git</p>
-<pre><code>yum  group install &quot;Development Tools&quot;
-</code></pre><p>#####3. mongodDB </p>
-<blockquote>
+</code></pre><h3 id="2-安装git"><a href="#2-安装git" class="headerlink" title="2. 安装git"></a>2. 安装git</h3><pre><code>yum  group install &quot;Development Tools&quot;
+</code></pre><h3 id="3-mongodDB"><a href="#3-mongodDB" class="headerlink" title="3. mongodDB"></a>3. mongodDB</h3><blockquote>
 <p>一种使用MongoDB安装文件安装<br><a href="http://blog.csdn.net/zhangfeng19880710/article/details/20166853" target="_blank" rel="external">http://blog.csdn.net/zhangfeng19880710/article/details/20166853</a><br><a href="http://www.cnblogs.com/shanyou/archive/2012/07/14/2591838.html" target="_blank" rel="external">http://www.cnblogs.com/shanyou/archive/2012/07/14/2591838.html</a></p>
 </blockquote>
 <pre><code>yum install mongodb
