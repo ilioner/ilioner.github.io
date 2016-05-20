@@ -170,7 +170,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -180,7 +180,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -233,123 +233,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/05/20/CenterOS配置Node服务器与MongoDB/" itemprop="url">
-                  CenterOS配置Node服务器与MongoDB
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-05-20T15:31:32+08:00" content="2016-05-20">
-              2016-05-20
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="CenterOS-nodejs-配置说明"><a href="#CenterOS-nodejs-配置说明" class="headerlink" title="CenterOS nodejs 配置说明"></a>CenterOS nodejs 配置说明</h2><blockquote>
-<p>vps:搬瓦工</p>
-<p>os:centeros 6.5 x86</p>
-</blockquote>
-<h3 id="1-安装node"><a href="#1-安装node" class="headerlink" title="1. 安装node:"></a>1. 安装node:</h3><p>从EPEL库安装Node.js</p>
-<p>另一个有效且简单的方法来安装Node.js就是从官方库。这同样确保您可以访问到EPEL库，可以通过运行以下命令。</p>
-<pre><code>sudo yum install epel-release
-</code></pre><p>现在可以使用yum命令安装Node.js了。</p>
-<pre><code>sudo yum install nodejs
-</code></pre><p>因为在开发过程中我需要管理节点包，我还要安装新公共管理的软件包管理器，使用以下命令。</p>
-<pre><code>sudo yum install npm
-</code></pre><h3 id="2-安装git"><a href="#2-安装git" class="headerlink" title="2. 安装git"></a>2. 安装git</h3><pre><code>yum  group install &quot;Development Tools&quot;
-</code></pre><h3 id="3-mongodDB"><a href="#3-mongodDB" class="headerlink" title="3. mongodDB"></a>3. mongodDB</h3><blockquote>
-<p>一种使用MongoDB安装文件安装<br><a href="http://blog.csdn.net/zhangfeng19880710/article/details/20166853" target="_blank" rel="external">http://blog.csdn.net/zhangfeng19880710/article/details/20166853</a><br><a href="http://www.cnblogs.com/shanyou/archive/2012/07/14/2591838.html" target="_blank" rel="external">http://www.cnblogs.com/shanyou/archive/2012/07/14/2591838.html</a></p>
-</blockquote>
-<pre><code>yum install mongodb
-yum install mongodb-server
-</code></pre><p>前面安装来说都是很顺利的，但是在启动的时候遇到了这么一个问题</p>
-<pre><code>ERROR: dbpath (/data/db/) does not exist.
-Create this directory or give existing directory in --dbpath. See http://dochub.mongodb.org/core/startingandstoppingmongo
-</code></pre><p>从这个问题来看 ，应该是没有创建 /data/db 目录，那么就用 </p>
-<pre><code>sudo mkdir -p /data/db
-</code></pre><p>命令创建。但问题是重新启动还是出现了同样的问题，原因是文件夹的权限不够，那么解决的方法就是允许文件夹有读写的权限即可，那么运行下面的命令</p>
-<pre><code>sudo chmod 777 -R /data
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/05/20/hello-world/" itemprop="url">
                   Hello World
                 </a>
@@ -363,7 +246,7 @@ Create this directory or give existing directory in --dbpath. See http://dochub.
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-05-20T14:18:25+08:00" content="2016-05-20">
               2016-05-20
             </time>
@@ -472,20 +355,13 @@ Create this directory or give existing directory in --dbpath. See http://dochub.
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
           
 
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">tags</span>
-              </a>
-            </div>
           
 
         </nav>
@@ -527,7 +403,7 @@ Create this directory or give existing directory in --dbpath. See http://dochub.
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
