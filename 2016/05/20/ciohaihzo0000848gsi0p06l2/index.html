@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="nodejs," />
 
 
 
@@ -84,19 +84,40 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="CenterOS nodejs 配置说明
+vps:搬瓦工
+os:centeros 6.5 x86
+
+1. 安装node:从EPEL库安装Node.js
+另一个有效且简单的方法来安装Node.js就是从官方库。这同样确保您可以访问到EPEL库，可以通过运行以下命令。
+sudo yum install epel-release
+现在可以使用yum命令安装Node.js了。
+sudo yum insta">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2016/05/20/ciohai00600027n8gu5e4uk2r/index.html">
+<meta property="og:title" content="CenterOS配置Node服务器与MongoDB">
+<meta property="og:url" content="http://yoursite.com/2016/05/20/ciohaihzo0000848gsi0p06l2/index.html">
 <meta property="og:site_name" content="ilioner">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2016-05-20T06:18:25.000Z">
+<meta property="og:description" content="CenterOS nodejs 配置说明
+vps:搬瓦工
+os:centeros 6.5 x86
+
+1. 安装node:从EPEL库安装Node.js
+另一个有效且简单的方法来安装Node.js就是从官方库。这同样确保您可以访问到EPEL库，可以通过运行以下命令。
+sudo yum install epel-release
+现在可以使用yum命令安装Node.js了。
+sudo yum insta">
+<meta property="og:updated_time" content="2016-05-21T14:51:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="CenterOS配置Node服务器与MongoDB">
+<meta name="twitter:description" content="CenterOS nodejs 配置说明
+vps:搬瓦工
+os:centeros 6.5 x86
+
+1. 安装node:从EPEL库安装Node.js
+另一个有效且简单的方法来安装Node.js就是从官方库。这同样确保您可以访问到EPEL库，可以通过运行以下命令。
+sudo yum install epel-release
+现在可以使用yum命令安装Node.js了。
+sudo yum insta">
 
 
 
@@ -114,7 +135,7 @@ Quick">
   };
 </script>
 
-  <title> Hello World | ilioner </title>
+  <title> CenterOS配置Node服务器与MongoDB | ilioner </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -257,7 +278,7 @@ Quick">
             
             
               
-                Hello World
+                CenterOS配置Node服务器与MongoDB
               
             
           </h1>
@@ -269,7 +290,7 @@ Quick">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-20T14:18:25+08:00" content="2016-05-20">
+            <time itemprop="dateCreated" datetime="2016-05-20T15:31:32+08:00" content="2016-05-20">
               2016-05-20
             </time>
           </span>
@@ -280,8 +301,8 @@ Quick">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/20/ciohai00600027n8gu5e4uk2r/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/20/ciohai00600027n8gu5e4uk2r/" itemprop="commentsCount"></span>
+                <a href="/2016/05/20/ciohaihzo0000848gsi0p06l2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/20/ciohaihzo0000848gsi0p06l2/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -304,16 +325,32 @@ Quick">
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
+        <h2 id="CenterOS-nodejs-配置说明"><a href="#CenterOS-nodejs-配置说明" class="headerlink" title="CenterOS nodejs 配置说明"></a>CenterOS nodejs 配置说明</h2><blockquote>
+<p>vps:搬瓦工</p>
+<p>os:centeros 6.5 x86</p>
+</blockquote>
+<h3 id="1-安装node"><a href="#1-安装node" class="headerlink" title="1. 安装node:"></a>1. 安装node:</h3><p>从EPEL库安装Node.js</p>
+<p>另一个有效且简单的方法来安装Node.js就是从官方库。这同样确保您可以访问到EPEL库，可以通过运行以下命令。</p>
+<pre><code>sudo yum install epel-release
+</code></pre><p>现在可以使用yum命令安装Node.js了。</p>
+<pre><code>sudo yum install nodejs
+</code></pre><p>因为在开发过程中我需要管理节点包，我还要安装新公共管理的软件包管理器，使用以下命令。</p>
+<pre><code>sudo yum install npm
+</code></pre><a id="more"></a>
+<h3 id="2-安装git"><a href="#2-安装git" class="headerlink" title="2. 安装git"></a>2. 安装git</h3><pre><code>yum  group install &quot;Development Tools&quot;
+</code></pre><h3 id="3-mongodDB"><a href="#3-mongodDB" class="headerlink" title="3. mongodDB"></a>3. mongodDB</h3><blockquote>
+<p>一种使用MongoDB安装文件安装<br><a href="http://blog.csdn.net/zhangfeng19880710/article/details/20166853" target="_blank" rel="external">http://blog.csdn.net/zhangfeng19880710/article/details/20166853</a><br><a href="http://www.cnblogs.com/shanyou/archive/2012/07/14/2591838.html" target="_blank" rel="external">http://www.cnblogs.com/shanyou/archive/2012/07/14/2591838.html</a></p>
+</blockquote>
+<pre><code>yum install mongodb
+yum install mongodb-server
+</code></pre><p>前面安装来说都是很顺利的，但是在启动的时候遇到了这么一个问题</p>
+<pre><code>ERROR: dbpath (/data/db/) does not exist.
+Create this directory or give existing directory in --dbpath. See http://dochub.mongodb.org/core/startingandstoppingmongo
+</code></pre><p>从这个问题来看 ，应该是没有创建 /data/db 目录，那么就用 </p>
+<pre><code>sudo mkdir -p /data/db
+</code></pre><p>命令创建。但问题是重新启动还是出现了同样的问题，原因是文件夹的权限不够，那么解决的方法就是允许文件夹有读写的权限即可，那么运行下面的命令</p>
+<pre><code>sudo chmod 777 -R /data
+</code></pre>
       
     </div>
 
@@ -348,17 +385,27 @@ Quick">
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/nodejs/" rel="tag">#nodejs</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/05/20/ciohaihzw0001848gk0zi6ged/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/20/ciohahzzs00007n8gfe7qd7hk/" rel="prev" title="CenterOS配置Node服务器与MongoDB">
-                CenterOS配置Node服务器与MongoDB <i class="fa fa-chevron-right"></i>
+              <a href="/2016/05/21/ciohaii060003848ganqwo375/" rel="prev" title="使用Sublime Text3 开发React-Native的配置">
+                使用Sublime Text3 开发React-Native的配置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -385,8 +432,8 @@ Quick">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/20/ciohai00600027n8gu5e4uk2r/"
-           data-title="Hello World" data-url="http://yoursite.com/2016/05/20/ciohai00600027n8gu5e4uk2r/">
+      <div class="ds-thread" data-thread-key="2016/05/20/ciohaihzo0000848gsi0p06l2/"
+           data-title="CenterOS配置Node服务器与MongoDB" data-url="http://yoursite.com/2016/05/20/ciohaihzo0000848gsi0p06l2/">
       </div>
     
   </div>
@@ -441,7 +488,7 @@ Quick">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -490,7 +537,7 @@ Quick">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CenterOS-nodejs-配置说明"><span class="nav-number">1.</span> <span class="nav-text">CenterOS nodejs 配置说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装node"><span class="nav-number">1.1.</span> <span class="nav-text">1. 安装node:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-安装git"><span class="nav-number">1.2.</span> <span class="nav-text">2. 安装git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-mongodDB"><span class="nav-number">1.3.</span> <span class="nav-text">3. mongodDB</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
