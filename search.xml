@@ -4,9 +4,39 @@
   
     
     <entry>
-      <title><![CDATA[Blog优化志]]></title>
+      <title><![CDATA[Blog优化日志]]></title>
       <url>http://yoursite.com/2016/05/24/Blog%E4%BC%98%E5%8C%96%E5%BF%97.html</url>
-      <content type="html"></content>
+      <content type="html"><![CDATA[<blockquote>
+<p>blog框架:hexo<br>主题框架: NexT</p>
+</blockquote>
+<h2 id="1-SEO-优化"><a href="#1-SEO-优化" class="headerlink" title="1. SEO 优化"></a>1. SEO 优化</h2><h4 id="1-1-title优化"><a href="#1-1-title优化" class="headerlink" title="1.1 title优化"></a>1.1 title优化</h4><p><strong>更改index.swig文件</strong></p>
+<blockquote>
+<p>文件路径是\themes\next\layou</p>
+</blockquote>
+<pre><code>{% block title %} 
+  	{{ config.title }} 
+	{% endblock %}
+</code></pre><p>改成:</p>
+<pre><code>{% block title %} 
+  		{{ config.title }} - {{ theme.description }} 
+	{% endblock %}
+</code></pre><p><strong>添加robots.txt</strong></p>
+<p>将该文件添加至source文件夹下</p>
+<pre><code>User-agent: *
+Allow: /
+Allow: /archives/
+Allow: /categories/
+Allow: /about/
+
+Disallow: /vendors/
+Disallow: /js/
+Disallow: /css/
+Disallow: /fonts/
+Disallow: /vendors/
+Disallow: /fancybox/
+</code></pre><p>Allow:允许抓取</p>
+<p>Disallow:不允许抓取</p>
+<h2 id="2-字体优化"><a href="#2-字体优化" class="headerlink" title="2. 字体优化"></a>2. 字体优化</h2><h2 id="3-资源文件压缩"><a href="#3-资源文件压缩" class="headerlink" title="3. 资源文件压缩"></a>3. 资源文件压缩</h2>]]></content>
     </entry>
     
     <entry>
