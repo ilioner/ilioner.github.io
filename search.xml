@@ -9,7 +9,7 @@
       <content type="html"><![CDATA[<blockquote>
 <p>blog框架:hexo<br>主题框架: NexT</p>
 </blockquote>
-<h2 id="1-SEO-优化"><a href="#1-SEO-优化" class="headerlink" title="1. SEO 优化"></a>1. SEO 优化</h2><h4 id="1-1-title优化"><a href="#1-1-title优化" class="headerlink" title="1.1 title优化"></a>1.1 title优化</h4><p><strong>更改index.swig文件</strong></p>
+<h2 id="1-SEO-优化"><a href="#1-SEO-优化" class="headerlink" title="1. SEO 优化"></a>1. SEO 优化</h2><h4 id="title优化"><a href="#title优化" class="headerlink" title="title优化"></a>title优化</h4><p><strong>更改index.swig文件</strong></p>
 <blockquote>
 <p>文件路径是\themes\next\layou</p>
 </blockquote>
@@ -20,8 +20,24 @@
 <pre><code>{% block title %} 
   		{{ config.title }} - {{ theme.description }} 
 	{% endblock %}
-</code></pre><p><strong>添加robots.txt</strong></p>
-<p>将该文件添加至source文件夹下</p>
+</code></pre><h4 id="添加sitemap"><a href="#添加sitemap" class="headerlink" title="添加sitemap"></a>添加sitemap</h4><p>添加sitemap便于搜索引擎可以更加友好的抓取博客内容:</p>
+<ul>
+<li><p>在博客根目录下运行:</p>
+<p>  npm install hexo-generator-sitemap –save<br>  npm install hexo-generator-baidu-sitemap –save</p>
+</li>
+<li><p>配置_config.yml</p>
+<pre><code>#hexo sitemap网站地图
+sitemap:
+path: sitemap.xml
+</code></pre></li>
+</ul>
+<blockquote>
+<p>看到有些网站说在配置_config.yml时也要添加</p>
+<pre><code>  baidusitemap:
+path: baidusitemap.xml
+</code></pre><p>表示添加后直接编译不过，不用添加其实也可以生成baidusitemap.xml</p>
+</blockquote>
+<h4 id="添加robots-txt"><a href="#添加robots-txt" class="headerlink" title="添加robots.txt"></a>添加robots.txt</h4><p>将该文件添加至source文件夹下</p>
 <pre><code>User-agent: *
 Allow: /
 Allow: /archives/
@@ -34,9 +50,165 @@ Disallow: /css/
 Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
+
+Sitemap: http://{域名}/sitemap.xml
+Sitemap: http://{域名}/baidusitemap.xml
 </code></pre><p>Allow:允许抓取</p>
 <p>Disallow:不允许抓取</p>
-<h2 id="2-字体优化"><a href="#2-字体优化" class="headerlink" title="2. 字体优化"></a>2. 字体优化</h2><h2 id="3-资源文件压缩"><a href="#3-资源文件压缩" class="headerlink" title="3. 资源文件压缩"></a>3. 资源文件压缩</h2>]]></content>
+<h2 id="2-字体优化"><a href="#2-字体优化" class="headerlink" title="2. 字体优化"></a>2. 字体优化</h2><h4 id="三种方式"><a href="#三种方式" class="headerlink" title="三种方式:"></a>三种方式:</h4><ol>
+<li><p>直接在主题配置文件里面禁用font:</p>
+<pre><code>font:
+      enable: true
+</code></pre></li>
+<li><p>修改font的host,因为默认是googleapis所以国内访问巨慢:</p>
+<pre><code>font:
+      enable: true
+
+      # Uri of fonts host. E.g. //fonts.googleapis.com (Default)
+      host: fonts.useso.com
+</code></pre></li>
+<li><p>NexT主题的话如果不嫌麻烦还可以直接:</p>
+<p>themes&gt;next&gt;layout&gt;_partials&gt;head&gt;external-fonts.swig</p>
+</li>
+</ol>
+<pre><code>{% if font_families !== '' %}
+	 
+    	{% set font_families += '&subset=latin,latin-ext' %}
+    	{% set font_host = font_config.host | default('//fonts.useso.com') %}
+    	<link href="{{ font_host }}/css?family={{ font_families }}" rel="stylesheet" type="text/css">
+    	{% endif %}
+</code></pre><h2 id="3-资源文件压缩"><a href="#3-资源文件压缩" class="headerlink" title="3. 资源文件压缩"></a>3. 资源文件压缩</h2><h5 id="使用gulp"><a href="#使用gulp" class="headerlink" title="使用gulp"></a>使用gulp</h5><ul>
+<li><p>添加 gulpfile.js 至与_config.yml同目录的地方,写内容的时候注意一下目录是否与本网站一致</p>
+<pre><code>var gulp = require(&apos;gulp&apos;);
+var minifycss = require(&apos;gulp-minify-css&apos;);
+var uglify = require(&apos;gulp-uglify&apos;);
+var minifyHTML = require(&quot;gulp-minify-html&quot;);
+var htmlclean = require(&apos;gulp-htmlclean&apos;);
+var gutil = require(&apos;gulp-util&apos;);
+var minifyInline = require(&apos;gulp-minify-inline&apos;);
+var inline = require(&apos;gulp-inline&apos;)
+var inlineimage = require(&apos;gulp-inline-image&apos;);
+</code></pre></li>
+</ul>
+<pre><code>// 获取 gulp-imagemin 模块
+var imagemin = require(&apos;gulp-imagemin&apos;);
+
+var dir = &apos;./public&apos;
+
+
+// 压缩 public 目录 html
+gulp.task(&apos;minify-html&apos;,function() {
+  var opts = {
+         removeComments: true,
+         minifyJS: true,
+         minifyCSS: true,
+         minifyURLs: true,
+  };
+  gulp.src(&apos;./public/**/*.html&apos;)
+    .pipe(inline({
+        base: &apos;./public/&apos;,
+        disabledTypes: [&apos;svg&apos;, &apos;img&apos;], // Only inline css files
+    }))
+    .pipe(minifyInline())
+    .pipe(minifyHTML(opts))
+    .pipe(gulp.dest(dir));
+});
+
+// 压缩 public 目录 css
+gulp.task(&apos;minify-css&apos;, function() {
+    gulp.src(&apos;./public/**/*.css&apos;)
+        .pipe(inlineimage())
+        .pipe(minifycss())
+        .pipe(gulp.dest(dir));
+});
+
+// 压缩 public/js 目录 js
+gulp.task(&apos;minify-js&apos;, function() {
+    gulp.src(&apos;./public/**/*.js&apos;)
+        .pipe(uglify().on(&apos;error&apos;, function(e){
+            console.log(e);
+        }))
+        .pipe(gulp.dest(dir));
+});
+
+
+// 压缩图片任务
+// 在命令行输入 gulp images 启动此任务
+gulp.task(&apos;images-photos&apos;, function () {
+    // 1. 找到图片
+    gulp.src(&apos;./photos/*.*&apos;)
+    // 2. 压缩图片
+        .pipe(imagemin({
+            progressive: true
+        }))
+    // 3. 另存图片
+        .pipe(gulp.dest(&apos;dist/images&apos;))
+});
+
+
+// 压缩图片任务
+// 在命令行输入 gulp images 启动此任务
+gulp.task(&apos;images-public&apos;, function () {
+    // 1. 找到图片
+    gulp.src(&apos;./public/**/*.*&apos;)
+    // 2. 压缩图片
+        .pipe(imagemin({
+            progressive: true
+        }))
+    // 3. 另存图片
+        .pipe(gulp.dest(dir))
+});
+
+
+// 执行 gulp 命令时执行的任务
+gulp.task(&apos;default&apos;, [
+    &apos;minify-css&apos;,&apos;minify-js&apos;,&apos;minify-html&apos;,
+    &apos;images-photos&apos;,&apos;images-public&apos;]
+    );
+</code></pre><ul>
+<li><p>修改package.json添加依赖包:</p>
+<pre><code>&quot;gulp&quot;: &quot;^3.9.1&quot;,
+&quot;gulp-htmlclean&quot;: &quot;^2.7.6&quot;,
+&quot;gulp-htmlmin&quot;: &quot;^1.3.0&quot;,
+&quot;gulp-imagemin&quot;: &quot;^2.4.0&quot;,
+&quot;gulp-minify-css&quot;: &quot;^1.2.4&quot;,
+&quot;gulp-uglify&quot;: &quot;^1.5.3&quot;,
+</code></pre></li>
+<li><p>安装工具gulp(全局)</p>
+<pre><code>npm install gulp -g
+</code></pre></li>
+<li><p>如何用？</p>
+<p>以前的执行步骤:</p>
+<pre><code>hexo clean
+hexo generate
+hexo deploy
+</code></pre><p>  现在的执行步骤</p>
+<pre><code>hexo clean
+hexo generate
+gulp
+hexo deploy
+</code></pre></li>
+</ul>
+<p>–<br><strong>为了每次不重复输入这些命令，制作一个脚本去执行它:</strong></p>
+<p>添加deploy.sh到与_config.yml平级的目录</p>
+<pre><code>#!/bin/bash
+hexo clean
+hexo generate
+gulp
+hexo deploy
+</code></pre><p>添加完成之后执行如下命令赋予权限:</p>
+<pre><code>chmod +x deploy.sh
+</code></pre><p>之后每次发布只需要执行:</p>
+<pre><code>./deploy.sh
+</code></pre><p>即可</p>
+<hr>
+<p>以上，完成本次优化。</p>
+<p>参考博文:</p>
+<blockquote>
+<p><a href="http://www.selfrebuild.net/2015/06/24/Github-Hexo-Next%E4%B8%BB%E9%A2%98%E4%B8%AA%E6%80%A7%E5%8C%96%E5%AE%9A%E5%88%B6/" target="_blank" rel="external">Hexo博客优化 - Next主题个性化定制</a></p>
+<p><a href="https://joway.wang/posts/Hexo/2016-05-17-hexo-compress-inline-static.html" target="_blank" rel="external">Hexo折腾记——通过压缩与内联提升访问速度</a></p>
+</blockquote>
+]]></content>
     </entry>
     
     <entry>
