@@ -5,7 +5,7 @@
     
     <entry>
       <title><![CDATA[当悲剧或失望来袭，要知道你们能扛过任何事]]></title>
-      <url>http://yoursite.com/2016/05/23/ciokuvyxs0008a88g7bryrntd/</url>
+      <url>http://yoursite.com/2016/05/23/ciokv2sla0008bi8g9cxygvaa/</url>
       <content type="html"><![CDATA[<p><img src="/images/sad.jpg" class="full-image"></p>
 <p><strong>以下是谢丽尔·桑德伯格在加州伯克利大学2016年毕业典礼上的演讲：</strong></p>
 <p>感谢玛丽，感谢各位尊敬的老师们、骄傲的父母、忠诚的朋友和各位同仁。</p>
@@ -73,7 +73,7 @@
     
     <entry>
       <title><![CDATA[Cocoa中使用NSTask运行脚本]]></title>
-      <url>http://yoursite.com/2016/05/22/ciokuvyxe0001a88gehaulgoe/</url>
+      <url>http://yoursite.com/2016/05/22/ciokv2sks0001bi8g3ky7wjsn/</url>
       <content type="html"><![CDATA[<h2 id="Cocoa中使用NSTask运行脚本"><a href="#Cocoa中使用NSTask运行脚本" class="headerlink" title="Cocoa中使用NSTask运行脚本"></a>Cocoa中使用NSTask运行脚本</h2><blockquote>
 <p>Cocoa编程中有时候会遇到需要运行一些脚本或者Shell命令的地方。这个时候，NSTask可能是一个不错的选择。</p>
 <p>NSTask是MAC OS X用来执行系统命令的一个类库。</p>
@@ -110,7 +110,7 @@ task.waitUntilExit();
     
     <entry>
       <title><![CDATA[《人生对人生观开的玩笑》摘文]]></title>
-      <url>http://yoursite.com/2016/05/21/ciokuvyxl0003a88g6chor0w3/</url>
+      <url>http://yoursite.com/2016/05/21/ciokv2sl20003bi8ggzavid83/</url>
       <content type="html"><![CDATA[<p><img src="/images/maolu.jpg" class="full-image"></p>
 <p>一个人对有魅力的异性产生一时的迷恋的感觉，倾慕对方，这是很正常的事情，我偶尔也这样。关键是我们的迷恋是不是只是心思活络，而不是行为也跟着活络。很多人把心动，迷恋或者倾慕误认为爱情，殊不知心动跟真正的爱情根本无法相比。心动的光芒最多只是颗钻石的光芒，让你惊叹于它的华丽，恨不得立刻拥有；但真爱的光芒就像阳光，久了也许会让人觉得稀松平常，但这种光芒能温暖你，照耀你，一旦失去，你就会发现整个世界都黑暗了。可惜好多人没有意识到这一点</p>
 ]]></content>
@@ -118,7 +118,7 @@ task.waitUntilExit();
     
     <entry>
       <title><![CDATA[移动端UI规范（针对切图命名与文件整理）]]></title>
-      <url>http://yoursite.com/2016/05/21/ciokuvyxw0009a88gsn4g16s2/</url>
+      <url>http://yoursite.com/2016/05/21/ciokv2sle0009bi8glvn4q0os/</url>
       <content type="html"><![CDATA[<p>移动端UI规范（针对切图命名与文件整理）</p>
 <blockquote>
 <p>整理了移动端UI的命名规范与文件目录规范</p>
@@ -139,7 +139,7 @@ task.waitUntilExit();
     
     <entry>
       <title><![CDATA[如何愉快的使用ESLint进行代码校验]]></title>
-      <url>http://yoursite.com/2016/05/21/ciokuvyxp0006a88gxvidzuvl/</url>
+      <url>http://yoursite.com/2016/05/21/ciokv2sl70006bi8g7z2hmpps/</url>
       <content type="html"><![CDATA[<p>如何愉快的使用ESLint进行代码校验</p>
 <p>在团队协作中，为避免低级 Bug、产出风格统一的代码，会预先制定编码规范。我们使用ESLint这一代码规范检测工具进行最基本的语法检测，或者结合自定义的规则来使得ESLint完美运行在你的项目中</p>
 <h3 id="三个问题？"><a href="#三个问题？" class="headerlink" title="三个问题？"></a>三个问题？</h3><blockquote>
@@ -396,7 +396,7 @@ npm install -g eslint-plugin-standard
     
     <entry>
       <title><![CDATA[使用Sublime Text3 开发React-Native的配置]]></title>
-      <url>http://yoursite.com/2016/05/21/ciokuvyxn0004a88gxfmdv4oj/</url>
+      <url>http://yoursite.com/2016/05/21/ciokv2sl40004bi8gwnrwfo4a/</url>
       <content type="html"><![CDATA[<p>使用Sublime Text3 开发React-Native的配置</p>
 <blockquote>
 <p>Sublime Text3作为功能强大，使用较为广泛的编辑器，有很强的自定义功能，插件库很庞大，针对新语言插件更新很快，配合使用可以快速搭建适配语言的开发环境。<br>Sublime Text3为共享软件，可在网上搜索下载破解版。</p>
@@ -494,7 +494,7 @@ state→  this.state.
     
     <entry>
       <title><![CDATA[CenterOS配置Node服务器与MongoDB]]></title>
-      <url>http://yoursite.com/2016/05/20/ciokuvyx50000a88gx8inykk7/</url>
+      <url>http://yoursite.com/2016/05/20/ciokv2skj0000bi8g4icdjdgl/</url>
       <content type="html"><![CDATA[<h2 id="CenterOS-nodejs-配置说明"><a href="#CenterOS-nodejs-配置说明" class="headerlink" title="CenterOS nodejs 配置说明"></a>CenterOS nodejs 配置说明</h2><blockquote>
 <p>vps:搬瓦工</p>
 <p>os:centeros 6.5 x86</p>
