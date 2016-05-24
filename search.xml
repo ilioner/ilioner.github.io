@@ -10,7 +10,8 @@
 <blockquote>
 <p>blog框架:hexo<br>主题框架: NexT</p>
 </blockquote>
-<h2 id="1-SEO-优化"><a href="#1-SEO-优化" class="headerlink" title="1. SEO 优化"></a>1. SEO 优化</h2><h4 id="title优化"><a href="#title优化" class="headerlink" title="title优化"></a>title优化</h4><p><strong>更改index.swig文件</strong></p>
+<h2 id="1-SEO-优化"><a href="#1-SEO-优化" class="headerlink" title="1. SEO 优化"></a>1. SEO 优化</h2><h4 id="title优化"><a href="#title优化" class="headerlink" title="title优化"></a>title优化</h4><a id="more"></a>
+<p><strong>更改index.swig文件</strong></p>
 <blockquote>
 <p>文件路径是\themes\next\layou</p>
 </blockquote>
