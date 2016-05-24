@@ -6,7 +6,8 @@
     <entry>
       <title><![CDATA[Blog优化日志]]></title>
       <url>http://yoursite.com/2016/05/24/Blog%E4%BC%98%E5%8C%96%E5%BF%97.html</url>
-      <content type="html"><![CDATA[<blockquote>
+      <content type="html"><![CDATA[<p><img src="/images/blogfont.jpg" class="full-image"><br>因为刚开始使用hexo框架，没有配置，所以访问巨慢，国内访问会等1分钟才可以打开网站。<br>究其原因，发现刚启用</p>
+<blockquote>
 <p>blog框架:hexo<br>主题框架: NexT</p>
 </blockquote>
 <h2 id="1-SEO-优化"><a href="#1-SEO-优化" class="headerlink" title="1. SEO 优化"></a>1. SEO 优化</h2><h4 id="title优化"><a href="#title优化" class="headerlink" title="title优化"></a>title优化</h4><p><strong>更改index.swig文件</strong></p>
@@ -14,7 +15,7 @@
 <p>文件路径是\themes\next\layou</p>
 </blockquote>
 <pre><code>{% block title %} 
-  	{{ config.title }} 
+  		{{ config.title }} 
 	{% endblock %}
 </code></pre><p>改成:</p>
 <pre><code>{% block title %} 
