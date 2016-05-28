@@ -16,6 +16,8 @@
 </li>
 <li><p>Material UI 是一个 CSS 框架和一组实现谷歌 Material Design 设计规范的 React 组件。可以作为 NPM 安装包，使用 browserify 和 reactify 的依赖管理和 JSX 转换。</p>
 </li>
+<li><p>Babel 能够实现 ES6 到 ES5 的代码转换多亏了 Babel (以前叫 6to5) 以及 Traceur 之类的项目。这些转换器 (更准确地说是源代码到源代码的编译器) 可以把你写的符合 ECMAScript 6 标准的代码完美地转换为 ECMAScript 5 标准的代码，并且可以确保良好地运行在所有主流 JavaScript 引擎中。<br>我们这里目前在使用 Babel，主要是因为它对 ES6 的支持程度比其它同类更高</p>
+</li>
 </ul>
 </blockquote>
 <p>当然，写在前面的永远是官网的东西，熟练应用才能发挥他的真正功能。因为自己在搭建的时候遇到webpack的很多坑，所以有必要来记录一下。</p>
@@ -59,8 +61,7 @@ $ npm install
 
 run the app:
 $ npm start
-</code></pre><p>关于创建项目命令的更多信息，请见 扩展功能 -&gt; ThinkJS 命令。</p>
-<h2 id="1-3-安装依赖"><a href="#1-3-安装依赖" class="headerlink" title="1.3 安装依赖"></a>1.3 安装依赖</h2><p>项目安装后，进入项目目录，执行 npm install 安装依赖，可以使用 taobao 源进行安装。</p>
+</code></pre><h2 id="1-3-安装依赖"><a href="#1-3-安装依赖" class="headerlink" title="1.3 安装依赖"></a>1.3 安装依赖</h2><p>项目安装后，进入项目目录，执行 npm install 安装依赖，可以使用 taobao 源进行安装。</p>
 <pre><code>npm install --registry=https://registry.npm.taobao.org --verbose
 </code></pre><h2 id="1-4-启动项目"><a href="#1-4-启动项目" class="headerlink" title="1.4 启动项目"></a>1.4 启动项目</h2><p>在项目目录下执行命令 </p>
 <pre><code>npm start
@@ -71,7 +72,150 @@ $ npm start
 [2015-09-21 20:21:09] [THINK] WebSocket Status: closed
 [2015-09-21 20:21:09] [THINK] File Auto Reload: true
 [2015-09-21 20:21:09] [THINK] App Enviroment: development
-</code></pre>]]></content>
+</code></pre><h1 id="2-React"><a href="#2-React" class="headerlink" title="2. React"></a>2. React</h1><p>在创建成功的thinkjs工程中加入React依赖</p>
+<pre><code>npm install react react-dom
+</code></pre><blockquote>
+<p>关于-save和save-dev可以省掉你手动修改package.json文件的步骤。</p>
+<pre><code>npm install module-name -save 自动把模块和版本号添加到dependencies部分
+npm install module-name -save-dve 自动把模块和版本号添加到devdependencies部分
+</code></pre></blockquote>
+<h1 id="3-Webpack"><a href="#3-Webpack" class="headerlink" title="3. Webpack"></a>3. Webpack</h1><p>React开发和模块管理的主流工具Webpack。Webpack确实是功能最为强大的前端模块管理和打包工具,也就是说React作为组件的UI只有通过编译打包之后才能被html解析显示出来。</p>
+<h2 id="3-1-安装"><a href="#3-1-安装" class="headerlink" title="3.1 安装"></a>3.1 安装</h2><p>Webpack一般作为全局的npm模块安装：</p>
+<pre><code>npm install -g webpack
+</code></pre><p>之后便有了全局的webpack命令，直接执行此命令会默认使用当前目录的webpack.config.js作为配置文件。如果要指定另外的配置文件，可以执行：</p>
+<pre><code>webpack —config webpack.custom.config.js
+</code></pre><p>尽管Webpack可以通过命令行来指定参数，但我们通常会将所有相关参数定义在配置文件中。</p>
+<p>如果要编译对JSX文件，还需要添加对应的依赖Babel和Babel的一堆插件(<a href="http://babeljs.cn/" target="_blank" rel="external">babeljs中国</a>)，配置较多，建议添加至package.json文件统一npm install:</p>
+<pre><code>&quot;babel-core&quot;: &quot;6.x.x&quot;,
+&quot;babel-preset-es2015&quot;:&quot;^6.9.0&quot;,
+&quot;babel-preset-es2015-loose&quot;: &quot;6.x.x&quot;,
+&quot;babel-preset-react&quot;: &quot;^6.5.0&quot;,
+&quot;babel-preset-stage-0&quot;: &quot;^6.5.0&quot;,
+&quot;babel-preset-stage-1&quot;: &quot;6.x.x&quot;,
+&quot;babel-runtime&quot;: &quot;6.x.x&quot;,
+&quot;babel-cli&quot;: &quot;6.x.x&quot;,
+&quot;babel-eslint&quot;: &quot;^4.1.8&quot;,
+&quot;babel-loader&quot;: &quot;^6.2.4&quot;,
+&quot;babel-plugin-transform-runtime&quot;: &quot;6.x.x&quot;,
+</code></pre><h2 id="3-2-配置"><a href="#3-2-配置" class="headerlink" title="3.2 配置"></a>3.2 配置</h2><p>在工程目录下创建 webpack.config.js 文件</p>
+<pre><code>var path = require(&apos;path&apos;);
+var webpack = require(&apos;webpack&apos;);
+module.exports = {
+  // entry 入口文件
+  entry: &apos;./www/static/src/App.jsx&apos;,
+  // output 编译后的js输出目录及名称
+  output: {
+    path: path.join(__dirname, &apos;/www/static/js/&apos;),
+    filename: &apos;bundle.js&apos;
+  },
+  plugins: [
+  ],
+  //resolve 指定可以被 import 的文件后缀。比如 Hello.jsx 这样的文件就可以直接用 import Hello from &apos;Hello&apos; 引用。
+  resolve: {
+    extensions: [&apos;&apos;, &apos;.js&apos;, &apos;.jsx&apos;]
+  },
+  module: {
+  //loaders 指定 babel编译后缀名为 .js 或者 .jsx 的文件，这样你就可以在这两种类型的文件中自由使用 JSX 和 ES6 了。
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        loader: &apos;babel&apos;,
+        cacheDirectory: false,
+        // query 指定babel的一些插件等
+        query: {
+          presets: [&apos;react&apos;, &apos;es2015-loose&apos;, &apos;stage-0&apos;],
+          plugins: [&apos;transform-runtime&apos;]
+        },
+        exclude: /node_modules/
+      },
+    ]
+  }
+}
+</code></pre><p>此时有必要贴一下工程目录图</p>
+<p><img src="../images/gongchengmulu.jpg" alt=""></p>
+<h1 id="4-配置html"><a href="#4-配置html" class="headerlink" title="4. 配置html"></a>4. 配置html</h1><p>修改index_index.html</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;My App&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;div id=&quot;content&quot;&gt;&lt;/div&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;/static/js/bundle.js&quot;&gt;&lt;/script&gt;&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h1 id="5-App-jsx"><a href="#5-App-jsx" class="headerlink" title="5. App.jsx"></a>5. App.jsx</h1><h2 id="5-1-安装Material-UI"><a href="#5-1-安装Material-UI" class="headerlink" title="5.1 安装Material UI"></a>5.1 安装Material UI</h2><p>使用命令</p>
+<pre><code>npm install material-ui
+</code></pre><p>添加react-tap-event-plugin </p>
+<pre><code>npm install react-tap-event-plugin 
+</code></pre><blockquote>
+<p>react-tap-event-plugin</p>
+<p>Our components use react-tap-event-plugin to listen for touch / tap / clickevents. This dependency is temporary and will go away once the official React version is released. Until then, be sure to inject this plugin at the start of your app.</p>
+<pre><code>  import injectTapEventPlugin from &apos;react-tap-event-plugin&apos;;
+
+// Needed for onTouchTap
+// Check this repo:
+// https://github.com/zilverline/react-tap-event-plugin
+injectTapEventPlugin();
+</code></pre><p>react-tap-event-plugin provides onTouchTap() to all React Components. It’s a mobile-friendly onClick() alternative for components in Material-UI, especially useful for the buttons.</p>
+</blockquote>
+<h2 id="5-2-修改App-jsx"><a href="#5-2-修改App-jsx" class="headerlink" title="5.2 修改App.jsx"></a>5.2 修改App.jsx</h2><pre><code>// main.js
+import React from &apos;react&apos;;
+import ReactDOM from &apos;react-dom&apos;;
+import getMuiTheme from &apos;material-ui/styles/getMuiTheme&apos;;
+import MuiThemeProvider from &apos;material-ui/styles/MuiThemeProvider&apos;;
+import MyAwesomeReactComponent from &apos;./MyAwesomeReactComponent&apos;;
+
+const App = () =&gt; (
+  &lt;MuiThemeProvider muiTheme={getMuiTheme()}&gt;
+    &lt;MyAwesomeReactComponent /&gt;
+  &lt;/MuiThemeProvider&gt;
+);
+
+ReactDOM.render(
+  &lt;App /&gt;,
+  document.getElementById(&apos;content&apos;)
+);
+</code></pre><h2 id="5-2-添加组件-MyAwesomeReactComponent-jsx"><a href="#5-2-添加组件-MyAwesomeReactComponent-jsx" class="headerlink" title="5.2 添加组件 MyAwesomeReactComponent.jsx"></a>5.2 添加组件 MyAwesomeReactComponent.jsx</h2><pre><code>import React from &apos;react&apos;;
+import RaisedButton from &apos;material-ui/RaisedButton&apos;;
+
+const MyAwesomeReactComponent = () =&gt; (
+&lt;RaisedButton label=&quot;Default&quot; /&gt;
+);
+
+export default MyAwesomeReactComponent;
+</code></pre><hr>
+<h1 id="6-跑一下"><a href="#6-跑一下" class="headerlink" title="6. 跑一下"></a>6. 跑一下</h1><p>上述所有配置完成后运行命令:</p>
+<pre><code>webpack
+</code></pre><p>出现:</p>
+<pre><code>Version: webpack 1.13.1
+Time: 7151ms
+    Asset     Size  Chunks             Chunk Names
+bundle.js  1.07 MB       0  [emitted]  main
+    + 291 hidden modules
+</code></pre><p>证明编译成功</p>
+<p>再启动工程：</p>
+<pre><code>npm start
+
+
+[2016-05-29 01:18:49] [THINK] Server running at http://127.0.0.1:8360/
+[2016-05-29 01:18:49] [THINK] ThinkJS Version: 2.2.4
+[2016-05-29 01:18:49] [THINK] Cluster Status: closed
+[2016-05-29 01:18:49] [THINK] WebSocket Status: closed
+[2016-05-29 01:18:49] [THINK] File Auto Compile: false
+[2016-05-29 01:18:49] [THINK] File Auto Reload: true
+[2016-05-29 01:18:49] [THINK] App Enviroment: development
+</code></pre><p><img src="../images/thinjs运行效果图.jpg" alt=""><br>运行正常，配置成功</p>
+<blockquote>
+<p>webpack资料:</p>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/20367175" target="_blank" rel="external">Webpack傻瓜式指南</a></li>
+<li><a href="http://gold.xitu.io/entry/5691c20ba5b43198e5ce87eb" target="_blank" rel="external">应该是最好懂的 Webpack 教程</a></li>
+<li><a href="https://segmentfault.com/a/1190000002551952" target="_blank" rel="external">Webpack 入门指迷</a></li>
+<li><a href="http://code.oneapm.com/javascript/2015/07/07/webpack_performance_1/" target="_blank" rel="external">Webpack 性能优化</a></li>
+</ul>
+</blockquote>
+]]></content>
     </entry>
     
     <entry>
