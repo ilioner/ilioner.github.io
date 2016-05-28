@@ -132,7 +132,7 @@ module.exports = {
   }
 }
 </code></pre><p>此时有必要贴一下工程目录图</p>
-<p><img src="../images/gongchengmulu.jpg" alt=""></p>
+<p><img src="/images/gongchengmulu.jpg" alt=""></p>
 <h1 id="4-配置html"><a href="#4-配置html" class="headerlink" title="4. 配置html"></a>4. 配置html</h1><p>修改index_index.html</p>
 <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -205,7 +205,7 @@ bundle.js  1.07 MB       0  [emitted]  main
 [2016-05-29 01:18:49] [THINK] File Auto Compile: false
 [2016-05-29 01:18:49] [THINK] File Auto Reload: true
 [2016-05-29 01:18:49] [THINK] App Enviroment: development
-</code></pre><p><img src="../images/thinjs运行效果图.jpg" alt=""><br>运行正常，配置成功</p>
+</code></pre><p><img src="/images/thinjs运行效果图.jpg" alt=""><br>运行正常，配置成功</p>
 <blockquote>
 <p>webpack资料:</p>
 <ul>
