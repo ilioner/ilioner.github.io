@@ -262,6 +262,7 @@ bundle.js  1.07 MB       0  [emitted]  main
 [2016-05-29 01:18:49] [THINK] File Auto Reload: true
 [2016-05-29 01:18:49] [THINK] App Enviroment: development
 </code></pre><p><img src="/images/thinjs运行效果图.jpg" alt=""><br>运行正常，配置成功</p>
+<p>git: <a href="https://github.com/ilioner/thinkjs-material-ui" target="_blank" rel="external">thinkjs-material-ui</a></p>
 <blockquote>
 <p>webpack资料:</p>
 <ul>
