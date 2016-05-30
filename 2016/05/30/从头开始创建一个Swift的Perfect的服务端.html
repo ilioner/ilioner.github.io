@@ -1,0 +1,893 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="swift,perfect," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Perfect是一个使用Swift编程语言开发Web和其他REST服务的框架，其主要目标是简化需要后端服务器软件的移动应用的开发，使开发人员可以使用同一种语言进行客户端和服务端开发。因为是基于Swift开发，所以对于在iOS平台上可以达到客户端与服务端使用相同的类和一些封装好的工具，一定程度上可以减少代码重复，这一点有点像Android与Java服务器协作的好处，它完全支持使用Xcode开发和调">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从头开始创建一个Swift的Perfect的服务端">
+<meta property="og:url" content="http://yoursite.com/2016/05/30/从头开始创建一个Swift的Perfect的服务端.html">
+<meta property="og:site_name" content="ilioner">
+<meta property="og:description" content="Perfect是一个使用Swift编程语言开发Web和其他REST服务的框架，其主要目标是简化需要后端服务器软件的移动应用的开发，使开发人员可以使用同一种语言进行客户端和服务端开发。因为是基于Swift开发，所以对于在iOS平台上可以达到客户端与服务端使用相同的类和一些封装好的工具，一定程度上可以减少代码重复，这一点有点像Android与Java服务器协作的好处，它完全支持使用Xcode开发和调">
+<meta property="og:image" content="http://yoursite.com/../images/perfect/git.png">
+<meta property="og:image" content="http://yoursite.com/../images/perfect/moban.png">
+<meta property="og:image" content="http://yoursite.com/../images/perfect/finder.png">
+<meta property="og:image" content="http://yoursite.com/../images/perfect/workplace.png">
+<meta property="og:image" content="http://yoursite.com/../images/perfect/tianjia.png">
+<meta property="og:image" content="http://yoursite.com/../images/perfect/perfectlib.png">
+<meta property="og:image" content="http://yoursite.com/../images/perfect/perfectserver.png">
+<meta property="og:image" content="http://yoursite.com/../images/perfect/addover.png">
+<meta property="og:image" content="http://yoursite.com/../images/perfect/framework.png">
+<meta property="og:image" content="http://yoursite.com/../images/perfect/newpro.png">
+<meta property="og:image" content="http://yoursite.com/../images/perfect/addover2.png">
+<meta property="og:image" content="http://yoursite.com/../images/perfect/setting.png">
+<meta property="og:image" content="http://yoursite.com/../images/perfect/editschame.png">
+<meta property="og:image" content="http://yoursite.com/../images/perfect/success.png">
+<meta property="og:updated_time" content="2016-05-30T15:34:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从头开始创建一个Swift的Perfect的服务端">
+<meta name="twitter:description" content="Perfect是一个使用Swift编程语言开发Web和其他REST服务的框架，其主要目标是简化需要后端服务器软件的移动应用的开发，使开发人员可以使用同一种语言进行客户端和服务端开发。因为是基于Swift开发，所以对于在iOS平台上可以达到客户端与服务端使用相同的类和一些封装好的工具，一定程度上可以减少代码重复，这一点有点像Android与Java服务器协作的好处，它完全支持使用Xcode开发和调">
+<meta name="twitter:image" content="http://yoursite.com/../images/perfect/git.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 从头开始创建一个Swift的Perfect的服务端 | ilioner </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">ilioner</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">为什么坚持，想想当初</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                从头开始创建一个Swift的Perfect的服务端
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-30T17:35:44+08:00" content="2016-05-30">
+              2016-05-30
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/30/从头开始创建一个Swift的Perfect的服务端.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/30/从头开始创建一个Swift的Perfect的服务端.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Perfect是一个使用Swift编程语言开发Web和其他REST服务的框架，<br>其主要目标是简化需要后端服务器软件的移动应用的开发，使开发人员可以使用同一种语言进行客户端和服务端开发。<br>因为是<strong>基于Swift开发</strong>，所以对于在iOS平台上可以达到客户端与服务端使用相同的类和一些封装好的工具，一定程度上可以<strong>减少代码重复</strong>，这一点有点像Android与Java服务器协作的好处<br>，它完全支持<strong>使用Xcode开发和调试</strong>。由于<strong>Swift的开源特性，所以它必须能够在Linux上跑起来</strong>。</p>
+<p>Perfect的工程可以在git上查看并且附有Demo，官网也有关于Perfect的详细文档与很多视频教程</p>
+<p>git:<a href="https://github.com/PerfectlySoft/Perfect" target="_blank" rel="external">https://github.com/PerfectlySoft/Perfect</a></p>
+<p>官网:<a href="https://www.perfect.org" target="_blank" rel="external">https://www.perfect.org</a></p>
+<p>Perfect主要包含以下组件。详细查阅<a href="http://www.infoq.com/cn/news/2015/11/perfect-swift" target="_blank" rel="external">http://www.infoq.com/cn/news/2015/11/perfect-swift</a></p>
+<p><strong>PerfectLib</strong></p>
+<p>PerfectLib是一个Swift模块，提供了一套进行服务端和客户端开发的核心工具。在许多情况下，客户端和服务端使用相同的API。</p>
+<p><strong>Perfect Server</strong></p>
+<p>Perfect Server是一个让Perfect能够运转的服务端组件。它是一个始终处于运行状态的独立进程，接受客户端连接、处理请求并返回响应。</p>
+</blockquote>
+<p>搭建一个Perfect工程大致步骤如下:</p>
+<ol>
+<li>创建工作空间引入Perfect库</li>
+<li>设置工程</li>
+<li>编码运行</li>
+</ol>
+<hr>
+<p>准备工作:</p>
+<p>下载Perfect库</p>
+<p>推荐从git上下载源码,因为里面包含了可能用到的所有组件:<br><img src="../images/perfect/git.png" alt=""></p>
+<p>解压Perfect库的压缩包，安卓xcode的Perfect模板</p>
+<p><img src="../images/perfect/moban.png" alt=""></p>
+<p>打开这个工程直接run就可以</p>
+<hr>
+<h2 id="1-创建工作空间引入Perfect库"><a href="#1-创建工作空间引入Perfect库" class="headerlink" title="1. 创建工作空间引入Perfect库"></a>1. 创建工作空间引入Perfect库</h2><h3 id="1-1-创建工作空间"><a href="#1-1-创建工作空间" class="headerlink" title="1.1 创建工作空间"></a>1.1 创建工作空间</h3><p>打开Xcode—&gt;File—&gt;New—&gt;WorkPlace</p>
+<p>创建一个PerfectDemo的工作空间，穿件完成后会生成一个PerfectDemo.xcworkspace文件该文件就是一个Xcode的工作空间。<br><img src="../images/perfect/finder.png" alt=""><br><img src="../images/perfect/workplace.png" alt=""></p>
+<h3 id="1-2-引入PerfectLib与Perfect-Server"><a href="#1-2-引入PerfectLib与Perfect-Server" class="headerlink" title="1.2 引入PerfectLib与Perfect Server"></a>1.2 引入PerfectLib与Perfect Server</h3><p><img src="../images/perfect/tianjia.png" alt=""></p>
+<p>注意添加选项的选择</p>
+<p><img src="../images/perfect/perfectlib.png" alt=""></p>
+<p><img src="../images/perfect/perfectserver.png" alt=""></p>
+<p>添加完成后可以看到我们创建的PerfectDemo工作空间已经引入Perfect的依赖</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="../images/perfect/addover.png" alt=""></h2><p>接下来，创建一个PerfectDemo工程，该工程为正式的服务器工程:</p>
+<p><strong>推荐创建的时候以cocoaframwork的形式添加</strong></p>
+<p><img src="../images/perfect/framework.png" alt=""></p>
+<p>注意添加工程的时候选择我们的工作空间为添加选项:</p>
+<p><img src="../images/perfect/newpro.png" alt=""></p>
+<p>工程添加完成之后工作空间结构如下：</p>
+<p><img src="../images/perfect/addover2.png" alt=""></p>
+<h2 id="2-设置工程"><a href="#2-设置工程" class="headerlink" title="2. 设置工程"></a>2. 设置工程</h2><p>工程添加完成之后，开始设置我们的工程</p>
+<p><img src="../images/perfect/setting.png" alt=""></p>
+<p>具体设置项目如下：</p>
+<ul>
+<li>Skip Install = No</li>
+<li>Deployment Location = Yes</li>
+<li>Installation Directory = /PerfectLibraries</li>
+<li>Installation Build Products Location = $(CONFIGURATION_BUILD_DIR)</li>
+</ul>
+<h2 id="3-编码运行"><a href="#3-编码运行" class="headerlink" title="3. 编码运行"></a>3. 编码运行</h2><p>所有的设置成功之后，开始编写服务端代码:</p>
+<p>创建PerfectMain.swift文件:</p>
+<p>先运行一下官方的示例代码:</p>
+<pre><code>import Foundation
+
+import PerfectLib
+
+// This is the function which all Perfect Server modules must expose.
+// The system will load the module and call this function.
+// In here, register any handlers or perform any one-time tasks.
+public func PerfectServerModuleInit() {
+
+    // Install the built-in routing handler.
+    // Using this system is optional and you could install your own system if desired.
+    Routing.Handler.registerGlobally()
+
+    Routing.Routes[&quot;GET&quot;, [&quot;/&quot;, &quot;index.html&quot;] ] = { (_:WebResponse) in return IndexHandler() }
+
+    // Check the console to see the logical structure of what was installed.
+    print(&quot;\(Routing.Routes.description)&quot;)
+}
+
+class IndexHandler: RequestHandler {
+
+    func handleRequest(request: WebRequest, response: WebResponse) {
+        response.appendBodyString(&quot;Index handler: You accessed path \(request.requestURI())&quot;)
+        response.requestCompletedCallback()
+    }
+}
+</code></pre><p>代码编写完成之后,设置运行的Schema</p>
+<p>选中PerfectDemo工程不要选到Perfect的库上去了</p>
+<p>设置Excutable为我们之前添加的Perfect模板</p>
+<p><img src="../images/perfect/editschame.png" alt=""></p>
+<p>设置完成之后，Run工程会启动一个PerfectServer Http程序，表示我们的Perfect服务器已经启动，改程序面板可以设置服务器的端口号，ip，已经webroot目录等等</p>
+<p><img src="../images/perfect/success.png" alt=""></p>
+<h2 id="至此，Perfect服务器工程的创建与配置完成"><a href="#至此，Perfect服务器工程的创建与配置完成" class="headerlink" title="至此，Perfect服务器工程的创建与配置完成"></a>至此，Perfect服务器工程的创建与配置完成</h2><p>工程可参照官方Demo或者该示例工程的git: <a href="https://github.com/ilioner/PerfectServerDemo" target="_blank" rel="external">https://github.com/ilioner/PerfectServerDemo</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/shouqian.jpg" alt="TywinZhang Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/swift-perfect/" rel="tag">#swift,perfect</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/29/蔻鼎遗痕.html" rel="next" title="蔻鼎遗痕">
+                <i class="fa fa-chevron-left"></i> 蔻鼎遗痕
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/30/从头开始创建一个Swift的Perfect的服务端.html"
+           data-title="从头开始创建一个Swift的Perfect的服务端" data-url="http://yoursite.com/2016/05/30/从头开始创建一个Swift的Perfect的服务端.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="TywinZhang" />
+          <p class="site-author-name" itemprop="name">TywinZhang</p>
+          <p class="site-description motion-element" itemprop="description">一个狮子座的不将就IT男青年</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ilioner" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/899c84548f92/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-创建工作空间引入Perfect库"><span class="nav-number">1.</span> <span class="nav-text">1. 创建工作空间引入Perfect库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-创建工作空间"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 创建工作空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-引入PerfectLib与Perfect-Server"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 引入PerfectLib与Perfect Server</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-设置工程"><span class="nav-number">3.</span> <span class="nav-text">2. 设置工程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-编码运行"><span class="nav-number">4.</span> <span class="nav-text">3. 编码运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#至此，Perfect服务器工程的创建与配置完成"><span class="nav-number">5.</span> <span class="nav-text">至此，Perfect服务器工程的创建与配置完成</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">TywinZhang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="http://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="http://cdn.bootcss.com/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="http://cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="http://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ilioner"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>
