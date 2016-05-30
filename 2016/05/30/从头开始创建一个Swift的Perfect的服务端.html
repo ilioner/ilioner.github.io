@@ -86,29 +86,29 @@
 
 <meta name="description" content="Perfect是一个使用Swift编程语言开发Web和其他REST服务的框架，其主要目标是简化需要后端服务器软件的移动应用的开发，使开发人员可以使用同一种语言进行客户端和服务端开发。因为是基于Swift开发，所以对于在iOS平台上可以达到客户端与服务端使用相同的类和一些封装好的工具，一定程度上可以减少代码重复，这一点有点像Android与Java服务器协作的好处，它完全支持使用Xcode开发和调">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从头开始创建一个Swift的Perfect的服务端">
+<meta property="og:title" content="从头开始创建一个基于Swift的Perfect的服务端">
 <meta property="og:url" content="http://yoursite.com/2016/05/30/从头开始创建一个Swift的Perfect的服务端.html">
 <meta property="og:site_name" content="ilioner">
 <meta property="og:description" content="Perfect是一个使用Swift编程语言开发Web和其他REST服务的框架，其主要目标是简化需要后端服务器软件的移动应用的开发，使开发人员可以使用同一种语言进行客户端和服务端开发。因为是基于Swift开发，所以对于在iOS平台上可以达到客户端与服务端使用相同的类和一些封装好的工具，一定程度上可以减少代码重复，这一点有点像Android与Java服务器协作的好处，它完全支持使用Xcode开发和调">
-<meta property="og:image" content="http://yoursite.com/../images/perfect/git.png">
-<meta property="og:image" content="http://yoursite.com/../images/perfect/moban.png">
-<meta property="og:image" content="http://yoursite.com/../images/perfect/finder.png">
-<meta property="og:image" content="http://yoursite.com/../images/perfect/workplace.png">
-<meta property="og:image" content="http://yoursite.com/../images/perfect/tianjia.png">
-<meta property="og:image" content="http://yoursite.com/../images/perfect/perfectlib.png">
-<meta property="og:image" content="http://yoursite.com/../images/perfect/perfectserver.png">
-<meta property="og:image" content="http://yoursite.com/../images/perfect/addover.png">
-<meta property="og:image" content="http://yoursite.com/../images/perfect/framework.png">
-<meta property="og:image" content="http://yoursite.com/../images/perfect/newpro.png">
-<meta property="og:image" content="http://yoursite.com/../images/perfect/addover2.png">
-<meta property="og:image" content="http://yoursite.com/../images/perfect/setting.png">
-<meta property="og:image" content="http://yoursite.com/../images/perfect/editschame.png">
-<meta property="og:image" content="http://yoursite.com/../images/perfect/success.png">
-<meta property="og:updated_time" content="2016-05-30T15:34:50.000Z">
+<meta property="og:image" content="http://yoursite.com/images/perfect/git.png">
+<meta property="og:image" content="http://yoursite.com/images/perfect/moban.png">
+<meta property="og:image" content="http://yoursite.com/images/perfect/finder.png">
+<meta property="og:image" content="http://yoursite.com/images/perfect/workplace.png">
+<meta property="og:image" content="http://yoursite.com/images/perfect/tianjia.png">
+<meta property="og:image" content="http://yoursite.com/images/perfect/perfectlib.png">
+<meta property="og:image" content="http://yoursite.com/images/perfect/perfectserver.png">
+<meta property="og:image" content="http://yoursite.com/images/perfect/addover.png">
+<meta property="og:image" content="http://yoursite.com/images/perfect/framework.png">
+<meta property="og:image" content="http://yoursite.com/images/perfect/newpro.png">
+<meta property="og:image" content="http://yoursite.com/images/perfect/addover2.png">
+<meta property="og:image" content="http://yoursite.com/images/perfect/setting.png">
+<meta property="og:image" content="http://yoursite.com/images/perfect/editschame.png">
+<meta property="og:image" content="http://yoursite.com/images/perfect/success.png">
+<meta property="og:updated_time" content="2016-05-30T15:39:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="从头开始创建一个Swift的Perfect的服务端">
+<meta name="twitter:title" content="从头开始创建一个基于Swift的Perfect的服务端">
 <meta name="twitter:description" content="Perfect是一个使用Swift编程语言开发Web和其他REST服务的框架，其主要目标是简化需要后端服务器软件的移动应用的开发，使开发人员可以使用同一种语言进行客户端和服务端开发。因为是基于Swift开发，所以对于在iOS平台上可以达到客户端与服务端使用相同的类和一些封装好的工具，一定程度上可以减少代码重复，这一点有点像Android与Java服务器协作的好处，它完全支持使用Xcode开发和调">
-<meta name="twitter:image" content="http://yoursite.com/../images/perfect/git.png">
+<meta name="twitter:image" content="http://yoursite.com/images/perfect/git.png">
 
 
 
@@ -126,7 +126,7 @@
   };
 </script>
 
-  <title> 从头开始创建一个Swift的Perfect的服务端 | ilioner </title>
+  <title> 从头开始创建一个基于Swift的Perfect的服务端 | ilioner </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -269,7 +269,7 @@
             
             
               
-                从头开始创建一个Swift的Perfect的服务端
+                从头开始创建一个基于Swift的Perfect的服务端
               
             
           </h1>
@@ -336,27 +336,27 @@
 <hr>
 <p>准备工作:</p>
 <p>下载Perfect库</p>
-<p>推荐从git上下载源码,因为里面包含了可能用到的所有组件:<br><img src="../images/perfect/git.png" alt=""></p>
+<p>推荐从git上下载源码,因为里面包含了可能用到的所有组件:<br><img src="/images/perfect/git.png" alt=""></p>
 <p>解压Perfect库的压缩包，安卓xcode的Perfect模板</p>
-<p><img src="../images/perfect/moban.png" alt=""></p>
+<p><img src="/images/perfect/moban.png" alt=""></p>
 <p>打开这个工程直接run就可以</p>
 <hr>
 <h2 id="1-创建工作空间引入Perfect库"><a href="#1-创建工作空间引入Perfect库" class="headerlink" title="1. 创建工作空间引入Perfect库"></a>1. 创建工作空间引入Perfect库</h2><h3 id="1-1-创建工作空间"><a href="#1-1-创建工作空间" class="headerlink" title="1.1 创建工作空间"></a>1.1 创建工作空间</h3><p>打开Xcode—&gt;File—&gt;New—&gt;WorkPlace</p>
-<p>创建一个PerfectDemo的工作空间，穿件完成后会生成一个PerfectDemo.xcworkspace文件该文件就是一个Xcode的工作空间。<br><img src="../images/perfect/finder.png" alt=""><br><img src="../images/perfect/workplace.png" alt=""></p>
-<h3 id="1-2-引入PerfectLib与Perfect-Server"><a href="#1-2-引入PerfectLib与Perfect-Server" class="headerlink" title="1.2 引入PerfectLib与Perfect Server"></a>1.2 引入PerfectLib与Perfect Server</h3><p><img src="../images/perfect/tianjia.png" alt=""></p>
+<p>创建一个PerfectDemo的工作空间，穿件完成后会生成一个PerfectDemo.xcworkspace文件该文件就是一个Xcode的工作空间。<br><img src="/images/perfect/finder.png" alt=""><br><img src="/images/perfect/workplace.png" alt=""></p>
+<h3 id="1-2-引入PerfectLib与Perfect-Server"><a href="#1-2-引入PerfectLib与Perfect-Server" class="headerlink" title="1.2 引入PerfectLib与Perfect Server"></a>1.2 引入PerfectLib与Perfect Server</h3><p><img src="/images/perfect/tianjia.png" alt=""></p>
 <p>注意添加选项的选择</p>
-<p><img src="../images/perfect/perfectlib.png" alt=""></p>
-<p><img src="../images/perfect/perfectserver.png" alt=""></p>
+<p><img src="/images/perfect/perfectlib.png" alt=""></p>
+<p><img src="/images/perfect/perfectserver.png" alt=""></p>
 <p>添加完成后可以看到我们创建的PerfectDemo工作空间已经引入Perfect的依赖</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><img src="../images/perfect/addover.png" alt=""></h2><p>接下来，创建一个PerfectDemo工程，该工程为正式的服务器工程:</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="/images/perfect/addover.png" alt=""></h2><p>接下来，创建一个PerfectDemo工程，该工程为正式的服务器工程:</p>
 <p><strong>推荐创建的时候以cocoaframwork的形式添加</strong></p>
-<p><img src="../images/perfect/framework.png" alt=""></p>
+<p><img src="/images/perfect/framework.png" alt=""></p>
 <p>注意添加工程的时候选择我们的工作空间为添加选项:</p>
-<p><img src="../images/perfect/newpro.png" alt=""></p>
+<p><img src="/images/perfect/newpro.png" alt=""></p>
 <p>工程添加完成之后工作空间结构如下：</p>
-<p><img src="../images/perfect/addover2.png" alt=""></p>
+<p><img src="/images/perfect/addover2.png" alt=""></p>
 <h2 id="2-设置工程"><a href="#2-设置工程" class="headerlink" title="2. 设置工程"></a>2. 设置工程</h2><p>工程添加完成之后，开始设置我们的工程</p>
-<p><img src="../images/perfect/setting.png" alt=""></p>
+<p><img src="/images/perfect/setting.png" alt=""></p>
 <p>具体设置项目如下：</p>
 <ul>
 <li>Skip Install = No</li>
@@ -396,9 +396,9 @@ class IndexHandler: RequestHandler {
 </code></pre><p>代码编写完成之后,设置运行的Schema</p>
 <p>选中PerfectDemo工程不要选到Perfect的库上去了</p>
 <p>设置Excutable为我们之前添加的Perfect模板</p>
-<p><img src="../images/perfect/editschame.png" alt=""></p>
+<p><img src="/images/perfect/editschame.png" alt=""></p>
 <p>设置完成之后，Run工程会启动一个PerfectServer Http程序，表示我们的Perfect服务器已经启动，改程序面板可以设置服务器的端口号，ip，已经webroot目录等等</p>
-<p><img src="../images/perfect/success.png" alt=""></p>
+<p><img src="/images/perfect/success.png" alt=""></p>
 <h2 id="至此，Perfect服务器工程的创建与配置完成"><a href="#至此，Perfect服务器工程的创建与配置完成" class="headerlink" title="至此，Perfect服务器工程的创建与配置完成"></a>至此，Perfect服务器工程的创建与配置完成</h2><p>工程可参照官方Demo或者该示例工程的git: <a href="https://github.com/ilioner/PerfectServerDemo" target="_blank" rel="external">https://github.com/ilioner/PerfectServerDemo</a></p>
 
       
@@ -502,7 +502,7 @@ class IndexHandler: RequestHandler {
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/05/30/从头开始创建一个Swift的Perfect的服务端.html"
-           data-title="从头开始创建一个Swift的Perfect的服务端" data-url="http://yoursite.com/2016/05/30/从头开始创建一个Swift的Perfect的服务端.html">
+           data-title="从头开始创建一个基于Swift的Perfect的服务端" data-url="http://yoursite.com/2016/05/30/从头开始创建一个Swift的Perfect的服务端.html">
       </div>
     
   </div>
