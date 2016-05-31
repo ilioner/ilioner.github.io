@@ -27,7 +27,7 @@
 <p>准备工作:</p>
 <p>下载Perfect库</p>
 <p>推荐从git上下载源码,因为里面包含了可能用到的所有组件:<br><img src="/images/perfect/git.png" alt=""></p>
-<p>解压Perfect库的压缩包，安卓xcode的Perfect模板</p>
+<p>解压Perfect库的压缩包，安装xcode的Perfect模板</p>
 <p><img src="/images/perfect/moban.png" alt=""></p>
 <p>打开这个工程直接run就可以</p>
 <hr>
