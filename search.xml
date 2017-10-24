@@ -6,7 +6,102 @@
     <entry>
       <title><![CDATA[sklearn中CountVectorizer与TfidfTransformer使用案例]]></title>
       <url>http://yoursite.com/2017/10/23/sklearn%E4%B8%ADCountVectorizer%E4%B8%8ETfidfTransformer%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B.html</url>
-      <content type="html"></content>
+      <content type="html"><![CDATA[<h2 id="一、词频处理的应用"><a href="#一、词频处理的应用" class="headerlink" title="一、词频处理的应用"></a>一、词频处理的应用</h2><h2 id="二、CountVectorizer与TfidfTransformer"><a href="#二、CountVectorizer与TfidfTransformer" class="headerlink" title="二、CountVectorizer与TfidfTransformer"></a>二、CountVectorizer与TfidfTransformer</h2><h2 id="三、一个应用Demo"><a href="#三、一个应用Demo" class="headerlink" title="三、一个应用Demo"></a>三、一个应用Demo</h2><pre><code>from sklearn.feature_extraction.text import CountVectorizer
+
+#语料
+corpus = [
+        &apos;This is the first document.&apos;,
+        &apos;This is the second second document.&apos;,
+        &apos;And the third one.&apos;
+        &apos;Is this the first document?&apos;
+        ]
+
+# 将文本中的词语，转换成词频矩阵
+
+vectorizer = CountVectorizer()
+
+# 计算词语出现的频率
+X = vectorizer.fit_transform(corpus)
+
+# 获取词袋中所有文本关键词
+words = vectorizer.get_feature_names()
+print(words)
+
+# 查看词频结果
+&apos;&apos;&apos;
+同时在输出每个句子中包含特征词的个数。例如，第一句“This is the first document.”，它对应的
+词频为[0, 1, 1, 1, 0, 0, 1, 0, 1]，假设初始序号从1开始计数，则该词频表示存在第2个位置的单
+词“document”共1次、第3个位置的单词“first”共1次、第4个位置的单词“is”共1次、第9个位置的单词
+“this”共1词。所以，每个句子都会得到一个词频向量。
+&apos;&apos;&apos;
+print(X.toarray())
+
+
+&apos;&apos;&apos;
+2.TfidfTransformer
+
+        TfidfTransformer用于统计vectorizer中每个词语的TF-IDF值。
+&apos;&apos;&apos;
+
+from sklearn.feature_extraction.text import TfidfTransformer
+
+#类调用
+transformer = TfidfTransformer()
+print(transformer)
+
+tfidf = transformer.fit_transform(X)
+
+print(tfidf.toarray())
+
+
+import jieba
+
+&apos;&apos;&apos;
+一个中文词频统计的Demo
+
+&apos;&apos;&apos;
+
+# 避免植物名词被拆分
+jieba.add_word(&apos;谢肉节&apos;)
+
+text = &apos;谢肉节最古老也是最重要的传统就是烹饪并食用名为blini的烤薄饼。这种薄饼呈金黄色，象征着太阳，表示春天的来临和白天越来越长。这种薄饼原先用荞麦粉、黄油、鸡蛋、牛奶、土豆或奶油、调味料制作而成，随着人们生活水品的提高，开始逐渐向其中加入面粉成分。食用的时候，用薄饼将鱼子酱或是三文鱼卷起。舞蹈，歌唱，滑雪，滑冰，拳击等体育活动也是谢肉节必不可少的节目。此外，谢肉节的一大特色是在这一周之中，每一天都有不同的庆祝方式。&apos;
+
+text_cut = &quot; &quot;.join(jieba.cut(text,cut_all = True))
+
+corpus_zh = [text_cut]
+
+#转换词频矩阵
+vectorizer_zh = CountVectorizer()
+# 计算词频出现频率
+X_zh = vectorizer_zh.fit_transform(corpus_zh)
+
+# 获取词袋中文本关键词
+word_zh = vectorizer_zh.get_feature_names()
+
+print(word_zh)
+#数据转换 输出所有shape的元素
+X_zh_array = X_zh.toarray().flat
+print(X_zh_array)
+
+#统计X_zh中每个词语的TF-IDF值
+trancformer_zh = TfidfTransformer()
+tf_zh = trancformer_zh.fit_transform(X_zh)
+
+tf_zh_array = tf_zh.toarray().flat
+
+# 包装一个字典
+result_dic = {}
+
+print(&quot;词----&gt;权重&quot;)
+for i in range(len(tf_zh_array)):
+    key = &quot;%s&quot;%(word_zh[i])
+    result_dic[key] = tf_zh_array[i]
+
+# 对字典进行排序
+result_dic= sorted(result_dic.items(), key=lambda d:d[1], reverse = True)
+
+print(result_dic)
+</code></pre>]]></content>
     </entry>
     
     <entry>
