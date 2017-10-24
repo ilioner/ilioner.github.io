@@ -84,31 +84,22 @@
 
 
 
-<meta name="description" content="一、词频处理的应用二、CountVectorizer与TfidfTransformer三、一个应用Demofrom sklearn.feature_extraction.text import CountVectorizer
-
-#语料
-corpus = [
-        &amp;apos;This is the first document.&amp;apos;,
-        &amp;apos;This is">
+<meta name="description" content="一、词频处理的应用#####词频
+故名思议说的是文章中每个单词的出现频数统计量。通过统计词频，基本可以获取一篇文本的关键字，从而了解一篇文本主要讲述的大致内容。
+比如，“你女神在空虚寂寞冷的时候甩给你一篇有关女性化妆的长文，但是你对于YSL，雪花秀这些东西是什么鬼并不知道。如果你看了半天也不知道她发给你的东西是什么鬼的话，女神会觉得你显然是个“土牛”，如果通过获取一些关键信息并第一时间进行检索，将">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sklearn中CountVectorizer与TfidfTransformer使用案例">
 <meta property="og:url" content="http://yoursite.com/2017/10/23/sklearn中CountVectorizer与TfidfTransformer使用案例.html">
 <meta property="og:site_name" content="ilioner">
-<meta property="og:description" content="一、词频处理的应用二、CountVectorizer与TfidfTransformer三、一个应用Demofrom sklearn.feature_extraction.text import CountVectorizer
-
-#语料
-corpus = [
-        &amp;apos;This is the first document.&amp;apos;,
-        &amp;apos;This is">
-<meta property="og:updated_time" content="2017-10-23T08:11:17.000Z">
+<meta property="og:description" content="一、词频处理的应用#####词频
+故名思议说的是文章中每个单词的出现频数统计量。通过统计词频，基本可以获取一篇文本的关键字，从而了解一篇文本主要讲述的大致内容。
+比如，“你女神在空虚寂寞冷的时候甩给你一篇有关女性化妆的长文，但是你对于YSL，雪花秀这些东西是什么鬼并不知道。如果你看了半天也不知道她发给你的东西是什么鬼的话，女神会觉得你显然是个“土牛”，如果通过获取一些关键信息并第一时间进行检索，将">
+<meta property="og:updated_time" content="2017-10-24T08:51:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sklearn中CountVectorizer与TfidfTransformer使用案例">
-<meta name="twitter:description" content="一、词频处理的应用二、CountVectorizer与TfidfTransformer三、一个应用Demofrom sklearn.feature_extraction.text import CountVectorizer
-
-#语料
-corpus = [
-        &amp;apos;This is the first document.&amp;apos;,
-        &amp;apos;This is">
+<meta name="twitter:description" content="一、词频处理的应用#####词频
+故名思议说的是文章中每个单词的出现频数统计量。通过统计词频，基本可以获取一篇文本的关键字，从而了解一篇文本主要讲述的大致内容。
+比如，“你女神在空虚寂寞冷的时候甩给你一篇有关女性化妆的长文，但是你对于YSL，雪花秀这些东西是什么鬼并不知道。如果你看了半天也不知道她发给你的东西是什么鬼的话，女神会觉得你显然是个“土牛”，如果通过获取一些关键信息并第一时间进行检索，将">
 
 
 
@@ -316,7 +307,11 @@ corpus = [
       
 
       
-        <h2 id="一、词频处理的应用"><a href="#一、词频处理的应用" class="headerlink" title="一、词频处理的应用"></a>一、词频处理的应用</h2><h2 id="二、CountVectorizer与TfidfTransformer"><a href="#二、CountVectorizer与TfidfTransformer" class="headerlink" title="二、CountVectorizer与TfidfTransformer"></a>二、CountVectorizer与TfidfTransformer</h2><h2 id="三、一个应用Demo"><a href="#三、一个应用Demo" class="headerlink" title="三、一个应用Demo"></a>三、一个应用Demo</h2><pre><code>from sklearn.feature_extraction.text import CountVectorizer
+        <h2 id="一、词频处理的应用"><a href="#一、词频处理的应用" class="headerlink" title="一、词频处理的应用"></a>一、词频处理的应用</h2><p>#####词频</p>
+<p>故名思议说的是文章中每个单词的出现频数统计量。<br>通过统计词频，基本可以获取一篇文本的关键字，从而了解一篇文本主要讲述的大致内容。</p>
+<p>比如，“你女神在空虚寂寞冷的时候甩给你一篇有关女性化妆的长文，但是你对于YSL，雪花秀这些东西是什么鬼并不知道。如果你看了半天也不知道她发给你的东西是什么鬼的话，女神会觉得你显然是个“土牛”，如果通过获取一些关键信息并第一时间进行检索，将会使得你可以在第一时间找到撩妹的话题，这样一来，你既节约了时间，有获得了女神的芳心”</p>
+<p>同时，对于词频的统计也将是进一步得到文本简介的第一步。</p>
+<h2 id="二、CountVectorizer与TfidfTransformer"><a href="#二、CountVectorizer与TfidfTransformer" class="headerlink" title="二、CountVectorizer与TfidfTransformer"></a>二、CountVectorizer与TfidfTransformer</h2><h2 id="三、完整的Demo"><a href="#三、完整的Demo" class="headerlink" title="三、完整的Demo"></a>三、完整的Demo</h2><pre><code>from sklearn.feature_extraction.text import CountVectorizer
 
 #语料
 corpus = [
@@ -617,7 +612,7 @@ print(result_dic)
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、词频处理的应用"><span class="nav-number">1.</span> <span class="nav-text">一、词频处理的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、CountVectorizer与TfidfTransformer"><span class="nav-number">2.</span> <span class="nav-text">二、CountVectorizer与TfidfTransformer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、一个应用Demo"><span class="nav-number">3.</span> <span class="nav-text">三、一个应用Demo</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、词频处理的应用"><span class="nav-number">1.</span> <span class="nav-text">一、词频处理的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、CountVectorizer与TfidfTransformer"><span class="nav-number">2.</span> <span class="nav-text">二、CountVectorizer与TfidfTransformer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、完整的Demo"><span class="nav-number">3.</span> <span class="nav-text">三、完整的Demo</span></a></li></ol></div>
             
           </div>
         </section>
