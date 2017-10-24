@@ -6,8 +6,7 @@
     <entry>
       <title><![CDATA[sklearn中CountVectorizer与TfidfTransformer使用案例]]></title>
       <url>http://yoursite.com/2017/10/23/sklearn%E4%B8%ADCountVectorizer%E4%B8%8ETfidfTransformer%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B.html</url>
-      <content type="html"><![CDATA[<h2 id="一、词频处理的应用"><a href="#一、词频处理的应用" class="headerlink" title="一、词频处理的应用"></a>一、词频处理的应用</h2><p>#####词频</p>
-<p>故名思议说的是文章中每个单词的出现频数统计量。<br>通过统计词频，基本可以获取一篇文本的关键字，从而了解一篇文本主要讲述的大致内容。</p>
+      <content type="html"><![CDATA[<h2 id="一、词频处理的应用"><a href="#一、词频处理的应用" class="headerlink" title="一、词频处理的应用"></a>一、词频处理的应用</h2><h5 id="词频"><a href="#词频" class="headerlink" title="词频"></a>词频</h5><p>故名思议说的是文章中每个单词的出现频数统计量。<br>通过统计词频，基本可以获取一篇文本的关键字，从而了解一篇文本主要讲述的大致内容<br><a id="more"></a></p>
 <p>比如，“你女神在空虚寂寞冷的时候甩给你一篇有关女性化妆的长文，但是你对于YSL，雪花秀这些东西是什么鬼并不知道。如果你看了半天也不知道她发给你的东西是什么鬼的话，女神会觉得你显然是个“土牛”，如果通过获取一些关键信息并第一时间进行检索，将会使得你可以在第一时间找到撩妹的话题，这样一来，你既节约了时间，有获得了女神的芳心”</p>
 <p>同时，对于词频的统计也将是进一步得到文本简介的第一步。</p>
 <h2 id="二、CountVectorizer与TfidfTransformer"><a href="#二、CountVectorizer与TfidfTransformer" class="headerlink" title="二、CountVectorizer与TfidfTransformer"></a>二、CountVectorizer与TfidfTransformer</h2><h2 id="三、完整的Demo"><a href="#三、完整的Demo" class="headerlink" title="三、完整的Demo"></a>三、完整的Demo</h2><pre><code>from sklearn.feature_extraction.text import CountVectorizer
