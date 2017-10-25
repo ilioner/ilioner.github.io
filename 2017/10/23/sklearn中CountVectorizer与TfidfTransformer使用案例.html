@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="机器学习,sklearn,中文词频," />
+  <meta name="keywords" content="机器学习、Scikit-Learn、中文词频," />
 
 
 
@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="ilioner">
 <meta property="og:description" content="一、词频处理的应用词频
 故名思议说的是文章中每个单词的出现频数统计量。通过统计词频，基本可以获取一篇文本的关键字，从而了解一篇文本主要讲述的大致内容">
-<meta property="og:updated_time" content="2017-10-24T08:58:04.000Z">
+<meta property="og:updated_time" content="2017-10-25T05:33:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sklearn中CountVectorizer与TfidfTransformer使用案例">
 <meta name="twitter:description" content="一、词频处理的应用词频
@@ -308,7 +308,16 @@
 <p>故名思议说的是文章中每个单词的出现频数统计量。<br>通过统计词频，基本可以获取一篇文本的关键字，从而了解一篇文本主要讲述的大致内容<br><a id="more"></a></p>
 <p>比如，“你女神在空虚寂寞冷的时候甩给你一篇有关女性化妆的长文，但是你对于YSL，雪花秀这些东西是什么鬼并不知道。如果你看了半天也不知道她发给你的东西是什么鬼的话，女神会觉得你显然是个“土牛”，如果通过获取一些关键信息并第一时间进行检索，将会使得你可以在第一时间找到撩妹的话题，这样一来，你既节约了时间，有获得了女神的芳心”</p>
 <p>同时，对于词频的统计也将是进一步得到文本简介的第一步。</p>
-<h2 id="二、CountVectorizer与TfidfTransformer"><a href="#二、CountVectorizer与TfidfTransformer" class="headerlink" title="二、CountVectorizer与TfidfTransformer"></a>二、CountVectorizer与TfidfTransformer</h2><h2 id="三、完整的Demo"><a href="#三、完整的Demo" class="headerlink" title="三、完整的Demo"></a>三、完整的Demo</h2><pre><code>from sklearn.feature_extraction.text import CountVectorizer
+<h2 id="二、CountVectorizer与TfidfTransformer"><a href="#二、CountVectorizer与TfidfTransformer" class="headerlink" title="二、CountVectorizer与TfidfTransformer"></a>二、CountVectorizer与TfidfTransformer</h2><p>   在了解这个之前，了解一下TF-IDF还是比较有必要的。</p>
+<p>   TF-IDF（Term Frequency–Inverse Document Frequency）是一种用于资讯检索与文本挖掘的常用加权技术。TF-IDF是一种统计方法，用以评估一个字词对于一个文件集或一个语料库中的其中一份文件的重要程度。字词的重要性随着它在文件中出现的次数成正比增加，但同时会随着它在语料库中出现的频率成反比下降。TF-IDF加权的各种形式常被搜索引擎应用，作为文件与用户查询之间相关程度的度量或评级。</p>
+<p>TF-IDF的主要思想是：如果某个词或短语在一篇文章中出现的频率TF高，并且在其他文章中很少出现，则认为此词或者短语具有很好的类别区分能力，适合用来分类。TF-IDF实际上是：TF * IDF。<br>　　<br>（1）词频（Term Frequency，TF）指的是某一个给定的词语在该文件中出现的频率。即词w在文档d中出现的次数count(w, d)和文档d中总词数size(d)的比值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf(w,d) = count(w, d) / size(d)</span><br></pre></td></tr></table></figure></p>
+<p>这个数字是对词数(term count)的归一化，以防止它偏向长的文件。（同一个词语在长文件里可能会比短文件有更高的词数，而不管该词语重要与否。）<br>　　<br>（2）逆向文件频率（Inverse Document Frequency，IDF）是一个词语普遍重要性的度量。某一特定词语的IDF，可以由总文件数目除以包含该词语之文件的数目，再将得到的商取对数得到。即文档总数n与词w所出现文件数docs(w, D)比值的对数。　　<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">idf = log(n / docs(w, D))</span><br></pre></td></tr></table></figure></p>
+<p>TF-IDF根据 tf 和 idf 为每一个文档d和由关键词w[1]…w[k]组成的查询串q计算一个权值，用于表示查询串q与文档d的匹配度：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tf-idf(q, d)</span><br><span class="line">= sum &#123; i = 1..k | tf-idf(w[i], d) &#125;</span><br><span class="line">= sum &#123; i = 1..k | tf(w[i], d) * idf(w[i]) &#125;</span><br></pre></td></tr></table></figure></p>
+<p>某一特定文件内的高词语频率，以及该词语在整个文件集合中的低文件频率，可以产生出高权重的TF-IDF。因此，TF-IDF倾向于过滤掉常见的词语，保留重要的词语。</p>
+<p>   在IDF中可以发现，当某个词在语料库中各个文档出现的次数越多，它的IDF值越低，当它在所有文档中都出现时，其IDF计算结果为0，而通常这些出现次数非常多的词或字为“的”、“我”、“吗”等，它对文章的权重计算起不到一定的作用。</p>
+<p><strong><em>Scikit-Learn中TF-IDF权重计算方法主要用到两个类：CountVectorizer和TfidfTransformer</em></strong></p>
+<p>1.CountVectorizer<br>        CountVectorizer类会将文本中的词语转换为词频矩阵，例如矩阵中包含一个元素a[i][j]，它表示j词在i类文本下的词频。它通过fit_transform函数计算各个词语出现的次数，通过get_feature_names()可获取词袋中所有文本的关键字，通过toarray()可看到词频矩阵的结果。</p>
+<pre><code>from sklearn.feature_extraction.text import CountVectorizer
 
 #语料
 corpus = [
@@ -337,73 +346,32 @@ print(words)
 “this”共1词。所以，每个句子都会得到一个词频向量。
 &apos;&apos;&apos;
 print(X.toarray())
-
-
-&apos;&apos;&apos;
-2.TfidfTransformer
-
-        TfidfTransformer用于统计vectorizer中每个词语的TF-IDF值。
-&apos;&apos;&apos;
-
-from sklearn.feature_extraction.text import TfidfTransformer
-
-#类调用
+</code></pre><p>2.TfidfTransformer<br>        TfidfTransformer用于统计vectorizer中每个词语的TF-IDF值。具体用法如下：<br>    from sklearn.feature_extraction.text import TfidfTransformer</p>
+<pre><code>#类调用
 transformer = TfidfTransformer()
 print(transformer)
 
 tfidf = transformer.fit_transform(X)
 
 print(tfidf.toarray())
+</code></pre><p>PS.在做中文词频处理时，需要事先对文本进行分词。<br>英文的话就不必要了，因为英文本身就是单词与单词分开的。</p>
+<p>比如:</p>
+<pre><code>we are young.
+</code></pre><p><strong>处理前</strong>:</p>
+<pre><code>北京的冬天太冷，我没有足够的衣裳过冬。
+</code></pre><p><strong>处理后</strong>:</p>
+<pre><code>北京 的 冬天 太 冷 ， 我 没有 足够 的 衣裳 过冬 。
+</code></pre><h2 id="三、一个完整的Demo"><a href="#三、一个完整的Demo" class="headerlink" title="三、一个完整的Demo"></a>三、一个完整的Demo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">import jieba #易用高效的分词库</span><br><span class="line"></span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">避免专业名词被拆分</span><br><span class="line">如  机器学习 ---&gt; 机器 学习   X</span><br><span class="line">                 机器学习    √</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">jieba.add_word(&apos;机器学习&apos;)</span><br><span class="line">jieba.add_word(&apos;人工智能&apos;)</span><br><span class="line">jieba.add_word(&apos;AI&apos;)</span><br><span class="line"></span><br><span class="line">file_object = open(&apos;article.txt&apos;)</span><br><span class="line">try:</span><br><span class="line">     all_the_text = file_object.read( )</span><br><span class="line">finally:</span><br><span class="line">     file_object.close( )</span><br><span class="line"></span><br><span class="line">text = all_the_text</span><br><span class="line">text_cut = &quot; &quot;.join(jieba.cut(text,cut_all = True))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">corpus_zh = [text_cut]</span><br><span class="line"></span><br><span class="line">#转换词频矩阵</span><br><span class="line">vectorizer_zh = CountVectorizer()</span><br><span class="line"># 计算词频出现频率</span><br><span class="line">X_zh = vectorizer_zh.fit_transform(corpus_zh)</span><br><span class="line"></span><br><span class="line"># 获取词袋中文本关键词</span><br><span class="line">word_zh = vectorizer_zh.get_feature_names()</span><br><span class="line"></span><br><span class="line">print(word_zh)</span><br><span class="line">#数据转换 输出所有shape的元素</span><br><span class="line">X_zh_array = X_zh.toarray().flat</span><br><span class="line">print(X_zh_array)</span><br><span class="line"></span><br><span class="line">#统计X_zh中每个词语的TF-IDF值</span><br><span class="line">trancformer_zh = TfidfTransformer()</span><br><span class="line">tf_zh = trancformer_zh.fit_transform(X_zh)</span><br><span class="line"></span><br><span class="line">tf_zh_array = tf_zh.toarray().flat</span><br><span class="line"></span><br><span class="line"># 包装一个字典</span><br><span class="line">result_dic = &#123;&#125;</span><br><span class="line"></span><br><span class="line">print(&quot;词----&gt;权重&quot;)</span><br><span class="line">for i in range(len(tf_zh_array)):</span><br><span class="line">    key = &quot;%s&quot;%(word_zh[i])</span><br><span class="line">    result_dic[key] = tf_zh_array[i]</span><br><span class="line"></span><br><span class="line"># 对字典进行排序</span><br><span class="line">result_dic= sorted(result_dic.items(), key=lambda d:d[1], reverse = True)</span><br><span class="line"></span><br><span class="line">print(result_dic)</span><br></pre></td></tr></table></figure>
+<p>由此，基于sklearn的中文词频及关键字获取已经实现。</p>
+<p>参考资料:</p>
+<ul>
+<li><p><a href="http://scikit-learn.org/stable/modules/feature_extraction.html#common-vectorizer-usage" target="_blank" rel="external">http://scikit-learn.org/stable/modules/feature_extraction.html#common-vectorizer-usage</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/weidagang2046/archive/2012/10/22/tf-idf-from-probabilistic-view.html#top" target="_blank" rel="external">http://www.cnblogs.com/weidagang2046/archive/2012/10/22/tf-idf-from-probabilistic-view.html#top</a></p>
+</li>
+<li><a href="http://blog.csdn.net/eastmount/article/details/50323063" target="_blank" rel="external">http://blog.csdn.net/eastmount/article/details/50323063</a></li>
+</ul>
 
-
-import jieba
-
-&apos;&apos;&apos;
-一个中文词频统计的Demo
-
-&apos;&apos;&apos;
-
-# 避免植物名词被拆分
-jieba.add_word(&apos;谢肉节&apos;)
-
-text = &apos;谢肉节最古老也是最重要的传统就是烹饪并食用名为blini的烤薄饼。这种薄饼呈金黄色，象征着太阳，表示春天的来临和白天越来越长。这种薄饼原先用荞麦粉、黄油、鸡蛋、牛奶、土豆或奶油、调味料制作而成，随着人们生活水品的提高，开始逐渐向其中加入面粉成分。食用的时候，用薄饼将鱼子酱或是三文鱼卷起。舞蹈，歌唱，滑雪，滑冰，拳击等体育活动也是谢肉节必不可少的节目。此外，谢肉节的一大特色是在这一周之中，每一天都有不同的庆祝方式。&apos;
-
-text_cut = &quot; &quot;.join(jieba.cut(text,cut_all = True))
-
-corpus_zh = [text_cut]
-
-#转换词频矩阵
-vectorizer_zh = CountVectorizer()
-# 计算词频出现频率
-X_zh = vectorizer_zh.fit_transform(corpus_zh)
-
-# 获取词袋中文本关键词
-word_zh = vectorizer_zh.get_feature_names()
-
-print(word_zh)
-#数据转换 输出所有shape的元素
-X_zh_array = X_zh.toarray().flat
-print(X_zh_array)
-
-#统计X_zh中每个词语的TF-IDF值
-trancformer_zh = TfidfTransformer()
-tf_zh = trancformer_zh.fit_transform(X_zh)
-
-tf_zh_array = tf_zh.toarray().flat
-
-# 包装一个字典
-result_dic = {}
-
-print(&quot;词----&gt;权重&quot;)
-for i in range(len(tf_zh_array)):
-    key = &quot;%s&quot;%(word_zh[i])
-    result_dic[key] = tf_zh_array[i]
-
-# 对字典进行排序
-result_dic= sorted(result_dic.items(), key=lambda d:d[1], reverse = True)
-
-print(result_dic)
-</code></pre>
       
     </div>
 
@@ -440,7 +408,7 @@ print(result_dic)
       
         <div class="post-tags">
           
-            <a href="/tags/机器学习-sklearn-中文词频/" rel="tag">#机器学习,sklearn,中文词频</a>
+            <a href="/tags/机器学习、Scikit-Learn、中文词频/" rel="tag">#机器学习、Scikit-Learn、中文词频</a>
           
         </div>
       
@@ -609,7 +577,7 @@ print(result_dic)
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、词频处理的应用"><span class="nav-number">1.</span> <span class="nav-text">一、词频处理的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、CountVectorizer与TfidfTransformer"><span class="nav-number">2.</span> <span class="nav-text">二、CountVectorizer与TfidfTransformer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、完整的Demo"><span class="nav-number">3.</span> <span class="nav-text">三、完整的Demo</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、词频处理的应用"><span class="nav-number">1.</span> <span class="nav-text">一、词频处理的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、CountVectorizer与TfidfTransformer"><span class="nav-number">2.</span> <span class="nav-text">二、CountVectorizer与TfidfTransformer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、一个完整的Demo"><span class="nav-number">3.</span> <span class="nav-text">三、一个完整的Demo</span></a></li></ol></div>
             
           </div>
         </section>
