@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="ilioner">
 <meta property="og:description" content="一、词频处理的应用词频
 故名思议说的是文章中每个单词的出现频数统计量。通过统计词频，基本可以获取一篇文本的关键字，从而了解一篇文本主要讲述的大致内容">
-<meta property="og:updated_time" content="2017-10-25T05:33:19.000Z">
+<meta property="og:updated_time" content="2017-10-25T05:49:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sklearn中CountVectorizer与TfidfTransformer使用案例">
 <meta name="twitter:description" content="一、词频处理的应用词频
@@ -312,7 +312,7 @@
 <p>   TF-IDF（Term Frequency–Inverse Document Frequency）是一种用于资讯检索与文本挖掘的常用加权技术。TF-IDF是一种统计方法，用以评估一个字词对于一个文件集或一个语料库中的其中一份文件的重要程度。字词的重要性随着它在文件中出现的次数成正比增加，但同时会随着它在语料库中出现的频率成反比下降。TF-IDF加权的各种形式常被搜索引擎应用，作为文件与用户查询之间相关程度的度量或评级。</p>
 <p>TF-IDF的主要思想是：如果某个词或短语在一篇文章中出现的频率TF高，并且在其他文章中很少出现，则认为此词或者短语具有很好的类别区分能力，适合用来分类。TF-IDF实际上是：TF * IDF。<br>　　<br>（1）词频（Term Frequency，TF）指的是某一个给定的词语在该文件中出现的频率。即词w在文档d中出现的次数count(w, d)和文档d中总词数size(d)的比值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf(w,d) = count(w, d) / size(d)</span><br></pre></td></tr></table></figure></p>
 <p>这个数字是对词数(term count)的归一化，以防止它偏向长的文件。（同一个词语在长文件里可能会比短文件有更高的词数，而不管该词语重要与否。）<br>　　<br>（2）逆向文件频率（Inverse Document Frequency，IDF）是一个词语普遍重要性的度量。某一特定词语的IDF，可以由总文件数目除以包含该词语之文件的数目，再将得到的商取对数得到。即文档总数n与词w所出现文件数docs(w, D)比值的对数。　　<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">idf = log(n / docs(w, D))</span><br></pre></td></tr></table></figure></p>
-<p>TF-IDF根据 tf 和 idf 为每一个文档d和由关键词w[1]…w[k]组成的查询串q计算一个权值，用于表示查询串q与文档d的匹配度：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tf-idf(q, d)</span><br><span class="line">= sum &#123; i = 1..k | tf-idf(w[i], d) &#125;</span><br><span class="line">= sum &#123; i = 1..k | tf(w[i], d) * idf(w[i]) &#125;</span><br></pre></td></tr></table></figure></p>
+<p>TF-IDF根据 tf 和 idf 为每一个文档d和由关键词w[1]…w[k]组成的查询串q计算一个权值，用于表示查询串q与文档d的匹配度：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf-idf(q, d) = sum &#123; i = 1..k | tf-idf(w[i], d) &#125; = sum &#123; i = 1..k | tf(w[i], d) * idf(w[i]) &#125;</span><br></pre></td></tr></table></figure></p>
 <p>某一特定文件内的高词语频率，以及该词语在整个文件集合中的低文件频率，可以产生出高权重的TF-IDF。因此，TF-IDF倾向于过滤掉常见的词语，保留重要的词语。</p>
 <p>   在IDF中可以发现，当某个词在语料库中各个文档出现的次数越多，它的IDF值越低，当它在所有文档中都出现时，其IDF计算结果为0，而通常这些出现次数非常多的词或字为“的”、“我”、“吗”等，它对文章的权重计算起不到一定的作用。</p>
 <p><strong><em>Scikit-Learn中TF-IDF权重计算方法主要用到两个类：CountVectorizer和TfidfTransformer</em></strong></p>
