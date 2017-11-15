@@ -96,7 +96,7 @@
 文本挖掘
 
 文本挖掘(Text Mining)是从非结构化文本信息中获取用户感兴趣或者有用的模式 的过程。其中被普遍认可的文本挖掘定义如下:文本挖掘是指从大量文本数据中抽取事先未知的、可理解的、最终可用的知识的过程，同时运用这些知识更好地组织信息以便将来">
-<meta property="og:updated_time" content="2017-11-15T08:19:56.000Z">
+<meta property="og:updated_time" content="2017-11-15T08:21:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ML：sklearn中文文本分类">
 <meta name="twitter:description" content="一、基本概念文本分类是文本挖掘中的一个重要领域，所谓文本分类，事实上指的是为用户给出每个文档，文本片段等所要归属于哪一类(类别，主题等)的问题。
@@ -333,8 +333,13 @@
 有歧义的结果:火 车上 有 人
 </code></pre><p>分词的精度将直接导致文本的关键信息以至于对最后的分类结果造成影响。</p>
 <p>目前已经有比较成熟的分词工具被提供使用:<br>具体可以参照<a href="http://blog.csdn.net/sinat_26917383/article/details/77067515" target="_blank" rel="external">一些比较好用的中文分词器</a></p>
-<h1 id="获取分类"><a href="#获取分类" class="headerlink" title="获取分类"></a>获取分类</h1><p>data_list = os.listdir(‘./data’) #语料数据<br>seg_path = ‘./segment’ #分词后的数据<br>seg_train_path = ‘./segment/train’ #分词后的训练数据<br>seg_test_path = ‘./segment/test’#分词后的测试数据</p>
-<pre><code># 获取各个分类内容，并进行切词保存在segment目录下
+<pre><code># 获取分类
+data_list = os.listdir(&apos;./data&apos;) #语料数据
+seg_path = &apos;./segment&apos; #分词后的数据
+seg_train_path = &apos;./segment/train&apos; #分词后的训练数据
+seg_test_path = &apos;./segment/test&apos;#分词后的测试数据
+
+# 获取各个分类内容，并进行切词保存在segment目录下
 def segment_content():
     for data_cate in data_list:
         content = &quot;&quot;
@@ -572,7 +577,7 @@ def segment_content():
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、基本概念"><span class="nav-number">1.</span> <span class="nav-text">一、基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、基本步骤"><span class="nav-number">2.</span> <span class="nav-text">二、基本步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-预处理"><span class="nav-number">2.0.1.</span> <span class="nav-text">1.预处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-分词处理"><span class="nav-number">2.0.2.</span> <span class="nav-text">2.分词处理</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#获取分类"><span class="nav-number"></span> <span class="nav-text">获取分类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-词向量处理"><span class="nav-number">0.0.1.</span> <span class="nav-text">3.词向量处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-TF-IDF权重策略"><span class="nav-number">0.0.2.</span> <span class="nav-text">4.TF-IDF权重策略</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-建立分类器"><span class="nav-number">0.0.3.</span> <span class="nav-text">5.建立分类器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-评价分类结果"><span class="nav-number">0.0.4.</span> <span class="nav-text">6.评价分类结果</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、基本概念"><span class="nav-number">1.</span> <span class="nav-text">一、基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、基本步骤"><span class="nav-number">2.</span> <span class="nav-text">二、基本步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-预处理"><span class="nav-number">2.0.1.</span> <span class="nav-text">1.预处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-分词处理"><span class="nav-number">2.0.2.</span> <span class="nav-text">2.分词处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-词向量处理"><span class="nav-number">2.0.3.</span> <span class="nav-text">3.词向量处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-TF-IDF权重策略"><span class="nav-number">2.0.4.</span> <span class="nav-text">4.TF-IDF权重策略</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-建立分类器"><span class="nav-number">2.0.5.</span> <span class="nav-text">5.建立分类器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-评价分类结果"><span class="nav-number">2.0.6.</span> <span class="nav-text">6.评价分类结果</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>

@@ -29,8 +29,13 @@
 有歧义的结果:火 车上 有 人
 </code></pre><p>分词的精度将直接导致文本的关键信息以至于对最后的分类结果造成影响。</p>
 <p>目前已经有比较成熟的分词工具被提供使用:<br>具体可以参照<a href="http://blog.csdn.net/sinat_26917383/article/details/77067515" target="_blank" rel="external">一些比较好用的中文分词器</a></p>
-<h1 id="获取分类"><a href="#获取分类" class="headerlink" title="获取分类"></a>获取分类</h1><p>data_list = os.listdir(‘./data’) #语料数据<br>seg_path = ‘./segment’ #分词后的数据<br>seg_train_path = ‘./segment/train’ #分词后的训练数据<br>seg_test_path = ‘./segment/test’#分词后的测试数据</p>
-<pre><code># 获取各个分类内容，并进行切词保存在segment目录下
+<pre><code># 获取分类
+data_list = os.listdir(&apos;./data&apos;) #语料数据
+seg_path = &apos;./segment&apos; #分词后的数据
+seg_train_path = &apos;./segment/train&apos; #分词后的训练数据
+seg_test_path = &apos;./segment/test&apos;#分词后的测试数据
+
+# 获取各个分类内容，并进行切词保存在segment目录下
 def segment_content():
     for data_cate in data_list:
         content = &quot;&quot;
