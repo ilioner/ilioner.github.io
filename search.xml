@@ -12,8 +12,8 @@
 文本挖掘(Text Mining)是从非结构化文本信息中获取用户感兴趣或者有用的模式 的过程。其中被普遍认可的文本挖掘定义如下:文本挖掘是指从大量文本数据中抽取事先未知的、可理解的、最终可用的知识的过程，同时运用这些知识更好地组织信息以便将来参考。
 　　简言之，文本挖掘就是从非结构化的文本中寻找知识的过程。 文本挖掘的七个主要领域：
 　　（1）搜索和信息检索（IR）：存储和文本文档的检索，包括搜索引擎和关键字搜 索。
-　　（2） 文本聚类：使用聚类方法，对词汇，片段，段落或文件进行分组和归类。
-　　（3） 文本分类：对片段，段落或文件进行分组和归类，使用数据挖掘分类方法的 基础上，经过训练的标记示例模型。
+　　（2）文本聚类：使用聚类方法，对词汇，片段，段落或文件进行分组和归类。
+　　（3）文本分类：对片段，段落或文件进行分组和归类，使用数据挖掘分类方法的 基础上，经过训练的标记示例模型。
 　　（4）Web 挖掘：在互联网上进行数据和文本挖掘，并特别关注在网络的规模和相 互联系。
 　　（5）信息抽取（IE）：从非结构化文本中识别与提取有关的事实和关系;从非结构 化和半结构化文本制作的结构化数据的过程。
 　　（6）自然语言处理（NLP）：将语言作为一种有意义、有规则的符号系统，在底 层解析和理解语言的任务（例如，词性标注）;目前的技术主要从语法、语义 的角度发现语言最本质的结构和所表达的意义。
@@ -29,7 +29,40 @@
 有歧义的结果:火 车上 有 人
 </code></pre><p>分词的精度将直接导致文本的关键信息以至于对最后的分类结果造成影响。</p>
 <p>目前已经有比较成熟的分词工具被提供使用:<br>具体可以参照<a href="http://blog.csdn.net/sinat_26917383/article/details/77067515" target="_blank" rel="external">一些比较好用的中文分词器</a></p>
-<h5 id="3-词向量处理"><a href="#3-词向量处理" class="headerlink" title="3.词向量处理"></a>3.词向量处理</h5>]]></content>
+<h1 id="获取分类"><a href="#获取分类" class="headerlink" title="获取分类"></a>获取分类</h1><p>data_list = os.listdir(‘./data’) #语料数据<br>seg_path = ‘./segment’ #分词后的数据<br>seg_train_path = ‘./segment/train’ #分词后的训练数据<br>seg_test_path = ‘./segment/test’#分词后的测试数据</p>
+<pre><code># 获取各个分类内容，并进行切词保存在segment目录下
+def segment_content():
+    for data_cate in data_list:
+        content = &quot;&quot;
+        if not os.path.isdir(data_cate) and not data_cate == &apos;.DS_Store&apos;:
+            path = &apos;./data/%s&apos;%(data_cate)
+            files= os.listdir(path)
+            for file in files:
+                file_path = &apos;./data/%s/%s&apos;%(data_cate,file)
+                print(file_path)
+                if file == &quot;.DS_Store&quot;:
+                    os.remove(file_path)
+                else:
+                    f = open(file_path, mode=&apos;r&apos;, encoding=&apos;GB18030&apos;)
+                    try:
+                        content = f.read()
+                    except Exception:
+                        print(&apos;无法读取&apos;)
+                        continue
+                if not os.path.exists(&apos;%s/%s&apos;%(seg_train_path,data_cate)):
+                    os.mkdir(&apos;%s/%s&apos;%(seg_train_path,data_cate))
+                output = open(&apos;%s/%s/%s&apos;%(seg_train_path,data_cate,file), &apos;w&apos;)
+                content_seg = jieba.cut(content) # 使用jieba进行切词
+                output.write(&quot; &quot;.join(content_seg))
+                output.close()
+</code></pre><h5 id="3-词向量处理"><a href="#3-词向量处理" class="headerlink" title="3.词向量处理"></a>3.词向量处理</h5><p>在这一步，会将已经分好词的训练集文本进行词频统计，并生成文本词向量空间，</p>
+<p>词向量，顾名思义，就是使用向量来表达词。最常见的表达方式就是”one-hot”，其向量维度为整个语料库中词的总数，每一维代表语料库中的一个词（出现为1，不出现为0）<br>关于这一点可以<a href="http://ilioner.github.io/2017/10/23/sklearn%E4%B8%ADCountVectorizer%E4%B8%8ETfidfTransformer%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B.html" target="_blank" rel="external">参考</a></p>
+<p>期间为了更好的进行下一步的TF-IDF的处理，可以将一些类似于（呢，啊，嗯）之类的停用词进行过滤。</p>
+<h5 id="4-TF-IDF权重策略"><a href="#4-TF-IDF权重策略" class="headerlink" title="4.TF-IDF权重策略"></a>4.TF-IDF权重策略</h5><p>使用 TF-IDF 发现特征词，并抽取为反映文档主题 的特征</p>
+<p>可以参照<a href="http://ilioner.github.io/2017/10/23/sklearn%E4%B8%ADCountVectorizer%E4%B8%8ETfidfTransformer%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B.html" target="_blank" rel="external">参考</a>，主要工作就是提取文本的关键词信息。</p>
+<h5 id="5-建立分类器"><a href="#5-建立分类器" class="headerlink" title="5.建立分类器"></a>5.建立分类器</h5><p>通过上面这些步骤，训练集基本已经处理完成，现在只需要使用合适的分类器进行训练处一个合适的分类器模型(sklearn有很多已经封装好的分类器，只需要按照需求进行调用就好)。</p>
+<h5 id="6-评价分类结果"><a href="#6-评价分类结果" class="headerlink" title="6.评价分类结果"></a>6.评价分类结果</h5><p>训练出来的模型必须进行测试验证，最简单的方式是使用sklearn自带的交叉验证进行评测，当然，也可以按照第一步划分出来的测试集进行测试和验证。当然分值越高说明训练出的模型在处理分类时更加精准。</p>
+]]></content>
     </entry>
     
     <entry>
