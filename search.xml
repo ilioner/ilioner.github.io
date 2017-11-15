@@ -4,6 +4,12 @@
   
     
     <entry>
+      <title><![CDATA[ML：sklearn中文文本分类]]></title>
+      <url>http://yoursite.com/2017/11/15/ML%EF%BC%9Asklearn%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[sklearn中CountVectorizer与TfidfTransformer使用案例]]></title>
       <url>http://yoursite.com/2017/10/23/sklearn%E4%B8%ADCountVectorizer%E4%B8%8ETfidfTransformer%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B.html</url>
       <content type="html"><![CDATA[<h2 id="一、词频处理的应用"><a href="#一、词频处理的应用" class="headerlink" title="一、词频处理的应用"></a>一、词频处理的应用</h2><p><strong>词频</strong></p>
