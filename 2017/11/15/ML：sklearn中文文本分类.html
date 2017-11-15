@@ -96,7 +96,7 @@
 文本挖掘
 
 文本挖掘(Text Mining)是从非结构化文本信息中获取用户感兴趣或者有用的模式 的过程。其中被普遍认可的文本挖掘定义如下:文本挖掘是指从大量文本数据中抽取事先未知的、可理解的、最终可用的知识的过程，同时运用这些知识更好地组织信息以便将来">
-<meta property="og:updated_time" content="2017-11-15T06:26:36.000Z">
+<meta property="og:updated_time" content="2017-11-15T07:57:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ML：sklearn中文文本分类">
 <meta name="twitter:description" content="一、基本概念文本分类是文本挖掘中的一个重要领域，所谓文本分类，事实上指的是为用户给出每个文档，文本片段等所要归属于哪一类(类别，主题等)的问题。
@@ -327,7 +327,13 @@
 <p><strong>中文特殊情况</strong></p>
 <p>1.预处理<br>2.分词处理<br>3.词向量处理<br>4.TF-IDF权重策略<br>5.建立分类器<br>6.评价分类结果</p>
 <h5 id="1-预处理"><a href="#1-预处理" class="headerlink" title="1.预处理"></a>1.预处理</h5><p>主要实现对文本内容的降噪，划分训练集、测试集等过程。<br>比如，抓取了200篇类别划分明确的百度百科，首先要去除内容中的一些html标签，留下需要用到的内容，删除不必要的内容等等。然后将这些内容进行训练集于测试集的划分。</p>
-
+<h5 id="2-分词处理"><a href="#2-分词处理" class="headerlink" title="2.分词处理"></a>2.分词处理</h5><p>相对于英文而言，中文分词有一定的难点，将连续的汉字序列切分成一个个的单词要考虑很多因素，比如句法，精度等等。</p>
+<pre><code>比如:火车上有人
+正确分词结果:火车 上 有 人
+有歧义的结果:火 车上 有 人
+</code></pre><p>分词的精度将直接导致文本的关键信息以至于对最后的分类结果造成影响。</p>
+<p>目前已经有比较成熟的分词工具被提供使用:<br>具体可以参照<a href="http://blog.csdn.net/sinat_26917383/article/details/77067515" target="_blank" rel="external">一些比较好用的中文分词器</a></p>
+<h5 id="3-词向量处理"><a href="#3-词向量处理" class="headerlink" title="3.词向量处理"></a>3.词向量处理</h5>
       
     </div>
 
@@ -533,7 +539,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、基本概念"><span class="nav-number">1.</span> <span class="nav-text">一、基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、基本步骤"><span class="nav-number">2.</span> <span class="nav-text">二、基本步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-预处理"><span class="nav-number">2.0.1.</span> <span class="nav-text">1.预处理</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、基本概念"><span class="nav-number">1.</span> <span class="nav-text">一、基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、基本步骤"><span class="nav-number">2.</span> <span class="nav-text">二、基本步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-预处理"><span class="nav-number">2.0.1.</span> <span class="nav-text">1.预处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-分词处理"><span class="nav-number">2.0.2.</span> <span class="nav-text">2.分词处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-词向量处理"><span class="nav-number">2.0.3.</span> <span class="nav-text">3.词向量处理</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
