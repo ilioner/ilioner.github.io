@@ -6,8 +6,7 @@
     <entry>
       <title><![CDATA[ML：sklearn中文文本分类]]></title>
       <url>http://yoursite.com/2017/11/15/ML%EF%BC%9Asklearn%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB.html</url>
-      <content type="html"><![CDATA[<h3 id="一、基本概念"><a href="#一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念</h3><p>文本分类是文本挖掘中的一个重要领域，所谓文本分类，事实上指的是为用户给出每个文档，文本片段等所要归属于哪一类(类别，主题等)的问题。</p>
-<pre><code>文本挖掘
+      <content type="html"><![CDATA[<h3 id="一、基本概念"><a href="#一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念</h3><p>文本分类是文本挖掘中的一个重要领域，所谓文本分类，事实上指的是为用户给出每个文档，文本片段等所要归属于哪一类(类别，主题等)的问题。</p><pre><code>文本挖掘
 
 文本挖掘(Text Mining)是从非结构化文本信息中获取用户感兴趣或者有用的模式 的过程。其中被普遍认可的文本挖掘定义如下:文本挖掘是指从大量文本数据中抽取事先未知的、可理解的、最终可用的知识的过程，同时运用这些知识更好地组织信息以便将来参考。
 　　简言之，文本挖掘就是从非结构化的文本中寻找知识的过程。 文本挖掘的七个主要领域：
@@ -18,24 +17,17 @@
 　　（5）信息抽取（IE）：从非结构化文本中识别与提取有关的事实和关系;从非结构 化和半结构化文本制作的结构化数据的过程。
 　　（6）自然语言处理（NLP）：将语言作为一种有意义、有规则的符号系统，在底 层解析和理解语言的任务（例如，词性标注）;目前的技术主要从语法、语义 的角度发现语言最本质的结构和所表达的意义。
 　　（7）概念提取：把单词和短语按语义分组成意义相似的组。
-</code></pre><p>文本分类的应用比较广泛，如:垃圾邮件检测，文件归档，网页分层等等。</p>
-<h3 id="二、基本步骤"><a href="#二、基本步骤" class="headerlink" title="二、基本步骤"></a>二、基本步骤</h3><p>1.预处理<br>2.词向量处理<br>3.TF-IDF权重策略<br>4.建立分类器<br>5.评价分类结果</p>
-<p><strong>中文特殊情况</strong></p>
-<p>1.预处理<br>2.分词处理<br>3.词向量处理<br>4.TF-IDF权重策略<br>5.建立分类器<br>6.评价分类结果</p>
-<h5 id="1-预处理"><a href="#1-预处理" class="headerlink" title="1.预处理"></a>1.预处理</h5><p>主要实现对文本内容的降噪，划分训练集、测试集等过程。<br>比如，抓取了200篇类别划分明确的百度百科，首先要去除内容中的一些html标签，留下需要用到的内容，删除不必要的内容等等。然后将这些内容进行训练集于测试集的划分。</p>
-<h5 id="2-分词处理"><a href="#2-分词处理" class="headerlink" title="2.分词处理"></a>2.分词处理</h5><p>相对于英文而言，中文分词有一定的难点，将连续的汉字序列切分成一个个的单词要考虑很多因素，比如句法，精度等等。</p>
-<pre><code>比如:火车上有人
+</code></pre><p>文本分类的应用比较广泛，如:垃圾邮件检测，文件归档，网页分层等等。</p><h3 id="二、基本步骤"><a href="#二、基本步骤" class="headerlink" title="二、基本步骤"></a>二、基本步骤</h3><p>1.预处理<br>2.词向量处理<br>3.TF-IDF权重策略<br>4.建立分类器<br>5.评价分类结果</p><p><strong>中文特殊情况</strong></p><p>1.预处理<br>2.分词处理<br>3.词向量处理<br>4.TF-IDF权重策略<br>5.建立分类器<br>6.评价分类结果</p><h5 id="1-预处理"><a href="#1-预处理" class="headerlink" title="1.预处理"></a>1.预处理</h5><p>主要实现对文本内容的降噪，划分训练集、测试集等过程。<br>比如，抓取了200篇类别划分明确的百度百科，首先要去除内容中的一些html标签，留下需要用到的内容，删除不必要的内容等等。然后将这些内容进行训练集于测试集的划分。</p><h5 id="2-分词处理"><a href="#2-分词处理" class="headerlink" title="2.分词处理"></a>2.分词处理</h5><p>相对于英文而言，中文分词有一定的难点，将连续的汉字序列切分成一个个的单词要考虑很多因素，比如句法，精度等等。</p><pre><code>比如:火车上有人
 正确分词结果:火车 上 有 人
 有歧义的结果:火 车上 有 人
-</code></pre><p>分词的精度将直接导致文本的关键信息以至于对最后的分类结果造成影响。</p>
-<p>目前已经有比较成熟的分词工具被提供使用:<br>具体可以参照<a href="http://blog.csdn.net/sinat_26917383/article/details/77067515" target="_blank" rel="external">一些比较好用的中文分词器</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 获取分类</span><br><span class="line">data_list = os.listdir(&apos;./data&apos;) #语料数据</span><br><span class="line">seg_path = &apos;./segment&apos; #分词后的数据</span><br><span class="line">seg_train_path = &apos;./segment/train&apos; #分词后的训练数据</span><br><span class="line">seg_test_path = &apos;./segment/test&apos;#分词后的测试数据</span><br><span class="line"></span><br><span class="line"># 获取各个分类内容，并进行切词保存在segment目录下</span><br><span class="line">def segment_content():</span><br><span class="line">    for data_cate in data_list:</span><br><span class="line">        content = &quot;&quot;</span><br><span class="line">        if not os.path.isdir(data_cate) and not data_cate == &apos;.DS_Store&apos;:</span><br><span class="line">            path = &apos;./data/%s&apos;%(data_cate)</span><br><span class="line">            files= os.listdir(path)</span><br><span class="line">            for file in files:</span><br><span class="line">                file_path = &apos;./data/%s/%s&apos;%(data_cate,file)</span><br><span class="line">                print(file_path)</span><br><span class="line">                if file == &quot;.DS_Store&quot;:</span><br><span class="line">                    os.remove(file_path)</span><br><span class="line">                else:</span><br><span class="line">                    f = open(file_path, mode=&apos;r&apos;, encoding=&apos;GB18030&apos;)</span><br><span class="line">                    try:</span><br><span class="line">                        content = f.read()</span><br><span class="line">                    except Exception:</span><br><span class="line">                        print(&apos;无法读取&apos;)</span><br><span class="line">                        continue</span><br><span class="line">                if not os.path.exists(&apos;%s/%s&apos;%(seg_train_path,data_cate)):</span><br><span class="line">                    os.mkdir(&apos;%s/%s&apos;%(seg_train_path,data_cate))</span><br><span class="line">                output = open(&apos;%s/%s/%s&apos;%(seg_train_path,data_cate,file), &apos;w&apos;)</span><br><span class="line">                content_seg = jieba.cut(content) # 使用jieba进行切词</span><br><span class="line">                output.write(&quot; &quot;.join(content_seg))</span><br><span class="line">                output.close()</span><br></pre></td></tr></table></figure></p>
+</code></pre><p>分词的精度将直接导致文本的关键信息以至于对最后的分类结果造成影响。</p><p>目前已经有比较成熟的分词工具被提供使用:<br>具体可以参照<a href="http://blog.csdn.net/sinat_26917383/article/details/77067515" target="_blank" rel="noopener">一些比较好用的中文分词器</a><br></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 获取分类</span><br><span class="line">data_list = os.listdir(&apos;./data&apos;) #语料数据</span><br><span class="line">seg_path = &apos;./segment&apos; #分词后的数据</span><br><span class="line">seg_train_path = &apos;./segment/train&apos; #分词后的训练数据</span><br><span class="line">seg_test_path = &apos;./segment/test&apos;#分词后的测试数据</span><br><span class="line"></span><br><span class="line"># 获取各个分类内容，并进行切词保存在segment目录下</span><br><span class="line">def segment_content():</span><br><span class="line">    for data_cate in data_list:</span><br><span class="line">        content = &quot;&quot;</span><br><span class="line">        if not os.path.isdir(data_cate) and not data_cate == &apos;.DS_Store&apos;:</span><br><span class="line">            path = &apos;./data/%s&apos;%(data_cate)</span><br><span class="line">            files= os.listdir(path)</span><br><span class="line">            for file in files:</span><br><span class="line">                file_path = &apos;./data/%s/%s&apos;%(data_cate,file)</span><br><span class="line">                print(file_path)</span><br><span class="line">                if file == &quot;.DS_Store&quot;:</span><br><span class="line">                    os.remove(file_path)</span><br><span class="line">                else:</span><br><span class="line">                    f = open(file_path, mode=&apos;r&apos;, encoding=&apos;GB18030&apos;)</span><br><span class="line">                    try:</span><br><span class="line">                        content = f.read()</span><br><span class="line">                    except Exception:</span><br><span class="line">                        print(&apos;无法读取&apos;)</span><br><span class="line">                        continue</span><br><span class="line">                if not os.path.exists(&apos;%s/%s&apos;%(seg_train_path,data_cate)):</span><br><span class="line">                    os.mkdir(&apos;%s/%s&apos;%(seg_train_path,data_cate))</span><br><span class="line">                output = open(&apos;%s/%s/%s&apos;%(seg_train_path,data_cate,file), &apos;w&apos;)</span><br><span class="line">                content_seg = jieba.cut(content) # 使用jieba进行切词</span><br><span class="line">                output.write(&quot; &quot;.join(content_seg))</span><br><span class="line">                output.close()</span><br></pre></td></tr></table></figure><p></p>
 <p>以上的代码，已经将文本进行分词并保存(PS.因为使用了交叉验证，所以没有划分测试集，测试集划分方法可以从已经分好词的文件中随机分出20%也可以先分出20%再进行分词)<br>如:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#从切分的数据中分离出测试数据集</span><br><span class="line">def cut_for_test():</span><br><span class="line">    seg_data_list = os.listdir(seg_train_path)</span><br><span class="line">    for data_dir in seg_data_list:</span><br><span class="line">         </span><br><span class="line">        if os.path.isdir(&quot;%s/%s&quot;%(seg_train_path,data_dir)):</span><br><span class="line">            file_dir_path = &quot;%s/%s&quot;%(seg_train_path,data_dir)</span><br><span class="line">            files = os.listdir(file_dir_path)</span><br><span class="line">            test_array = files[-10:]</span><br><span class="line">            for subfile in test_array:</span><br><span class="line">                if subfile == &quot;.DS_Store&quot;:</span><br><span class="line">                    os.remove(&quot;%s/%s&quot;%(file_dir_path,subfile))</span><br><span class="line">                    continue</span><br><span class="line">                if not os.path.exists(&quot;%s/%s&quot;%(seg_test_path,data_dir)):</span><br><span class="line">                    os.mkdir(&quot;%s/%s&quot;%(seg_test_path,data_dir))</span><br><span class="line">                shutil.move(&quot;%s/%s&quot;%(file_dir_path,subfile),&quot;%s/%s/%s&quot;%(seg_test_path,data_dir,subfile))</span><br></pre></td></tr></table></figure>
 <h5 id="3-词向量处理"><a href="#3-词向量处理" class="headerlink" title="3.词向量处理"></a>3.词向量处理</h5><p>在这一步，会将已经分好词的训练集文本进行词频统计，并生成文本词向量空间，</p>
-<p>词向量，顾名思义，就是使用向量来表达词。最常见的表达方式就是”one-hot”，其向量维度为整个语料库中词的总数，每一维代表语料库中的一个词（出现为1，不出现为0）<br>关于这一点可以<a href="http://ilioner.github.io/2017/10/23/sklearn%E4%B8%ADCountVectorizer%E4%B8%8ETfidfTransformer%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B.html" target="_blank" rel="external">参考</a></p>
+<p>词向量，顾名思义，就是使用向量来表达词。最常见的表达方式就是”one-hot”，其向量维度为整个语料库中词的总数，每一维代表语料库中的一个词（出现为1，不出现为0）<br>关于这一点可以<a href="http://ilioner.github.io/2017/10/23/sklearn%E4%B8%ADCountVectorizer%E4%B8%8ETfidfTransformer%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B.html" target="_blank" rel="noopener">参考</a></p>
 <p>期间为了更好的进行下一步的TF-IDF的处理，可以将一些类似于（呢，啊，嗯）之类的停用词进行过滤。</p>
 <h5 id="4-TF-IDF权重策略"><a href="#4-TF-IDF权重策略" class="headerlink" title="4.TF-IDF权重策略"></a>4.TF-IDF权重策略</h5><p>使用 TF-IDF 发现特征词，并抽取为反映文档主题 的特征</p>
-<p>可以参照<a href="http://ilioner.github.io/2017/10/23/sklearn%E4%B8%ADCountVectorizer%E4%B8%8ETfidfTransformer%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B.html" target="_blank" rel="external">参考</a>，主要工作就是提取文本的关键词信息。</p>
+<p>可以参照<a href="http://ilioner.github.io/2017/10/23/sklearn%E4%B8%ADCountVectorizer%E4%B8%8ETfidfTransformer%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B.html" target="_blank" rel="noopener">参考</a>，主要工作就是提取文本的关键词信息。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#第三步，处理词向量，包括去除停用词</span><br><span class="line">def content_vectorizer(data):</span><br><span class="line"></span><br><span class="line">    #载入停用词</span><br><span class="line">    # 语料向量化        </span><br><span class="line">    #if not os.path.exists(&quot;./vectorizer_content.m&quot;):</span><br><span class="line">    vectorizer_content__ = CountVectorizer(stop_words=stopword_list)</span><br><span class="line">    #vectorizer_content = joblib.load(&quot;./vectorizer_content.m&quot;)</span><br><span class="line">    x_array = vectorizer_content__.fit_transform(data)</span><br><span class="line">    #print(x_array.toarray())</span><br><span class="line">    # 计算各个分类内容的 tf-idf值</span><br><span class="line">    X_test =  TfidfTransformer().fit_transform(x_array) </span><br><span class="line">    print(&apos;content_vectorizer&apos;)</span><br><span class="line">    print(vectorizer_content__)</span><br><span class="line">    joblib.dump(vectorizer_content__, &quot;./vectorizer_content.m&quot;) </span><br><span class="line">    return X_test</span><br></pre></td></tr></table></figure>
 <p>如果需要使用测试集进行验证，则需要注意以下信息</p>
 <ul>
@@ -45,28 +37,38 @@
 <h5 id="5-建立分类器"><a href="#5-建立分类器" class="headerlink" title="5.建立分类器"></a>5.建立分类器</h5><p>通过上面这些步骤，训练集基本已经处理完成，现在只需要使用合适的分类器进行训练处一个合适的分类器模型(sklearn有很多已经封装好的分类器，只需要按照需求进行调用就好)。</p>
 <h5 id="6-评价分类结果"><a href="#6-评价分类结果" class="headerlink" title="6.评价分类结果"></a>6.评价分类结果</h5><p>训练出来的模型必须进行测试验证，最简单的方式是使用sklearn自带的交叉验证进行评测，当然，也可以按照第一步划分出来的测试集进行测试和验证。当然分值越高说明训练出的模型在处理分类时更加精准。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"># 创建分类器</span><br><span class="line"></span><br><span class="line">def train():</span><br><span class="line">    from sklearn.naive_bayes import MultinomialNB</span><br><span class="line">    </span><br><span class="line">    processed_textset,Y = loadtrainset()</span><br><span class="line">    #test_textset,Y_test = loadtestset()</span><br><span class="line">    X_train = content_vectorizer(processed_textset)</span><br><span class="line">    #X_test = content_vectorizer_test(test_textset)</span><br><span class="line">    # 多项式贝叶斯分类器</span><br><span class="line">    clf = MultinomialNB(alpha=0.001).fit(X_train,Y)</span><br><span class="line">    </span><br><span class="line">    # KNN分类器</span><br><span class="line">    #from sklearn.neighbors import KNeighborsClassifier    </span><br><span class="line">    #clf = KNeighborsClassifier().fit(X_train,Y)</span><br><span class="line">    # 随机森林</span><br><span class="line">    #from sklearn.ensemble import RandomForestClassifier    </span><br><span class="line">    #clf = RandomForestClassifier(n_estimators=8)    </span><br><span class="line">    #clf.fit(X_train,Y)  </span><br><span class="line">    </span><br><span class="line">    #predict_result = clf.predict(X_test) #预测结果</span><br><span class="line">    print(&apos;交叉验证结果&apos;)</span><br><span class="line">    print(cross_val_score(clf,X_train,Y,cv=10,scoring=&apos;accuracy&apos;))#交叉验证 #</span><br><span class="line">    </span><br><span class="line">    #训练完成，保存分类器</span><br><span class="line">    joblib.dump(clf, &quot;./分类器.model&quot;) </span><br><span class="line"></span><br><span class="line">#预测</span><br><span class="line">def predict(path):</span><br><span class="line">    check_file_data = file_tools(path)</span><br><span class="line">    check_file_vectorizer = content_vectorizer_test(check_file_data)</span><br><span class="line">    clf = joblib.load(&quot;./分类器.model&quot;)</span><br><span class="line">    predict_result = clf.predict(check_file_vectorizer)</span><br><span class="line">    print(&apos;------&gt;预测结果&lt;------&apos;)</span><br><span class="line">    print(predict_result)</span><br><span class="line">    </span><br><span class="line">#segment_content()</span><br><span class="line">#cut_for_test()</span><br><span class="line">#train()#如果没有训练过模型，需要先通过此方法进行训练    </span><br><span class="line">predict(&apos;./test2.txt&apos;) #test2为随机在网上复制下来的体育类新闻，预测结果为新闻</span><br></pre></td></tr></table></figure>
-<p>记录下完整代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python3</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">Created on Mon Nov  6 15:05:43 2017</span><br><span class="line"></span><br><span class="line">@author: tywin</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line">import shutil</span><br><span class="line"></span><br><span class="line">import jieba</span><br><span class="line"></span><br><span class="line">from sklearn.feature_extraction.text import CountVectorizer</span><br><span class="line">from sklearn.feature_extraction.text import TfidfTransformer</span><br><span class="line">from sklearn.cross_validation import cross_val_score</span><br><span class="line"></span><br><span class="line">from sklearn.externals import joblib</span><br><span class="line"></span><br><span class="line">stopword_file = open(&apos;./stopword.txt&apos;)</span><br><span class="line">    </span><br><span class="line">stopword_content_string = stopword_file.read()</span><br><span class="line">    </span><br><span class="line">stopword_list = stopword_content_string.split(&apos;\n&apos;);</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">第一步，对于中文，需要进行分词处理</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 获取分类</span><br><span class="line">data_list = os.listdir(&apos;./data&apos;) #语料数据</span><br><span class="line">seg_path = &apos;./segment&apos; #分词后的数据</span><br><span class="line">seg_train_path = &apos;./segment/train&apos; #分词后的训练数据</span><br><span class="line">seg_test_path = &apos;./segment/test&apos;#分词后的测试数据</span><br><span class="line"></span><br><span class="line"># 获取各个分类内容，并进行切词保存在segment目录下</span><br><span class="line">def segment_content():</span><br><span class="line">    for data_cate in data_list:</span><br><span class="line">        content = &quot;&quot;</span><br><span class="line">        if not os.path.isdir(data_cate) and not data_cate == &apos;.DS_Store&apos;:</span><br><span class="line">            path = &apos;./data/%s&apos;%(data_cate)</span><br><span class="line">            files= os.listdir(path)</span><br><span class="line">            for file in files:</span><br><span class="line">                file_path = &apos;./data/%s/%s&apos;%(data_cate,file)</span><br><span class="line">                print(file_path)</span><br><span class="line">                if file == &quot;.DS_Store&quot;:</span><br><span class="line">                    os.remove(file_path)</span><br><span class="line">                else:</span><br><span class="line">                    f = open(file_path, mode=&apos;r&apos;, encoding=&apos;GB18030&apos;)</span><br><span class="line">                    try:</span><br><span class="line">                        content = f.read()</span><br><span class="line">                    except Exception:</span><br><span class="line">                        print(&apos;无法读取&apos;)</span><br><span class="line">                        continue</span><br><span class="line">                if not os.path.exists(&apos;%s/%s&apos;%(seg_train_path,data_cate)):</span><br><span class="line">                    os.mkdir(&apos;%s/%s&apos;%(seg_train_path,data_cate))</span><br><span class="line">                output = open(&apos;%s/%s/%s&apos;%(seg_train_path,data_cate,file), &apos;w&apos;)</span><br><span class="line">                content_seg = jieba.cut(content) # 使用jieba进行切词</span><br><span class="line">                output.write(&quot; &quot;.join(content_seg))</span><br><span class="line">                output.close()</span><br><span class="line"></span><br><span class="line">#从切分的数据中分离出测试数据集</span><br><span class="line">def cut_for_test():</span><br><span class="line">    seg_data_list = os.listdir(seg_train_path)</span><br><span class="line">    for data_dir in seg_data_list:</span><br><span class="line">         </span><br><span class="line">        if os.path.isdir(&quot;%s/%s&quot;%(seg_train_path,data_dir)):</span><br><span class="line">            file_dir_path = &quot;%s/%s&quot;%(seg_train_path,data_dir)</span><br><span class="line">            files = os.listdir(file_dir_path)</span><br><span class="line">            test_array = files[-10:]</span><br><span class="line">            for subfile in test_array:</span><br><span class="line">                if subfile == &quot;.DS_Store&quot;:</span><br><span class="line">                    os.remove(&quot;%s/%s&quot;%(file_dir_path,subfile))</span><br><span class="line">                    continue</span><br><span class="line">                if not os.path.exists(&quot;%s/%s&quot;%(seg_test_path,data_dir)):</span><br><span class="line">                    os.mkdir(&quot;%s/%s&quot;%(seg_test_path,data_dir))</span><br><span class="line">                shutil.move(&quot;%s/%s&quot;%(file_dir_path,subfile),&quot;%s/%s/%s&quot;%(seg_test_path,data_dir,subfile))          </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">第二步 获取训练集  返回训练集数据，类别列表</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">#获取训练数据集</span><br><span class="line">def loadtrainset():</span><br><span class="line">    allfiles = os.listdir(seg_train_path)</span><br><span class="line">    processed_textset  =[]</span><br><span class="line">    allclasstags = []</span><br><span class="line">    for thisdir in allfiles:</span><br><span class="line">        if not thisdir == &apos;.DS_Store&apos;:</span><br><span class="line">            </span><br><span class="line">            content_list = os.listdir(&apos;%s/%s&apos;%(seg_train_path,thisdir))</span><br><span class="line">            </span><br><span class="line">            for file in content_list:</span><br><span class="line">                if not os.path.isdir(&apos;%s/%s/%s&apos;%(seg_train_path,thisdir,file)) and not file == &apos;.DS_Store&apos;:</span><br><span class="line">                    path_name = &apos;%s/%s/%s&apos;%(seg_train_path,thisdir,file)</span><br><span class="line">                    print(path_name)</span><br><span class="line">                    f = open(path_name)</span><br><span class="line">                    processed_textset.append(f.read())</span><br><span class="line">                    allclasstags.append(thisdir)</span><br><span class="line">    return processed_textset,allclasstags</span><br><span class="line"></span><br><span class="line">#获得测试数据集</span><br><span class="line">def loadtestset():</span><br><span class="line">    allfiles = os.listdir(seg_test_path)</span><br><span class="line">    testset = []</span><br><span class="line">    testclass = []</span><br><span class="line">    </span><br><span class="line">    for cate_dir in allfiles:</span><br><span class="line">        if not cate_dir == &apos;.DS_Store&apos;:</span><br><span class="line">            test_content_list = os.listdir(&apos;%s/%s&apos;%(seg_test_path,cate_dir))</span><br><span class="line">            for test_file in test_content_list:</span><br><span class="line">                if os.path.isfile(&apos;%s/%s/%s&apos;%(seg_test_path,cate_dir,test_file)) and not test_file == &apos;.DS_Store&apos;:</span><br><span class="line">                    file_path_name = &apos;%s/%s/%s&apos;%(seg_test_path,cate_dir,test_file)</span><br><span class="line">                    print(&apos;获得测试数据文件名&apos;)</span><br><span class="line">                    print(file_path_name)</span><br><span class="line">                    f = open(file_path_name)</span><br><span class="line">                    testset.append(f.read())</span><br><span class="line">                    testclass.append(cate_dir)</span><br><span class="line">    return testset,testclass</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#第三步，处理词向量，包括去除停用词</span><br><span class="line">def content_vectorizer(data):</span><br><span class="line"></span><br><span class="line">    #载入停用词</span><br><span class="line">    # 语料向量化        </span><br><span class="line">    #if not os.path.exists(&quot;./vectorizer_content.m&quot;):</span><br><span class="line">    vectorizer_content__ = CountVectorizer(stop_words=stopword_list)</span><br><span class="line">    #vectorizer_content = joblib.load(&quot;./vectorizer_content.m&quot;)</span><br><span class="line">    x_array = vectorizer_content__.fit_transform(data)</span><br><span class="line">    #print(x_array.toarray())</span><br><span class="line">    # 计算各个分类内容的 tf-idf值</span><br><span class="line">    X_test =  TfidfTransformer().fit_transform(x_array) </span><br><span class="line">    print(&apos;content_vectorizer&apos;)</span><br><span class="line">    print(vectorizer_content__)</span><br><span class="line">    joblib.dump(vectorizer_content__, &quot;./vectorizer_content.m&quot;) </span><br><span class="line">    return X_test</span><br><span class="line"></span><br><span class="line">#第三步，处理词向量，包括去除停用词</span><br><span class="line">def content_vectorizer_test(data):</span><br><span class="line"></span><br><span class="line">    #载入停用词</span><br><span class="line">    # 语料向量化        </span><br><span class="line">    #if not os.path.exists(&quot;./vectorizer_content.m&quot;):</span><br><span class="line">    #需要使用和训练器相同的矢量器 否则会报错 ValueError dimension mismatch</span><br><span class="line">    vectorizer_content = joblib.load(&quot;./vectorizer_content.m&quot;)</span><br><span class="line">    #vectorizer_content = joblib.load(&quot;./vectorizer_content.m&quot;)</span><br><span class="line">    x_array = vectorizer_content.transform(data)</span><br><span class="line">    #print(x_array.toarray())</span><br><span class="line">    # 计算各个分类内容的 tf-idf值</span><br><span class="line">    X =  TfidfTransformer().fit_transform(x_array) </span><br><span class="line">    print(&apos;content_vectorizer_test&apos;)</span><br><span class="line">    print(vectorizer_content)</span><br><span class="line">    #joblib.dump(vectorizer_content__, &quot;./vectorizer_content.m&quot;) </span><br><span class="line">    return X</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def file_tools(path):</span><br><span class="line">    content_data = []</span><br><span class="line">    f = open(path)</span><br><span class="line">    content = f.read()</span><br><span class="line">    content_seg = jieba.cut(content)</span><br><span class="line">    string_content = &quot; &quot;.join(content_seg)</span><br><span class="line">    content_data.append(string_content)</span><br><span class="line">    return content_data</span><br><span class="line"></span><br><span class="line"># 创建分类器</span><br><span class="line"></span><br><span class="line">def train():</span><br><span class="line">    from sklearn.naive_bayes import MultinomialNB</span><br><span class="line">    </span><br><span class="line">    processed_textset,Y = loadtrainset()</span><br><span class="line">    #test_textset,Y_test = loadtestset()</span><br><span class="line">    X_train = content_vectorizer(processed_textset)</span><br><span class="line">    #X_test = content_vectorizer_test(test_textset)</span><br><span class="line">    # 多项式贝叶斯分类器</span><br><span class="line">    clf = MultinomialNB(alpha=0.001).fit(X_train,Y)</span><br><span class="line">    </span><br><span class="line">    # KNN分类器</span><br><span class="line">    #from sklearn.neighbors import KNeighborsClassifier    </span><br><span class="line">    #clf = KNeighborsClassifier().fit(X_train,Y)</span><br><span class="line">    # 随机森林</span><br><span class="line">    #from sklearn.ensemble import RandomForestClassifier    </span><br><span class="line">    #clf = RandomForestClassifier(n_estimators=8)    </span><br><span class="line">    #clf.fit(X_train,Y)  </span><br><span class="line">    </span><br><span class="line">    #predict_result = clf.predict(X_test) #预测结果</span><br><span class="line">    print(&apos;交叉验证结果&apos;)</span><br><span class="line">    print(cross_val_score(clf,X_train,Y,cv=10,scoring=&apos;accuracy&apos;))#交叉验证</span><br><span class="line">    </span><br><span class="line">    #训练完成，保存分类器</span><br><span class="line">    joblib.dump(clf, &quot;./分类器.model&quot;) </span><br><span class="line"></span><br><span class="line">#预测</span><br><span class="line">def predict(path):</span><br><span class="line">    check_file_data = file_tools(path)</span><br><span class="line">    check_file_vectorizer = content_vectorizer_test(check_file_data)</span><br><span class="line">    clf = joblib.load(&quot;./分类器.model&quot;)</span><br><span class="line">    predict_result = clf.predict(check_file_vectorizer)</span><br><span class="line">    print(&apos;------&gt;预测结果&lt;------&apos;)</span><br><span class="line">    print(predict_result)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#segment_content()</span><br><span class="line">#cut_for_test()</span><br><span class="line">#train()#如果没有训练过模型，需要先通过此方法进行训练</span><br><span class="line">predict(&apos;./test2.txt&apos;)</span><br></pre></td></tr></table></figure></p>
-<p>github:<a href="https://github.com/ilioner/ML-Classifier" target="_blank" rel="external">https://github.com/ilioner/ML-Classifier</a></p>
+<p>记录下完整代码：<br></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python3</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">Created on Mon Nov  6 15:05:43 2017</span><br><span class="line"></span><br><span class="line">@author: tywin</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line">import shutil</span><br><span class="line"></span><br><span class="line">import jieba</span><br><span class="line"></span><br><span class="line">from sklearn.feature_extraction.text import CountVectorizer</span><br><span class="line">from sklearn.feature_extraction.text import TfidfTransformer</span><br><span class="line">from sklearn.cross_validation import cross_val_score</span><br><span class="line"></span><br><span class="line">from sklearn.externals import joblib</span><br><span class="line"></span><br><span class="line">stopword_file = open(&apos;./stopword.txt&apos;)</span><br><span class="line">    </span><br><span class="line">stopword_content_string = stopword_file.read()</span><br><span class="line">    </span><br><span class="line">stopword_list = stopword_content_string.split(&apos;\n&apos;);</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">第一步，对于中文，需要进行分词处理</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 获取分类</span><br><span class="line">data_list = os.listdir(&apos;./data&apos;) #语料数据</span><br><span class="line">seg_path = &apos;./segment&apos; #分词后的数据</span><br><span class="line">seg_train_path = &apos;./segment/train&apos; #分词后的训练数据</span><br><span class="line">seg_test_path = &apos;./segment/test&apos;#分词后的测试数据</span><br><span class="line"></span><br><span class="line"># 获取各个分类内容，并进行切词保存在segment目录下</span><br><span class="line">def segment_content():</span><br><span class="line">    for data_cate in data_list:</span><br><span class="line">        content = &quot;&quot;</span><br><span class="line">        if not os.path.isdir(data_cate) and not data_cate == &apos;.DS_Store&apos;:</span><br><span class="line">            path = &apos;./data/%s&apos;%(data_cate)</span><br><span class="line">            files= os.listdir(path)</span><br><span class="line">            for file in files:</span><br><span class="line">                file_path = &apos;./data/%s/%s&apos;%(data_cate,file)</span><br><span class="line">                print(file_path)</span><br><span class="line">                if file == &quot;.DS_Store&quot;:</span><br><span class="line">                    os.remove(file_path)</span><br><span class="line">                else:</span><br><span class="line">                    f = open(file_path, mode=&apos;r&apos;, encoding=&apos;GB18030&apos;)</span><br><span class="line">                    try:</span><br><span class="line">                        content = f.read()</span><br><span class="line">                    except Exception:</span><br><span class="line">                        print(&apos;无法读取&apos;)</span><br><span class="line">                        continue</span><br><span class="line">                if not os.path.exists(&apos;%s/%s&apos;%(seg_train_path,data_cate)):</span><br><span class="line">                    os.mkdir(&apos;%s/%s&apos;%(seg_train_path,data_cate))</span><br><span class="line">                output = open(&apos;%s/%s/%s&apos;%(seg_train_path,data_cate,file), &apos;w&apos;)</span><br><span class="line">                content_seg = jieba.cut(content) # 使用jieba进行切词</span><br><span class="line">                output.write(&quot; &quot;.join(content_seg))</span><br><span class="line">                output.close()</span><br><span class="line"></span><br><span class="line">#从切分的数据中分离出测试数据集</span><br><span class="line">def cut_for_test():</span><br><span class="line">    seg_data_list = os.listdir(seg_train_path)</span><br><span class="line">    for data_dir in seg_data_list:</span><br><span class="line">         </span><br><span class="line">        if os.path.isdir(&quot;%s/%s&quot;%(seg_train_path,data_dir)):</span><br><span class="line">            file_dir_path = &quot;%s/%s&quot;%(seg_train_path,data_dir)</span><br><span class="line">            files = os.listdir(file_dir_path)</span><br><span class="line">            test_array = files[-10:]</span><br><span class="line">            for subfile in test_array:</span><br><span class="line">                if subfile == &quot;.DS_Store&quot;:</span><br><span class="line">                    os.remove(&quot;%s/%s&quot;%(file_dir_path,subfile))</span><br><span class="line">                    continue</span><br><span class="line">                if not os.path.exists(&quot;%s/%s&quot;%(seg_test_path,data_dir)):</span><br><span class="line">                    os.mkdir(&quot;%s/%s&quot;%(seg_test_path,data_dir))</span><br><span class="line">                shutil.move(&quot;%s/%s&quot;%(file_dir_path,subfile),&quot;%s/%s/%s&quot;%(seg_test_path,data_dir,subfile))          </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">第二步 获取训练集  返回训练集数据，类别列表</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">#获取训练数据集</span><br><span class="line">def loadtrainset():</span><br><span class="line">    allfiles = os.listdir(seg_train_path)</span><br><span class="line">    processed_textset  =[]</span><br><span class="line">    allclasstags = []</span><br><span class="line">    for thisdir in allfiles:</span><br><span class="line">        if not thisdir == &apos;.DS_Store&apos;:</span><br><span class="line">            </span><br><span class="line">            content_list = os.listdir(&apos;%s/%s&apos;%(seg_train_path,thisdir))</span><br><span class="line">            </span><br><span class="line">            for file in content_list:</span><br><span class="line">                if not os.path.isdir(&apos;%s/%s/%s&apos;%(seg_train_path,thisdir,file)) and not file == &apos;.DS_Store&apos;:</span><br><span class="line">                    path_name = &apos;%s/%s/%s&apos;%(seg_train_path,thisdir,file)</span><br><span class="line">                    print(path_name)</span><br><span class="line">                    f = open(path_name)</span><br><span class="line">                    processed_textset.append(f.read())</span><br><span class="line">                    allclasstags.append(thisdir)</span><br><span class="line">    return processed_textset,allclasstags</span><br><span class="line"></span><br><span class="line">#获得测试数据集</span><br><span class="line">def loadtestset():</span><br><span class="line">    allfiles = os.listdir(seg_test_path)</span><br><span class="line">    testset = []</span><br><span class="line">    testclass = []</span><br><span class="line">    </span><br><span class="line">    for cate_dir in allfiles:</span><br><span class="line">        if not cate_dir == &apos;.DS_Store&apos;:</span><br><span class="line">            test_content_list = os.listdir(&apos;%s/%s&apos;%(seg_test_path,cate_dir))</span><br><span class="line">            for test_file in test_content_list:</span><br><span class="line">                if os.path.isfile(&apos;%s/%s/%s&apos;%(seg_test_path,cate_dir,test_file)) and not test_file == &apos;.DS_Store&apos;:</span><br><span class="line">                    file_path_name = &apos;%s/%s/%s&apos;%(seg_test_path,cate_dir,test_file)</span><br><span class="line">                    print(&apos;获得测试数据文件名&apos;)</span><br><span class="line">                    print(file_path_name)</span><br><span class="line">                    f = open(file_path_name)</span><br><span class="line">                    testset.append(f.read())</span><br><span class="line">                    testclass.append(cate_dir)</span><br><span class="line">    return testset,testclass</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#第三步，处理词向量，包括去除停用词</span><br><span class="line">def content_vectorizer(data):</span><br><span class="line"></span><br><span class="line">    #载入停用词</span><br><span class="line">    # 语料向量化        </span><br><span class="line">    #if not os.path.exists(&quot;./vectorizer_content.m&quot;):</span><br><span class="line">    vectorizer_content__ = CountVectorizer(stop_words=stopword_list)</span><br><span class="line">    #vectorizer_content = joblib.load(&quot;./vectorizer_content.m&quot;)</span><br><span class="line">    x_array = vectorizer_content__.fit_transform(data)</span><br><span class="line">    #print(x_array.toarray())</span><br><span class="line">    # 计算各个分类内容的 tf-idf值</span><br><span class="line">    X_test =  TfidfTransformer().fit_transform(x_array) </span><br><span class="line">    print(&apos;content_vectorizer&apos;)</span><br><span class="line">    print(vectorizer_content__)</span><br><span class="line">    joblib.dump(vectorizer_content__, &quot;./vectorizer_content.m&quot;) </span><br><span class="line">    return X_test</span><br><span class="line"></span><br><span class="line">#第三步，处理词向量，包括去除停用词</span><br><span class="line">def content_vectorizer_test(data):</span><br><span class="line"></span><br><span class="line">    #载入停用词</span><br><span class="line">    # 语料向量化        </span><br><span class="line">    #if not os.path.exists(&quot;./vectorizer_content.m&quot;):</span><br><span class="line">    #需要使用和训练器相同的矢量器 否则会报错 ValueError dimension mismatch</span><br><span class="line">    vectorizer_content = joblib.load(&quot;./vectorizer_content.m&quot;)</span><br><span class="line">    #vectorizer_content = joblib.load(&quot;./vectorizer_content.m&quot;)</span><br><span class="line">    x_array = vectorizer_content.transform(data)</span><br><span class="line">    #print(x_array.toarray())</span><br><span class="line">    # 计算各个分类内容的 tf-idf值</span><br><span class="line">    X =  TfidfTransformer().fit_transform(x_array) </span><br><span class="line">    print(&apos;content_vectorizer_test&apos;)</span><br><span class="line">    print(vectorizer_content)</span><br><span class="line">    #joblib.dump(vectorizer_content__, &quot;./vectorizer_content.m&quot;) </span><br><span class="line">    return X</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def file_tools(path):</span><br><span class="line">    content_data = []</span><br><span class="line">    f = open(path)</span><br><span class="line">    content = f.read()</span><br><span class="line">    content_seg = jieba.cut(content)</span><br><span class="line">    string_content = &quot; &quot;.join(content_seg)</span><br><span class="line">    content_data.append(string_content)</span><br><span class="line">    return content_data</span><br><span class="line"></span><br><span class="line"># 创建分类器</span><br><span class="line"></span><br><span class="line">def train():</span><br><span class="line">    from sklearn.naive_bayes import MultinomialNB</span><br><span class="line">    </span><br><span class="line">    processed_textset,Y = loadtrainset()</span><br><span class="line">    #test_textset,Y_test = loadtestset()</span><br><span class="line">    X_train = content_vectorizer(processed_textset)</span><br><span class="line">    #X_test = content_vectorizer_test(test_textset)</span><br><span class="line">    # 多项式贝叶斯分类器</span><br><span class="line">    clf = MultinomialNB(alpha=0.001).fit(X_train,Y)</span><br><span class="line">    </span><br><span class="line">    # KNN分类器</span><br><span class="line">    #from sklearn.neighbors import KNeighborsClassifier    </span><br><span class="line">    #clf = KNeighborsClassifier().fit(X_train,Y)</span><br><span class="line">    # 随机森林</span><br><span class="line">    #from sklearn.ensemble import RandomForestClassifier    </span><br><span class="line">    #clf = RandomForestClassifier(n_estimators=8)    </span><br><span class="line">    #clf.fit(X_train,Y)  </span><br><span class="line">    </span><br><span class="line">    #predict_result = clf.predict(X_test) #预测结果</span><br><span class="line">    print(&apos;交叉验证结果&apos;)</span><br><span class="line">    print(cross_val_score(clf,X_train,Y,cv=10,scoring=&apos;accuracy&apos;))#交叉验证</span><br><span class="line">    </span><br><span class="line">    #训练完成，保存分类器</span><br><span class="line">    joblib.dump(clf, &quot;./分类器.model&quot;) </span><br><span class="line"></span><br><span class="line">#预测</span><br><span class="line">def predict(path):</span><br><span class="line">    check_file_data = file_tools(path)</span><br><span class="line">    check_file_vectorizer = content_vectorizer_test(check_file_data)</span><br><span class="line">    clf = joblib.load(&quot;./分类器.model&quot;)</span><br><span class="line">    predict_result = clf.predict(check_file_vectorizer)</span><br><span class="line">    print(&apos;------&gt;预测结果&lt;------&apos;)</span><br><span class="line">    print(predict_result)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#segment_content()</span><br><span class="line">#cut_for_test()</span><br><span class="line">#train()#如果没有训练过模型，需要先通过此方法进行训练</span><br><span class="line">predict(&apos;./test2.txt&apos;)</span><br></pre></td></tr></table></figure><p></p>
+<p>github:<a href="https://github.com/ilioner/ML-Classifier" target="_blank" rel="noopener">https://github.com/ilioner/ML-Classifier</a></p>
 <p>参考:</p>
 <ul>
-<li><a href="http://blog.csdn.net/github_36326955/article/details/54891204" target="_blank" rel="external">http://blog.csdn.net/github_36326955/article/details/54891204</a></li>
-<li><a href="https://www.cnblogs.com/taich-flute/p/6755031.html" target="_blank" rel="external">https://www.cnblogs.com/taich-flute/p/6755031.html</a></li>
-</ul>
-]]></content>
+<li><a href="http://blog.csdn.net/github_36326955/article/details/54891204" target="_blank" rel="noopener">http://blog.csdn.net/github_36326955/article/details/54891204</a></li>
+<li><a href="https://www.cnblogs.com/taich-flute/p/6755031.html" target="_blank" rel="noopener">https://www.cnblogs.com/taich-flute/p/6755031.html</a></li></ul>]]></content>
+      
+        <categories>
+            
+            <category> 机器学习 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 机器学习 </tag>
+            
+            <tag> sklearn </tag>
+            
+            <tag> 中文文本分类 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[sklearn中CountVectorizer与TfidfTransformer使用案例]]></title>
       <url>http://yoursite.com/2017/10/23/sklearn%E4%B8%ADCountVectorizer%E4%B8%8ETfidfTransformer%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B.html</url>
-      <content type="html"><![CDATA[<h2 id="一、词频处理的应用"><a href="#一、词频处理的应用" class="headerlink" title="一、词频处理的应用"></a>一、词频处理的应用</h2><p><strong>词频</strong></p>
-<p>故名思议说的是文章中每个单词的出现频数统计量。<br>通过统计词频，基本可以获取一篇文本的关键字，从而了解一篇文本主要讲述的大致内容<br><a id="more"></a></p>
-<p>比如，“你女神在空虚寂寞冷的时候甩给你一篇有关女性化妆的长文，但是你对于YSL，雪花秀这些东西是什么鬼并不知道。如果你看了半天也不知道她发给你的东西是什么鬼的话，女神会觉得你显然是个“土牛”，如果通过获取一些关键信息并第一时间进行检索，将会使得你可以在第一时间找到撩妹的话题，这样一来，你既节约了时间，有获得了女神的芳心”</p>
-<p>同时，对于词频的统计也将是进一步得到文本简介的第一步。</p>
-<h2 id="二、CountVectorizer与TfidfTransformer"><a href="#二、CountVectorizer与TfidfTransformer" class="headerlink" title="二、CountVectorizer与TfidfTransformer"></a>二、CountVectorizer与TfidfTransformer</h2><p>   在了解这个之前，了解一下TF-IDF还是比较有必要的。</p>
-<p>   TF-IDF（Term Frequency–Inverse Document Frequency）是一种用于资讯检索与文本挖掘的常用加权技术。TF-IDF是一种统计方法，用以评估一个字词对于一个文件集或一个语料库中的其中一份文件的重要程度。字词的重要性随着它在文件中出现的次数成正比增加，但同时会随着它在语料库中出现的频率成反比下降。TF-IDF加权的各种形式常被搜索引擎应用，作为文件与用户查询之间相关程度的度量或评级。</p>
-<p>TF-IDF的主要思想是：如果某个词或短语在一篇文章中出现的频率TF高，并且在其他文章中很少出现，则认为此词或者短语具有很好的类别区分能力，适合用来分类。TF-IDF实际上是：TF * IDF。<br>　　<br>（1）词频（Term Frequency，TF）指的是某一个给定的词语在该文件中出现的频率。即词w在文档d中出现的次数count(w, d)和文档d中总词数size(d)的比值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf(w,d) = count(w, d) / size(d)</span><br></pre></td></tr></table></figure></p>
-<p>这个数字是对词数(term count)的归一化，以防止它偏向长的文件。（同一个词语在长文件里可能会比短文件有更高的词数，而不管该词语重要与否。）<br>　　<br>（2）逆向文件频率（Inverse Document Frequency，IDF）是一个词语普遍重要性的度量。某一特定词语的IDF，可以由总文件数目除以包含该词语之文件的数目，再将得到的商取对数得到。即文档总数n与词w所出现文件数docs(w, D)比值的对数。　　<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">idf = log(n / docs(w, D))</span><br></pre></td></tr></table></figure></p>
-<p>TF-IDF根据 tf 和 idf 为每一个文档d和由关键词w[1]…w[k]组成的查询串q计算一个权值，用于表示查询串q与文档d的匹配度：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf-idf(q, d) = sum &#123; i = 1..k | tf-idf(w[i], d) &#125; = sum &#123; i = 1..k | tf(w[i], d) * idf(w[i]) &#125;</span><br></pre></td></tr></table></figure></p>
+      <content type="html"><![CDATA[<h2 id="一、词频处理的应用"><a href="#一、词频处理的应用" class="headerlink" title="一、词频处理的应用"></a>一、词频处理的应用</h2><p><strong>词频</strong></p><p>故名思议说的是文章中每个单词的出现频数统计量。<br>通过统计词频，基本可以获取一篇文本的关键字，从而了解一篇文本主要讲述的大致内容<br><a id="more"></a></p><p>比如，“你女神在空虚寂寞冷的时候甩给你一篇有关女性化妆的长文，但是你对于YSL，雪花秀这些东西是什么鬼并不知道。如果你看了半天也不知道她发给你的东西是什么鬼的话，女神会觉得你显然是个“土牛”，如果通过获取一些关键信息并第一时间进行检索，将会使得你可以在第一时间找到撩妹的话题，这样一来，你既节约了时间，有获得了女神的芳心”</p><p>同时，对于词频的统计也将是进一步得到文本简介的第一步。</p><h2 id="二、CountVectorizer与TfidfTransformer"><a href="#二、CountVectorizer与TfidfTransformer" class="headerlink" title="二、CountVectorizer与TfidfTransformer"></a>二、CountVectorizer与TfidfTransformer</h2><p>在了解这个之前，了解一下TF-IDF还是比较有必要的。</p><p>TF-IDF（Term Frequency–Inverse Document Frequency）是一种用于资讯检索与文本挖掘的常用加权技术。TF-IDF是一种统计方法，用以评估一个字词对于一个文件集或一个语料库中的其中一份文件的重要程度。字词的重要性随着它在文件中出现的次数成正比增加，但同时会随着它在语料库中出现的频率成反比下降。TF-IDF加权的各种形式常被搜索引擎应用，作为文件与用户查询之间相关程度的度量或评级。</p><p>TF-IDF的主要思想是：如果某个词或短语在一篇文章中出现的频率TF高，并且在其他文章中很少出现，则认为此词或者短语具有很好的类别区分能力，适合用来分类。TF-IDF实际上是：TF * IDF。<br>　　<br>（1）词频（Term Frequency，TF）指的是某一个给定的词语在该文件中出现的频率。即词w在文档d中出现的次数count(w, d)和文档d中总词数size(d)的比值。<br></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf(w,d) = count(w, d) / size(d)</span><br></pre></td></tr></table></figure><p></p>
+<p>这个数字是对词数(term count)的归一化，以防止它偏向长的文件。（同一个词语在长文件里可能会比短文件有更高的词数，而不管该词语重要与否。）<br>　　<br>（2）逆向文件频率（Inverse Document Frequency，IDF）是一个词语普遍重要性的度量。某一特定词语的IDF，可以由总文件数目除以包含该词语之文件的数目，再将得到的商取对数得到。即文档总数n与词w所出现文件数docs(w, D)比值的对数。　　<br></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">idf = log(n / docs(w, D))</span><br></pre></td></tr></table></figure><p></p>
+<p>TF-IDF根据 tf 和 idf 为每一个文档d和由关键词w[1]…w[k]组成的查询串q计算一个权值，用于表示查询串q与文档d的匹配度：<br></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf-idf(q, d) = sum &#123; i = 1..k | tf-idf(w[i], d) &#125; = sum &#123; i = 1..k | tf(w[i], d) * idf(w[i]) &#125;</span><br></pre></td></tr></table></figure><p></p>
 <p>某一特定文件内的高词语频率，以及该词语在整个文件集合中的低文件频率，可以产生出高权重的TF-IDF。因此，TF-IDF倾向于过滤掉常见的词语，保留重要的词语。</p>
 <p>   在IDF中可以发现，当某个词在语料库中各个文档出现的次数越多，它的IDF值越低，当它在所有文档中都出现时，其IDF计算结果为0，而通常这些出现次数非常多的词或字为“的”、“我”、“吗”等，它对文章的权重计算起不到一定的作用。</p>
 <p><strong><em>Scikit-Learn中TF-IDF权重计算方法主要用到两个类：CountVectorizer和TfidfTransformer</em></strong></p>
@@ -119,102 +121,59 @@ print(tfidf.toarray())
 <p>由此，基于sklearn的中文词频及关键字获取已经实现。</p>
 <p>参考资料:</p>
 <ul>
-<li><p><a href="http://scikit-learn.org/stable/modules/feature_extraction.html#common-vectorizer-usage" target="_blank" rel="external">http://scikit-learn.org/stable/modules/feature_extraction.html#common-vectorizer-usage</a></p>
+<li><p><a href="http://scikit-learn.org/stable/modules/feature_extraction.html#common-vectorizer-usage" target="_blank" rel="noopener">http://scikit-learn.org/stable/modules/feature_extraction.html#common-vectorizer-usage</a></p>
 </li>
-<li><p><a href="http://www.cnblogs.com/weidagang2046/archive/2012/10/22/tf-idf-from-probabilistic-view.html#top" target="_blank" rel="external">http://www.cnblogs.com/weidagang2046/archive/2012/10/22/tf-idf-from-probabilistic-view.html#top</a></p>
+<li><p><a href="http://www.cnblogs.com/weidagang2046/archive/2012/10/22/tf-idf-from-probabilistic-view.html#top" target="_blank" rel="noopener">http://www.cnblogs.com/weidagang2046/archive/2012/10/22/tf-idf-from-probabilistic-view.html#top</a></p>
 </li>
-<li><a href="http://blog.csdn.net/eastmount/article/details/50323063" target="_blank" rel="external">http://blog.csdn.net/eastmount/article/details/50323063</a></li>
-</ul>
-]]></content>
+<li><a href="http://blog.csdn.net/eastmount/article/details/50323063" target="_blank" rel="noopener">http://blog.csdn.net/eastmount/article/details/50323063</a></li></ul>]]></content>
+      
+        
+        <tags>
+            
+            <tag> 机器学习、Scikit-Learn、中文词频 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Ant Design Form mapPropsToFields 与 onFieldsChange]]></title>
       <url>http://yoursite.com/2016/07/14/Ant-Design-Form-mapPropsToFields-%E4%B8%8E-onFieldsChange.html</url>
-      <content type="html"><![CDATA[<blockquote>
-<p>说说AntDesign的Form<br>如果只是用纯React来做的话，其实并不会遇到太大的问题，但是问题来了，在Redux+React黄金搭档的今天，那么在使用Form组件的时候你会遇到这个问题。<br><a id="more"></a><br><strong>场景:</strong> 修改一组数据时，界面上有两个按钮【更新】【取消】，这是如果修改到一半，忽然不想修改想恢复表单数据到修改前，最直接的方法就是点击取消，刷新Reducer里面的<br>state为初始state，兴致勃勃的以为界面重新render之后表单空间value会恢复到更新之前，其实—-并不是这样。设置了initialValue只是说明表单初始化的时候，从reducer里面<br>初始了控件的value，但是，然而并没有将节点空间与redux绑定起来。</p>
-<h3 id="1-问题在哪里"><a href="#1-问题在哪里" class="headerlink" title="1. 问题在哪里"></a>1. 问题在哪里</h3></blockquote>
-<h4 id="1-1-mapPropsToFields"><a href="#1-1-mapPropsToFields" class="headerlink" title="1.1 mapPropsToFields"></a>1.1 mapPropsToFields</h4><p>通过查看文档(之前文档版本对于mapPropsToFields的使用说明貌似并没有这么详细,是真的没有这么明了)<br><img src="/images/antdesign/img.jpg" alt=""><br>得知需要在Form.create里设置mapPropsToFields就可以实现从redux store中读值出来，然而，没有实例如何看啊。</p>
-<blockquote>
-<p>更多示例参考 rc-form。</p>
-</blockquote>
-<p>这是文档给的跟多答案。参照示例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">const NewForm = connect((state) =&gt; &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    formState: &#123;</span><br><span class="line">      email: state.form.email,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)(createForm(&#123;</span><br><span class="line">  mapPropsToFields(props) &#123;</span><br><span class="line">    console.log(&apos;mapPropsToFields&apos;, props);</span><br><span class="line">    return &#123;</span><br><span class="line">      email: props.formState.email,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  onFieldsChange(props, fields) &#123;</span><br><span class="line">    console.log(&apos;onFieldsChange&apos;, fields);</span><br><span class="line">    props.dispatch(&#123;</span><br><span class="line">      type: &apos;save_fields&apos;,</span><br><span class="line">      payload: fields,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)(Form));</span><br></pre></td></tr></table></figure></p>
+      <content type="html"><![CDATA[<blockquote><p>说说AntDesign的Form<br>如果只是用纯React来做的话，其实并不会遇到太大的问题，但是问题来了，在Redux+React黄金搭档的今天，那么在使用Form组件的时候你会遇到这个问题。<br><a id="more"></a><br><strong>场景:</strong> 修改一组数据时，界面上有两个按钮【更新】【取消】，这是如果修改到一半，忽然不想修改想恢复表单数据到修改前，最直接的方法就是点击取消，刷新Reducer里面的<br>state为初始state，兴致勃勃的以为界面重新render之后表单空间value会恢复到更新之前，其实—-并不是这样。设置了initialValue只是说明表单初始化的时候，从reducer里面<br>初始了控件的value，但是，然而并没有将节点空间与redux绑定起来。</p><h3 id="1-问题在哪里"><a href="#1-问题在哪里" class="headerlink" title="1. 问题在哪里"></a>1. 问题在哪里</h3></blockquote><h4 id="1-1-mapPropsToFields"><a href="#1-1-mapPropsToFields" class="headerlink" title="1.1 mapPropsToFields"></a>1.1 mapPropsToFields</h4><p>通过查看文档(之前文档版本对于mapPropsToFields的使用说明貌似并没有这么详细,是真的没有这么明了)<br><img src="/images/antdesign/img.jpg" alt=""><br>得知需要在Form.create里设置mapPropsToFields就可以实现从redux store中读值出来，然而，没有实例如何看啊。</p><blockquote><p>更多示例参考 rc-form。</p></blockquote><p>这是文档给的跟多答案。参照示例<br></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">const NewForm = connect((state) =&gt; &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    formState: &#123;</span><br><span class="line">      email: state.form.email,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)(createForm(&#123;</span><br><span class="line">  mapPropsToFields(props) &#123;</span><br><span class="line">    console.log(&apos;mapPropsToFields&apos;, props);</span><br><span class="line">    return &#123;</span><br><span class="line">      email: props.formState.email,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  onFieldsChange(props, fields) &#123;</span><br><span class="line">    console.log(&apos;onFieldsChange&apos;, fields);</span><br><span class="line">    props.dispatch(&#123;</span><br><span class="line">      type: &apos;save_fields&apos;,</span><br><span class="line">      payload: fields,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)(Form));</span><br></pre></td></tr></table></figure><p></p>
 <p>完成如下代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//上方代码已省略</span><br><span class="line">mapPropsToFields(props) &#123;</span><br><span class="line">    // console.log(&apos;mapPropsToFields&apos;);</span><br><span class="line">    // console.log(props);</span><br><span class="line">    return &#123;</span><br><span class="line">      realname:props.realname,</span><br><span class="line">      password:props.password&#125;,</span><br><span class="line">      username:props.username,</span><br><span class="line">      email:&#123;value:props.email&#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">//下方代码以省略</span><br></pre></td></tr></table></figure>
 <p>发现不仅初始值无法显示，而且log输出报错。WTF</p>
-<h4 id="1-2-onFieldsChange"><a href="#1-2-onFieldsChange" class="headerlink" title="1.2 onFieldsChange"></a>1.2 onFieldsChange</h4><p>当 Form.Item 子节点的值发生改变时触发，可以把对应的值转存到 Redux store<br>然而<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Function(props, fields)</span><br></pre></td></tr></table></figure></p>
+<h4 id="1-2-onFieldsChange"><a href="#1-2-onFieldsChange" class="headerlink" title="1.2 onFieldsChange"></a>1.2 onFieldsChange</h4><p>当 Form.Item 子节点的值发生改变时触发，可以把对应的值转存到 Redux store<br>然而<br></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Function(props, fields)</span><br></pre></td></tr></table></figure><p></p>
 <p>如果按照上面示例代码写，一定会中招，他会讲一个[Object object]丢给你Redux store字段值，导致无法正确转存数据到Redux store</p>
 <p>文档给出的并没有什么卵用，还是不明白如何用</p>
-<h3 id="2-怎么解决"><a href="#2-怎么解决" class="headerlink" title="2. 怎么解决"></a>2. 怎么解决</h3><h4 id="2-1-mapPropsToFields"><a href="#2-1-mapPropsToFields" class="headerlink" title="2.1 mapPropsToFields"></a>2.1 mapPropsToFields</h4><p>文档指出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Function(props): Object&#123; fieldName: Object&#123; value &#125; &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-怎么解决"><a href="#2-怎么解决" class="headerlink" title="2. 怎么解决"></a>2. 怎么解决</h3><h4 id="2-1-mapPropsToFields"><a href="#2-1-mapPropsToFields" class="headerlink" title="2.1 mapPropsToFields"></a>2.1 mapPropsToFields</h4><p>文档指出<br></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Function(props): Object&#123; fieldName: Object&#123; value &#125; &#125;</span><br></pre></td></tr></table></figure><p></p>
 <p>所以在给fieldName给值的时候，需要传入一个拥有value属性的Object对象<br>也就是说</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Function(props): Object&#123; fieldName: &#123;value:值&#125; &#125;</span><br></pre></td></tr></table></figure>
-<p>所以修改后程序运行正常<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">return &#123;</span><br><span class="line">      realname:&#123;value:props.realname&#125;,</span><br><span class="line">      password:&#123;value:props.password&#125;,</span><br><span class="line">      username:&#123;value:props.username&#125;,</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure></p>
-<h4 id="2-2-onFieldsChange"><a href="#2-2-onFieldsChange" class="headerlink" title="2.2 onFieldsChange"></a>2.2 onFieldsChange</h4><p>一一对应能够解决<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">onFieldsChange(props, fields) &#123;</span><br><span class="line">    fields.realname = props.realname;</span><br><span class="line">    fields.password = props.password;</span><br><span class="line">    fields.username = props.username;</span><br><span class="line">    fields.email = props.email;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="所以说，虽然AntDesign给出的控件看起来还算丰富的，但是文档输出质量一般"><a href="#所以说，虽然AntDesign给出的控件看起来还算丰富的，但是文档输出质量一般" class="headerlink" title="所以说，虽然AntDesign给出的控件看起来还算丰富的，但是文档输出质量一般"></a>所以说，虽然AntDesign给出的控件看起来还算丰富的，但是文档输出质量一般</h3><p>好的一点在于Ant Design的官网对于界面模式的讲解还比较好<a href="http://ant.design/docs/pattern/navigation" target="_blank" rel="external">界面模式</a><br>对于设计原则【比如管理端的布局原则等】说的简洁明了<a href="http://ant.design/docs/spec/introduce" target="_blank" rel="external">Ant Design</a><br>以上</p>
-]]></content>
+<p>所以修改后程序运行正常<br></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">return &#123;</span><br><span class="line">      realname:&#123;value:props.realname&#125;,</span><br><span class="line">      password:&#123;value:props.password&#125;,</span><br><span class="line">      username:&#123;value:props.username&#125;,</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure><p></p>
+<h4 id="2-2-onFieldsChange"><a href="#2-2-onFieldsChange" class="headerlink" title="2.2 onFieldsChange"></a>2.2 onFieldsChange</h4><p>一一对应能够解决<br></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">onFieldsChange(props, fields) &#123;</span><br><span class="line">    fields.realname = props.realname;</span><br><span class="line">    fields.password = props.password;</span><br><span class="line">    fields.username = props.username;</span><br><span class="line">    fields.email = props.email;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p></p>
+<h3 id="所以说，虽然AntDesign给出的控件看起来还算丰富的，但是文档输出质量一般"><a href="#所以说，虽然AntDesign给出的控件看起来还算丰富的，但是文档输出质量一般" class="headerlink" title="所以说，虽然AntDesign给出的控件看起来还算丰富的，但是文档输出质量一般"></a>所以说，虽然AntDesign给出的控件看起来还算丰富的，但是文档输出质量一般</h3><p>好的一点在于Ant Design的官网对于界面模式的讲解还比较好<a href="http://ant.design/docs/pattern/navigation" target="_blank" rel="noopener">界面模式</a><br>对于设计原则【比如管理端的布局原则等】说的简洁明了<a href="http://ant.design/docs/spec/introduce" target="_blank" rel="noopener">Ant Design</a><br>以上</p>]]></content>
+      
+        
+        <tags>
+            
+            <tag> AntDesign </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[蔻鼎划线(二)]]></title>
       <url>http://yoursite.com/2016/06/07/%E8%94%BB%E9%BC%8E%E5%88%92%E7%BA%BF(%E4%BA%8C).html</url>
-      <content type="html"><![CDATA[<p><img src="/images/ironman.png" alt=""><br><a id="more"></a></p>
-]]></content>
+      <content type="html"><![CDATA[<p><img src="/images/ironman.png" alt=""><br><a id="more"></a></p>]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[从头开始创建一个基于Swift的Perfect的服务端]]></title>
       <url>http://yoursite.com/2016/05/30/%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AASwift%E7%9A%84Perfect%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AB%AF.html</url>
-      <content type="html"><![CDATA[<blockquote>
-<p>Perfect是一个使用Swift编程语言开发Web和其他REST服务的框架，<br>其主要目标是简化需要后端服务器软件的移动应用的开发，使开发人员可以使用同一种语言进行客户端和服务端开发。<br>因为是<strong>基于Swift开发</strong>，所以对于在iOS平台上可以达到客户端与服务端使用相同的类和一些封装好的工具，一定程度上可以<strong>减少代码重复</strong>，这一点有点像Android与Java服务器协作的好处<br>，它完全支持<strong>使用Xcode开发和调试</strong>。由于<strong>Swift的开源特性，所以它必须能够在Linux上跑起来</strong>。<br><a id="more"></a><br>Perfect的工程可以在git上查看并且附有Demo，官网也有关于Perfect的详细文档与很多视频教程</p>
-<p>git:<a href="https://github.com/PerfectlySoft/Perfect" target="_blank" rel="external">https://github.com/PerfectlySoft/Perfect</a></p>
-<p>官网:<a href="https://www.perfect.org" target="_blank" rel="external">https://www.perfect.org</a></p>
-<p>Perfect主要包含以下组件。详细查阅<a href="http://www.infoq.com/cn/news/2015/11/perfect-swift" target="_blank" rel="external">http://www.infoq.com/cn/news/2015/11/perfect-swift</a></p>
-<p><strong>PerfectLib</strong></p>
-<p>PerfectLib是一个Swift模块，提供了一套进行服务端和客户端开发的核心工具。在许多情况下，客户端和服务端使用相同的API。</p>
-<p><strong>Perfect Server</strong></p>
-<p>Perfect Server是一个让Perfect能够运转的服务端组件。它是一个始终处于运行状态的独立进程，接受客户端连接、处理请求并返回响应。</p>
-</blockquote>
-<p>搭建一个Perfect工程大致步骤如下:</p>
-<ol>
-<li>创建工作空间引入Perfect库</li>
-<li>设置工程</li>
-<li>编码运行</li>
-</ol>
-<hr>
-<p>准备工作:</p>
-<p>下载Perfect库</p>
-<p>推荐从git上下载源码,因为里面包含了可能用到的所有组件:<br><img src="/images/perfect/git.png" alt=""></p>
-<p>解压Perfect库的压缩包，安装xcode的Perfect模板</p>
-<p><img src="/images/perfect/moban.png" alt=""></p>
-<p>打开这个工程直接run就可以</p>
-<hr>
-<h2 id="1-创建工作空间引入Perfect库"><a href="#1-创建工作空间引入Perfect库" class="headerlink" title="1. 创建工作空间引入Perfect库"></a>1. 创建工作空间引入Perfect库</h2><h3 id="1-1-创建工作空间"><a href="#1-1-创建工作空间" class="headerlink" title="1.1 创建工作空间"></a>1.1 创建工作空间</h3><p>打开Xcode—&gt;File—&gt;New—&gt;WorkPlace</p>
-<p>创建一个PerfectDemo的工作空间，穿件完成后会生成一个PerfectDemo.xcworkspace文件该文件就是一个Xcode的工作空间。<br><img src="/images/perfect/finder.png" alt=""><br><img src="/images/perfect/workplace.png" alt=""></p>
-<h3 id="1-2-引入PerfectLib与Perfect-Server"><a href="#1-2-引入PerfectLib与Perfect-Server" class="headerlink" title="1.2 引入PerfectLib与Perfect Server"></a>1.2 引入PerfectLib与Perfect Server</h3><p><img src="/images/perfect/tianjia.png" alt=""></p>
-<p>注意添加选项的选择</p>
-<p><img src="/images/perfect/perfectlib.png" alt=""></p>
-<p><img src="/images/perfect/perfectserver.png" alt=""></p>
-<p>添加完成后可以看到我们创建的PerfectDemo工作空间已经引入Perfect的依赖</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><img src="/images/perfect/addover.png" alt=""></h2><p>接下来，创建一个PerfectDemo工程，该工程为正式的服务器工程:</p>
-<p><strong>推荐创建的时候以cocoaframwork的形式添加</strong></p>
-<p><img src="/images/perfect/framework.png" alt=""></p>
-<p>注意添加工程的时候选择我们的工作空间为添加选项:</p>
-<p><img src="/images/perfect/newpro.png" alt=""></p>
-<p>工程添加完成之后工作空间结构如下：</p>
-<p><img src="/images/perfect/addover2.png" alt=""></p>
-<h2 id="2-设置工程"><a href="#2-设置工程" class="headerlink" title="2. 设置工程"></a>2. 设置工程</h2><p>工程添加完成之后，开始设置我们的工程</p>
-<p><img src="/images/perfect/setting.png" alt=""></p>
-<p>具体设置项目如下：</p>
-<ul>
-<li>Skip Install = No</li>
-<li>Deployment Location = Yes</li>
-<li>Installation Directory = /PerfectLibraries</li>
-<li>Installation Build Products Location = $(CONFIGURATION_BUILD_DIR)</li>
-</ul>
-<h2 id="3-编码运行"><a href="#3-编码运行" class="headerlink" title="3. 编码运行"></a>3. 编码运行</h2><p>所有的设置成功之后，开始编写服务端代码:</p>
-<p>创建PerfectMain.swift文件:</p>
-<p>先运行一下官方的示例代码:</p>
-<pre><code>import Foundation
+      <content type="html"><![CDATA[<blockquote><p>Perfect是一个使用Swift编程语言开发Web和其他REST服务的框架，<br>其主要目标是简化需要后端服务器软件的移动应用的开发，使开发人员可以使用同一种语言进行客户端和服务端开发。<br>因为是<strong>基于Swift开发</strong>，所以对于在iOS平台上可以达到客户端与服务端使用相同的类和一些封装好的工具，一定程度上可以<strong>减少代码重复</strong>，这一点有点像Android与Java服务器协作的好处<br>，它完全支持<strong>使用Xcode开发和调试</strong>。由于<strong>Swift的开源特性，所以它必须能够在Linux上跑起来</strong>。<br><a id="more"></a><br>Perfect的工程可以在git上查看并且附有Demo，官网也有关于Perfect的详细文档与很多视频教程</p><p>git:<a href="https://github.com/PerfectlySoft/Perfect" target="_blank" rel="noopener">https://github.com/PerfectlySoft/Perfect</a></p><p>官网:<a href="https://www.perfect.org" target="_blank" rel="noopener">https://www.perfect.org</a></p><p>Perfect主要包含以下组件。详细查阅<a href="http://www.infoq.com/cn/news/2015/11/perfect-swift" target="_blank" rel="noopener">http://www.infoq.com/cn/news/2015/11/perfect-swift</a></p><p><strong>PerfectLib</strong></p><p>PerfectLib是一个Swift模块，提供了一套进行服务端和客户端开发的核心工具。在许多情况下，客户端和服务端使用相同的API。</p><p><strong>Perfect Server</strong></p><p>Perfect Server是一个让Perfect能够运转的服务端组件。它是一个始终处于运行状态的独立进程，接受客户端连接、处理请求并返回响应。</p></blockquote><p>搭建一个Perfect工程大致步骤如下:</p><ol><li>创建工作空间引入Perfect库</li><li>设置工程</li><li>编码运行</li></ol><hr><p>准备工作:</p><p>下载Perfect库</p><p>推荐从git上下载源码,因为里面包含了可能用到的所有组件:<br><img src="/images/perfect/git.png" alt=""></p><p>解压Perfect库的压缩包，安装xcode的Perfect模板</p><p><img src="/images/perfect/moban.png" alt=""></p><p>打开这个工程直接run就可以</p><hr><h2 id="1-创建工作空间引入Perfect库"><a href="#1-创建工作空间引入Perfect库" class="headerlink" title="1. 创建工作空间引入Perfect库"></a>1. 创建工作空间引入Perfect库</h2><h3 id="1-1-创建工作空间"><a href="#1-1-创建工作空间" class="headerlink" title="1.1 创建工作空间"></a>1.1 创建工作空间</h3><p>打开Xcode—&gt;File—&gt;New—&gt;WorkPlace</p><p>创建一个PerfectDemo的工作空间，穿件完成后会生成一个PerfectDemo.xcworkspace文件该文件就是一个Xcode的工作空间。<br><img src="/images/perfect/finder.png" alt=""><br><img src="/images/perfect/workplace.png" alt=""></p><h3 id="1-2-引入PerfectLib与Perfect-Server"><a href="#1-2-引入PerfectLib与Perfect-Server" class="headerlink" title="1.2 引入PerfectLib与Perfect Server"></a>1.2 引入PerfectLib与Perfect Server</h3><p><img src="/images/perfect/tianjia.png" alt=""></p><p>注意添加选项的选择</p><p><img src="/images/perfect/perfectlib.png" alt=""></p><p><img src="/images/perfect/perfectserver.png" alt=""></p><p>添加完成后可以看到我们创建的PerfectDemo工作空间已经引入Perfect的依赖</p><h2><a href="#" class="headerlink"></a><img src="/images/perfect/addover.png" alt=""></h2><p>接下来，创建一个PerfectDemo工程，该工程为正式的服务器工程:</p><p><strong>推荐创建的时候以cocoaframwork的形式添加</strong></p><p><img src="/images/perfect/framework.png" alt=""></p><p>注意添加工程的时候选择我们的工作空间为添加选项:</p><p><img src="/images/perfect/newpro.png" alt=""></p><p>工程添加完成之后工作空间结构如下：</p><p><img src="/images/perfect/addover2.png" alt=""></p><h2 id="2-设置工程"><a href="#2-设置工程" class="headerlink" title="2. 设置工程"></a>2. 设置工程</h2><p>工程添加完成之后，开始设置我们的工程</p><p><img src="/images/perfect/setting.png" alt=""></p><p>具体设置项目如下：</p><ul><li>Skip Install = No</li><li>Deployment Location = Yes</li><li>Installation Directory = /PerfectLibraries</li><li>Installation Build Products Location = $(CONFIGURATION_BUILD_DIR)</li></ul><h2 id="3-编码运行"><a href="#3-编码运行" class="headerlink" title="3. 编码运行"></a>3. 编码运行</h2><p>所有的设置成功之后，开始编写服务端代码:</p><p>创建PerfectMain.swift文件:</p><p>先运行一下官方的示例代码:</p><pre><code>import Foundation
 
 import PerfectLib
 
@@ -240,104 +199,47 @@ class IndexHandler: RequestHandler {
         response.requestCompletedCallback()
     }
 }
-</code></pre><p>代码编写完成之后,设置运行的Schema</p>
-<p>选中PerfectDemo工程不要选到Perfect的库上去了</p>
-<p>设置Excutable为我们之前添加的Perfect模板</p>
-<p><img src="/images/perfect/editschame.png" alt=""></p>
-<p>设置完成之后，Run工程会启动一个PerfectServer Http程序，表示我们的Perfect服务器已经启动，改程序面板可以设置服务器的端口号，ip，已经webroot目录等等</p>
-<p><img src="/images/perfect/success.png" alt=""></p>
-<h2 id="至此，Perfect服务器工程的创建与配置完成"><a href="#至此，Perfect服务器工程的创建与配置完成" class="headerlink" title="至此，Perfect服务器工程的创建与配置完成"></a>至此，Perfect服务器工程的创建与配置完成</h2><p>工程可参照官方Demo或者该示例工程的git: <a href="https://github.com/ilioner/PerfectServerDemo" target="_blank" rel="external">https://github.com/ilioner/PerfectServerDemo</a></p>
-]]></content>
+</code></pre><p>代码编写完成之后,设置运行的Schema</p><p>选中PerfectDemo工程不要选到Perfect的库上去了</p><p>设置Excutable为我们之前添加的Perfect模板</p><p><img src="/images/perfect/editschame.png" alt=""></p><p>设置完成之后，Run工程会启动一个PerfectServer Http程序，表示我们的Perfect服务器已经启动，改程序面板可以设置服务器的端口号，ip，已经webroot目录等等</p><p><img src="/images/perfect/success.png" alt=""></p><h2 id="至此，Perfect服务器工程的创建与配置完成"><a href="#至此，Perfect服务器工程的创建与配置完成" class="headerlink" title="至此，Perfect服务器工程的创建与配置完成"></a>至此，Perfect服务器工程的创建与配置完成</h2><p>工程可参照官方Demo或者该示例工程的git: <a href="https://github.com/ilioner/PerfectServerDemo" target="_blank" rel="noopener">https://github.com/ilioner/PerfectServerDemo</a></p>]]></content>
+      
+        
+        <tags>
+            
+            <tag> swift,perfect </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[蔻鼎划线(一)]]></title>
       <url>http://yoursite.com/2016/05/29/%E8%94%BB%E9%BC%8E%E5%88%92%E7%BA%BF(%E4%B8%80).html</url>
-      <content type="html"><![CDATA[<p><img src="/images/fox.png" alt=""><br><a id="more"></a><br><img src="/images/flash.png" alt=""></p>
-]]></content>
+      <content type="html"><![CDATA[<p><img src="/images/fox.png" alt=""><br><a id="more"></a><br><img src="/images/flash.png" alt=""></p>]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[星空叙事曲]]></title>
       <url>http://yoursite.com/2016/05/29/%E6%98%9F%E7%A9%BA%E5%8F%99%E4%BA%8B%E6%9B%B2.html</url>
-      <content type="html"><![CDATA[<p><img src="/images/santi.jpg" class="full-image"></p>
-<p>天边刚出现熹微的晨光</p>
-<p>亲人们走向海滩</p>
-<p>肩背鱼篓 挂起满帆</p>
-<p>离别的歌在海面荡漾</p>
-<p>我的存在是我最永恒的思考</p>
-<p>它的意义让我困惑</p>
-<a id="more"></a>
-<p>苟活一生无非在死生间挣扎</p>
-<p>毁灭戕害多少生灵</p>
-<p>所以我将捍卫这孱弱的存在</p>
-<p>一意孤行跨越时光</p>
-<p>就让这思绪伴星空历久弥新</p>
-<p>盼望谜底终能垂青</p>
-<p>光 抚摸舷窗</p>
-<p>无言地彰显 伟岸和渺茫</p>
-<p>听 远征的心</p>
-<p>放飞 一去不归 不再怀疑</p>
-<p>我始终不曾敬畏过命运</p>
-<p>浮沉在怒潮狂风</p>
-<p>唯有真理 晦暗渺茫</p>
-<p>却终于引我走出迷航</p>
-<p>仰望星空不禁感慨璀璨辽远</p>
-<p>可是谁又真想去呢</p>
-<p>本能的好奇和幻想反复驱使</p>
-<p>小心翼翼步履艰难</p>
-<p>我懂得远行者总要舍得放弃</p>
-<p>我已准备付出代价</p>
-<p>哪怕我将灵魂也交给过黑暗</p>
-<p>岁月让我终能回归</p>
-<p>光 抚摸舷窗</p>
-<p>无言地彰显 伟岸和渺茫</p>
-<p>听 远征的心</p>
-<p>放飞 一去不归 不再怀疑</p>
-<p>我始终不曾敬畏过命运</p>
-<p>浮沉在怒潮狂风</p>
-<p>唯有真理 晦暗渺茫</p>
-<p>却终于引我走出迷航</p>
-<hr>
-<blockquote>
-<p>星空叙事曲<br>献给<br>刘慈欣《三体》三部曲中的章北海<br>也向面壁者希恩斯表示敬意</p>
-<p>词：冯佳界 曲：冯佳界/张玄<br>编曲/混音：冯佳界<br>混音指导：马雨阳</p>
-</blockquote>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=412519801&auto=1&height=66"></iframe>]]></content>
+      <content type="html"><![CDATA[<p><img src="/images/santi.jpg" class="full-image"></p><p>天边刚出现熹微的晨光</p><p>亲人们走向海滩</p><p>肩背鱼篓 挂起满帆</p><p>离别的歌在海面荡漾</p><p>我的存在是我最永恒的思考</p><p>它的意义让我困惑</p><a id="more"></a><p>苟活一生无非在死生间挣扎</p><p>毁灭戕害多少生灵</p><p>所以我将捍卫这孱弱的存在</p><p>一意孤行跨越时光</p><p>就让这思绪伴星空历久弥新</p><p>盼望谜底终能垂青</p><p>光 抚摸舷窗</p><p>无言地彰显 伟岸和渺茫</p><p>听 远征的心</p><p>放飞 一去不归 不再怀疑</p><p>我始终不曾敬畏过命运</p><p>浮沉在怒潮狂风</p><p>唯有真理 晦暗渺茫</p><p>却终于引我走出迷航</p><p>仰望星空不禁感慨璀璨辽远</p><p>可是谁又真想去呢</p><p>本能的好奇和幻想反复驱使</p><p>小心翼翼步履艰难</p><p>我懂得远行者总要舍得放弃</p><p>我已准备付出代价</p><p>哪怕我将灵魂也交给过黑暗</p><p>岁月让我终能回归</p><p>光 抚摸舷窗</p><p>无言地彰显 伟岸和渺茫</p><p>听 远征的心</p><p>放飞 一去不归 不再怀疑</p><p>我始终不曾敬畏过命运</p><p>浮沉在怒潮狂风</p><p>唯有真理 晦暗渺茫</p><p>却终于引我走出迷航</p><hr><blockquote><p>星空叙事曲<br>献给<br>刘慈欣《三体》三部曲中的章北海<br>也向面壁者希恩斯表示敬意</p><p>词：冯佳界 曲：冯佳界/张玄<br>编曲/混音：冯佳界<br>混音指导：马雨阳</p></blockquote><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=412519801&auto=1&height=66"></iframe>]]></content>
+      
+        
+        <tags>
+            
+            <tag> 文摘 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[来来来，让我们从头搭建一个ThinkJS+React+WebPack+material-ui的工程]]></title>
       <url>http://yoursite.com/2016/05/28/%E6%9D%A5%E6%9D%A5%E6%9D%A5%EF%BC%8C%E8%AE%A9%E6%88%91%E4%BB%AC%E4%BB%8E%E5%A4%B4%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAThinkJS-React-WebPack-material-ui%E7%9A%84%E5%B7%A5%E7%A8%8B.html</url>
-      <content type="html"><![CDATA[<blockquote>
-<ul>
-<li><p>ThinkJS是一款使用ES6/7特性全新开发的Node.js MVC框架，使用ES7中async/await，或者ES6中的Generator Function特性彻底解决了Node.js中异步嵌套的问题。同时吸收了国内外众多框架的设计理念和思想，让开发Node.js项目更加简单、高效。</p>
-</li>
-<li><p>ReactJS是基于组件化的开发，许多人使用React作为MVC架构的V层，React为了更高超的性能而使用虚拟DOM作为其不同的实现。 它同时也可以由服务端Node.js渲染 － 而不需要过重的浏览器DOM支持</p>
-</li>
-<li><p>Material Design 是谷歌推出的全新的设计理念，采用大胆的色彩、流畅的动画播放，以及卡片式的简洁设计。Material Design 风格的设计拥有干净的排版和简单的布局，容易理解，内容才是焦点。</p>
-</li>
-<li><p>Material UI 是一个 CSS 框架和一组实现谷歌 Material Design 设计规范的 React 组件。可以作为 NPM 安装包，使用 browserify 和 reactify 的依赖管理和 JSX 转换。</p>
-</li>
-<li><p>Babel 能够实现 ES6 到 ES5 的代码转换多亏了 Babel (以前叫 6to5) 以及 Traceur 之类的项目。这些转换器 (更准确地说是源代码到源代码的编译器) 可以把你写的符合 ECMAScript 6 标准的代码完美地转换为 ECMAScript 5 标准的代码，并且可以确保良好地运行在所有主流 JavaScript 引擎中。<br>我们这里目前在使用 Babel，主要是因为它对 ES6 的支持程度比其它同类更高</p>
-</li>
-</ul>
-</blockquote>
-<p>当然，写在前面的永远是官网的东西，熟练应用才能发挥他的真正功能。因为自己在搭建的时候遇到webpack的很多坑，所以有必要来记录一下。</p>
-<blockquote>
-<p>准备工作必须是已经安装了node</p>
-</blockquote>
-<h1 id="1-thinkjs"><a href="#1-thinkjs" class="headerlink" title="1. thinkjs"></a>1. thinkjs</h1><h2 id="1-1-安装"><a href="#1-1-安装" class="headerlink" title="1.1 安装"></a>1.1 安装</h2><p>通过下面的命令即可安装 ThinkJS：</p>
-<pre><code>npm install thinkjs@2 -g --verbose
-</code></pre><p>如果安装很慢的话，可以尝试使用 taobao 的源进行安装。具体如下：</p>
-<pre><code>npm install thinkjs@2 -g --registry=https://registry.npm.taobao.org --verbose
-</code></pre><p>安装完成后，可以通过 thinkjs –version 或 thinkjs -V 命令查看安装的版本。</p>
-<h2 id="1-2-创建工程"><a href="#1-2-创建工程" class="headerlink" title="1.2 创建工程"></a>1.2 创建工程</h2><p>ThinkJS 安装完成后，就可以通过下面的命令创建项目:</p>
-<pre><code>thinkjs new project_path; #project_path为项目存放的目录
-</code></pre><p>如果想用 ES6 特性来开发项目的话，可以创建一个 ES6 模式的项目，具体如下：</p>
-<pre><code>thinkjs new project_path --es; #project_path为项目存放的目录
-</code></pre><p>如果能看见类似下面的输出，表示项目创建成功了：</p>
-<pre><code>create : demo/
+      <content type="html"><![CDATA[<blockquote><ul><li><p>ThinkJS是一款使用ES6/7特性全新开发的Node.js MVC框架，使用ES7中async/await，或者ES6中的Generator Function特性彻底解决了Node.js中异步嵌套的问题。同时吸收了国内外众多框架的设计理念和思想，让开发Node.js项目更加简单、高效。</p></li><li><p>ReactJS是基于组件化的开发，许多人使用React作为MVC架构的V层，React为了更高超的性能而使用虚拟DOM作为其不同的实现。 它同时也可以由服务端Node.js渲染 － 而不需要过重的浏览器DOM支持</p></li><li><p>Material Design 是谷歌推出的全新的设计理念，采用大胆的色彩、流畅的动画播放，以及卡片式的简洁设计。Material Design 风格的设计拥有干净的排版和简单的布局，容易理解，内容才是焦点。</p></li><li><p>Material UI 是一个 CSS 框架和一组实现谷歌 Material Design 设计规范的 React 组件。可以作为 NPM 安装包，使用 browserify 和 reactify 的依赖管理和 JSX 转换。</p></li><li><p>Babel 能够实现 ES6 到 ES5 的代码转换多亏了 Babel (以前叫 6to5) 以及 Traceur 之类的项目。这些转换器 (更准确地说是源代码到源代码的编译器) 可以把你写的符合 ECMAScript 6 标准的代码完美地转换为 ECMAScript 5 标准的代码，并且可以确保良好地运行在所有主流 JavaScript 引擎中。<br>我们这里目前在使用 Babel，主要是因为它对 ES6 的支持程度比其它同类更高</p></li></ul></blockquote><p>当然，写在前面的永远是官网的东西，熟练应用才能发挥他的真正功能。因为自己在搭建的时候遇到webpack的很多坑，所以有必要来记录一下。</p><blockquote><p>准备工作必须是已经安装了node</p></blockquote><h1 id="1-thinkjs"><a href="#1-thinkjs" class="headerlink" title="1. thinkjs"></a>1. thinkjs</h1><h2 id="1-1-安装"><a href="#1-1-安装" class="headerlink" title="1.1 安装"></a>1.1 安装</h2><p>通过下面的命令即可安装 ThinkJS：</p><pre><code>npm install thinkjs@2 -g --verbose
+</code></pre><p>如果安装很慢的话，可以尝试使用 taobao 的源进行安装。具体如下：</p><pre><code>npm install thinkjs@2 -g --registry=https://registry.npm.taobao.org --verbose
+</code></pre><p>安装完成后，可以通过 thinkjs –version 或 thinkjs -V 命令查看安装的版本。</p><h2 id="1-2-创建工程"><a href="#1-2-创建工程" class="headerlink" title="1.2 创建工程"></a>1.2 创建工程</h2><p>ThinkJS 安装完成后，就可以通过下面的命令创建项目:</p><pre><code>thinkjs new project_path; #project_path为项目存放的目录
+</code></pre><p>如果想用 ES6 特性来开发项目的话，可以创建一个 ES6 模式的项目，具体如下：</p><pre><code>thinkjs new project_path --es; #project_path为项目存放的目录
+</code></pre><p>如果能看见类似下面的输出，表示项目创建成功了：</p><pre><code>create : demo/
 create : demo/package.json
 create : demo/.thinkjsrc
 create : demo/nginx.conf
@@ -364,32 +266,20 @@ $ npm install
 
 run the app:
 $ npm start
-</code></pre><h2 id="1-3-安装依赖"><a href="#1-3-安装依赖" class="headerlink" title="1.3 安装依赖"></a>1.3 安装依赖</h2><p>项目安装后，进入项目目录，执行 npm install 安装依赖，可以使用 taobao 源进行安装。</p>
-<pre><code>npm install --registry=https://registry.npm.taobao.org --verbose
-</code></pre><h2 id="1-4-启动项目"><a href="#1-4-启动项目" class="headerlink" title="1.4 启动项目"></a>1.4 启动项目</h2><p>在项目目录下执行命令 </p>
-<pre><code>npm start
-</code></pre><p>如果能看到类似下面的内容，表示服务启动成功。</p>
-<pre><code>[2015-09-21 20:21:09] [THINK] Server running at http://127.0.0.1:8360/
+</code></pre><h2 id="1-3-安装依赖"><a href="#1-3-安装依赖" class="headerlink" title="1.3 安装依赖"></a>1.3 安装依赖</h2><p>项目安装后，进入项目目录，执行 npm install 安装依赖，可以使用 taobao 源进行安装。</p><pre><code>npm install --registry=https://registry.npm.taobao.org --verbose
+</code></pre><h2 id="1-4-启动项目"><a href="#1-4-启动项目" class="headerlink" title="1.4 启动项目"></a>1.4 启动项目</h2><p>在项目目录下执行命令</p><pre><code>npm start
+</code></pre><p>如果能看到类似下面的内容，表示服务启动成功。</p><pre><code>[2015-09-21 20:21:09] [THINK] Server running at http://127.0.0.1:8360/
 [2015-09-21 20:21:09] [THINK] ThinkJS Version: 2.0.0
 [2015-09-21 20:21:09] [THINK] Cluster Status: closed
 [2015-09-21 20:21:09] [THINK] WebSocket Status: closed
 [2015-09-21 20:21:09] [THINK] File Auto Reload: true
 [2015-09-21 20:21:09] [THINK] App Enviroment: development
-</code></pre><h1 id="2-React"><a href="#2-React" class="headerlink" title="2. React"></a>2. React</h1><p>在创建成功的thinkjs工程中加入React依赖</p>
-<pre><code>npm install react react-dom
-</code></pre><blockquote>
-<p>关于-save和save-dev可以省掉你手动修改package.json文件的步骤。</p>
-<pre><code>npm install module-name -save 自动把模块和版本号添加到dependencies部分
+</code></pre><h1 id="2-React"><a href="#2-React" class="headerlink" title="2. React"></a>2. React</h1><p>在创建成功的thinkjs工程中加入React依赖</p><pre><code>npm install react react-dom
+</code></pre><blockquote><p>关于-save和save-dev可以省掉你手动修改package.json文件的步骤。</p><pre><code>npm install module-name -save 自动把模块和版本号添加到dependencies部分
 npm install module-name -save-dve 自动把模块和版本号添加到devdependencies部分
-</code></pre></blockquote>
-<h1 id="3-Webpack"><a href="#3-Webpack" class="headerlink" title="3. Webpack"></a>3. Webpack</h1><p>React开发和模块管理的主流工具Webpack。Webpack确实是功能最为强大的前端模块管理和打包工具,也就是说React作为组件的UI只有通过编译打包之后才能被html解析显示出来。</p>
-<h2 id="3-1-安装"><a href="#3-1-安装" class="headerlink" title="3.1 安装"></a>3.1 安装</h2><p>Webpack一般作为全局的npm模块安装：</p>
-<pre><code>npm install -g webpack
-</code></pre><p>之后便有了全局的webpack命令，直接执行此命令会默认使用当前目录的webpack.config.js作为配置文件。如果要指定另外的配置文件，可以执行：</p>
-<pre><code>webpack —config webpack.custom.config.js
-</code></pre><p>尽管Webpack可以通过命令行来指定参数，但我们通常会将所有相关参数定义在配置文件中。</p>
-<p>如果要编译对JSX文件，还需要添加对应的依赖Babel和Babel的一堆插件(<a href="http://babeljs.cn/" target="_blank" rel="external">babeljs中国</a>)，配置较多，建议添加至package.json文件统一npm install:</p>
-<pre><code>&quot;babel-core&quot;: &quot;6.x.x&quot;,
+</code></pre></blockquote><h1 id="3-Webpack"><a href="#3-Webpack" class="headerlink" title="3. Webpack"></a>3. Webpack</h1><p>React开发和模块管理的主流工具Webpack。Webpack确实是功能最为强大的前端模块管理和打包工具,也就是说React作为组件的UI只有通过编译打包之后才能被html解析显示出来。</p><h2 id="3-1-安装"><a href="#3-1-安装" class="headerlink" title="3.1 安装"></a>3.1 安装</h2><p>Webpack一般作为全局的npm模块安装：</p><pre><code>npm install -g webpack
+</code></pre><p>之后便有了全局的webpack命令，直接执行此命令会默认使用当前目录的webpack.config.js作为配置文件。如果要指定另外的配置文件，可以执行：</p><pre><code>webpack —config webpack.custom.config.js
+</code></pre><p>尽管Webpack可以通过命令行来指定参数，但我们通常会将所有相关参数定义在配置文件中。</p><p>如果要编译对JSX文件，还需要添加对应的依赖Babel和Babel的一堆插件(<a href="http://babeljs.cn/" target="_blank" rel="noopener">babeljs中国</a>)，配置较多，建议添加至package.json文件统一npm install:</p><pre><code>&quot;babel-core&quot;: &quot;6.x.x&quot;,
 &quot;babel-preset-es2015&quot;:&quot;^6.9.0&quot;,
 &quot;babel-preset-es2015-loose&quot;: &quot;6.x.x&quot;,
 &quot;babel-preset-react&quot;: &quot;^6.5.0&quot;,
@@ -400,8 +290,7 @@ npm install module-name -save-dve 自动把模块和版本号添加到devdepende
 &quot;babel-eslint&quot;: &quot;^4.1.8&quot;,
 &quot;babel-loader&quot;: &quot;^6.2.4&quot;,
 &quot;babel-plugin-transform-runtime&quot;: &quot;6.x.x&quot;,
-</code></pre><h2 id="3-2-配置"><a href="#3-2-配置" class="headerlink" title="3.2 配置"></a>3.2 配置</h2><p>在工程目录下创建 webpack.config.js 文件</p>
-<pre><code>var path = require(&apos;path&apos;);
+</code></pre><h2 id="3-2-配置"><a href="#3-2-配置" class="headerlink" title="3.2 配置"></a>3.2 配置</h2><p>在工程目录下创建 webpack.config.js 文件</p><pre><code>var path = require(&apos;path&apos;);
 var webpack = require(&apos;webpack&apos;);
 module.exports = {
   // entry 入口文件
@@ -434,10 +323,7 @@ module.exports = {
     ]
   }
 }
-</code></pre><p>此时有必要贴一下工程目录图</p>
-<p><img src="/images/gongchengmulu.jpg" alt=""></p>
-<h1 id="4-配置html"><a href="#4-配置html" class="headerlink" title="4. 配置html"></a>4. 配置html</h1><p>修改index_index.html</p>
-<pre><code>&lt;!DOCTYPE html&gt;
+</code></pre><p>此时有必要贴一下工程目录图</p><p><img src="/images/gongchengmulu.jpg" alt=""></p><h1 id="4-配置html"><a href="#4-配置html" class="headerlink" title="4. 配置html"></a>4. 配置html</h1><p>修改index_index.html</p><pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;
     &lt;meta charset=&quot;UTF-8&quot;&gt;
@@ -447,22 +333,15 @@ module.exports = {
   &lt;div id=&quot;content&quot;&gt;&lt;/div&gt;
   &lt;script type=&quot;text/javascript&quot; src=&quot;/static/js/bundle.js&quot;&gt;&lt;/script&gt;&lt;/body&gt;
 &lt;/html&gt;
-</code></pre><h1 id="5-App-jsx"><a href="#5-App-jsx" class="headerlink" title="5. App.jsx"></a>5. App.jsx</h1><h2 id="5-1-安装Material-UI"><a href="#5-1-安装Material-UI" class="headerlink" title="5.1 安装Material UI"></a>5.1 安装Material UI</h2><p>使用命令</p>
-<pre><code>npm install material-ui
-</code></pre><p>添加react-tap-event-plugin </p>
-<pre><code>npm install react-tap-event-plugin 
-</code></pre><blockquote>
-<p>react-tap-event-plugin</p>
-<p>Our components use react-tap-event-plugin to listen for touch / tap / clickevents. This dependency is temporary and will go away once the official React version is released. Until then, be sure to inject this plugin at the start of your app.</p>
-<pre><code>  import injectTapEventPlugin from &apos;react-tap-event-plugin&apos;;
+</code></pre><h1 id="5-App-jsx"><a href="#5-App-jsx" class="headerlink" title="5. App.jsx"></a>5. App.jsx</h1><h2 id="5-1-安装Material-UI"><a href="#5-1-安装Material-UI" class="headerlink" title="5.1 安装Material UI"></a>5.1 安装Material UI</h2><p>使用命令</p><pre><code>npm install material-ui
+</code></pre><p>添加react-tap-event-plugin</p><pre><code>npm install react-tap-event-plugin 
+</code></pre><blockquote><p>react-tap-event-plugin</p><p>Our components use react-tap-event-plugin to listen for touch / tap / clickevents. This dependency is temporary and will go away once the official React version is released. Until then, be sure to inject this plugin at the start of your app.</p><pre><code>  import injectTapEventPlugin from &apos;react-tap-event-plugin&apos;;
 
 // Needed for onTouchTap
 // Check this repo:
 // https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin();
-</code></pre><p>react-tap-event-plugin provides onTouchTap() to all React Components. It’s a mobile-friendly onClick() alternative for components in Material-UI, especially useful for the buttons.</p>
-</blockquote>
-<h2 id="5-2-修改App-jsx"><a href="#5-2-修改App-jsx" class="headerlink" title="5.2 修改App.jsx"></a>5.2 修改App.jsx</h2><pre><code>// main.js
+</code></pre><p>react-tap-event-plugin provides onTouchTap() to all React Components. It’s a mobile-friendly onClick() alternative for components in Material-UI, especially useful for the buttons.</p></blockquote><h2 id="5-2-修改App-jsx"><a href="#5-2-修改App-jsx" class="headerlink" title="5.2 修改App.jsx"></a>5.2 修改App.jsx</h2><pre><code>// main.js
 import React from &apos;react&apos;;
 import ReactDOM from &apos;react-dom&apos;;
 import getMuiTheme from &apos;material-ui/styles/getMuiTheme&apos;;
@@ -487,18 +366,13 @@ const MyAwesomeReactComponent = () =&gt; (
 );
 
 export default MyAwesomeReactComponent;
-</code></pre><hr>
-<h1 id="6-跑一下"><a href="#6-跑一下" class="headerlink" title="6. 跑一下"></a>6. 跑一下</h1><p>上述所有配置完成后运行命令:</p>
-<pre><code>webpack
-</code></pre><p>出现:</p>
-<pre><code>Version: webpack 1.13.1
+</code></pre><hr><h1 id="6-跑一下"><a href="#6-跑一下" class="headerlink" title="6. 跑一下"></a>6. 跑一下</h1><p>上述所有配置完成后运行命令:</p><pre><code>webpack
+</code></pre><p>出现:</p><pre><code>Version: webpack 1.13.1
 Time: 7151ms
     Asset     Size  Chunks             Chunk Names
 bundle.js  1.07 MB       0  [emitted]  main
     + 291 hidden modules
-</code></pre><p>证明编译成功</p>
-<p>再启动工程：</p>
-<pre><code>npm start
+</code></pre><p>证明编译成功</p><p>再启动工程：</p><pre><code>npm start
 
 
 [2016-05-29 01:18:49] [THINK] Server running at http://127.0.0.1:8360/
@@ -508,58 +382,32 @@ bundle.js  1.07 MB       0  [emitted]  main
 [2016-05-29 01:18:49] [THINK] File Auto Compile: false
 [2016-05-29 01:18:49] [THINK] File Auto Reload: true
 [2016-05-29 01:18:49] [THINK] App Enviroment: development
-</code></pre><p><img src="/images/thinjs运行效果图.jpg" alt=""><br>运行正常，配置成功</p>
-<p>git: <a href="https://github.com/ilioner/thinkjs-material-ui" target="_blank" rel="external">thinkjs-material-ui</a></p>
-<blockquote>
-<p>webpack资料:</p>
-<ul>
-<li><a href="https://zhuanlan.zhihu.com/p/20367175" target="_blank" rel="external">Webpack傻瓜式指南</a></li>
-<li><a href="http://gold.xitu.io/entry/5691c20ba5b43198e5ce87eb" target="_blank" rel="external">应该是最好懂的 Webpack 教程</a></li>
-<li><a href="https://segmentfault.com/a/1190000002551952" target="_blank" rel="external">Webpack 入门指迷</a></li>
-<li><a href="http://code.oneapm.com/javascript/2015/07/07/webpack_performance_1/" target="_blank" rel="external">Webpack 性能优化</a></li>
-</ul>
-</blockquote>
-]]></content>
+</code></pre><p><img src="/images/thinjs运行效果图.jpg" alt=""><br>运行正常，配置成功</p><p>git: <a href="https://github.com/ilioner/thinkjs-material-ui" target="_blank" rel="noopener">thinkjs-material-ui</a></p><blockquote><p>webpack资料:</p><ul><li><a href="https://zhuanlan.zhihu.com/p/20367175" target="_blank" rel="noopener">Webpack傻瓜式指南</a></li><li><a href="http://gold.xitu.io/entry/5691c20ba5b43198e5ce87eb" target="_blank" rel="noopener">应该是最好懂的 Webpack 教程</a></li><li><a href="https://segmentfault.com/a/1190000002551952" target="_blank" rel="noopener">Webpack 入门指迷</a></li><li><a href="http://code.oneapm.com/javascript/2015/07/07/webpack_performance_1/" target="_blank" rel="noopener">Webpack 性能优化</a></li></ul></blockquote>]]></content>
+      
+        
+        <tags>
+            
+            <tag> nodejs,react,thinkjs,material-ui </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Blog优化日志]]></title>
       <url>http://yoursite.com/2016/05/24/Blog%E4%BC%98%E5%8C%96%E5%BF%97.html</url>
-      <content type="html"><![CDATA[<p><img src="/images/blogfont.jpg" class="full-image"><br>因为刚开始使用hexo框架，没有配置，所以访问巨慢，国内访问会等1分钟才可以打开网站。<br>究其原因，发现刚启用</p>
-<blockquote>
-<p>blog框架:hexo<br>主题框架: NexT</p>
-</blockquote>
-<h2 id="1-SEO-优化"><a href="#1-SEO-优化" class="headerlink" title="1. SEO 优化"></a>1. SEO 优化</h2><h4 id="title优化"><a href="#title优化" class="headerlink" title="title优化"></a>title优化</h4><a id="more"></a>
-<p><strong>更改index.swig文件</strong></p>
-<blockquote>
-<p>文件路径是\themes\next\layou</p>
-</blockquote>
-<pre><code>{% block title %} 
+      <content type="html"><![CDATA[<p><img src="/images/blogfont.jpg" class="full-image"><br>因为刚开始使用hexo框架，没有配置，所以访问巨慢，国内访问会等1分钟才可以打开网站。<br>究其原因，发现刚启用</p><blockquote><p>blog框架:hexo<br>主题框架: NexT</p></blockquote><h2 id="1-SEO-优化"><a href="#1-SEO-优化" class="headerlink" title="1. SEO 优化"></a>1. SEO 优化</h2><h4 id="title优化"><a href="#title优化" class="headerlink" title="title优化"></a>title优化</h4><a id="more"></a><p><strong>更改index.swig文件</strong></p><blockquote><p>文件路径是\themes\next\layou</p></blockquote><pre><code>{% block title %} 
   		{{ config.title }} 
 	{% endblock %}
-</code></pre><p>改成:</p>
-<pre><code>{% block title %} 
+</code></pre><p>改成:</p><pre><code>{% block title %} 
   		{{ config.title }} - {{ theme.description }} 
 	{% endblock %}
-</code></pre><h4 id="添加sitemap"><a href="#添加sitemap" class="headerlink" title="添加sitemap"></a>添加sitemap</h4><p>添加sitemap便于搜索引擎可以更加友好的抓取博客内容:</p>
-<ul>
-<li><p>在博客根目录下运行:</p>
-<p>  npm install hexo-generator-sitemap –save<br>  npm install hexo-generator-baidu-sitemap –save</p>
-</li>
-<li><p>配置_config.yml</p>
-<pre><code>#hexo sitemap网站地图
+</code></pre><h4 id="添加sitemap"><a href="#添加sitemap" class="headerlink" title="添加sitemap"></a>添加sitemap</h4><p>添加sitemap便于搜索引擎可以更加友好的抓取博客内容:</p><ul><li><p>在博客根目录下运行:</p><p>npm install hexo-generator-sitemap –save<br>npm install hexo-generator-baidu-sitemap –save</p></li><li><p>配置_config.yml</p><pre><code>#hexo sitemap网站地图
 sitemap:
 path: sitemap.xml
-</code></pre></li>
-</ul>
-<blockquote>
-<p>看到有些网站说在配置_config.yml时也要添加</p>
-<pre><code>  baidusitemap:
+</code></pre></li></ul><blockquote><p>看到有些网站说在配置_config.yml时也要添加</p><pre><code>  baidusitemap:
 path: baidusitemap.xml
-</code></pre><p>表示添加后直接编译不过，不用添加其实也可以生成baidusitemap.xml</p>
-</blockquote>
-<h4 id="添加robots-txt"><a href="#添加robots-txt" class="headerlink" title="添加robots.txt"></a>添加robots.txt</h4><p>将该文件添加至source文件夹下</p>
-<pre><code>User-agent: *
+</code></pre><p>表示添加后直接编译不过，不用添加其实也可以生成baidusitemap.xml</p></blockquote><h4 id="添加robots-txt"><a href="#添加robots-txt" class="headerlink" title="添加robots.txt"></a>添加robots.txt</h4><p>将该文件添加至source文件夹下</p><pre><code>User-agent: *
 Allow: /
 Allow: /archives/
 Allow: /categories/
@@ -574,25 +422,14 @@ Disallow: /fancybox/
 
 Sitemap: http://{域名}/sitemap.xml
 Sitemap: http://{域名}/baidusitemap.xml
-</code></pre><p>Allow:允许抓取</p>
-<p>Disallow:不允许抓取</p>
-<h2 id="2-字体优化"><a href="#2-字体优化" class="headerlink" title="2. 字体优化"></a>2. 字体优化</h2><h4 id="三种方式"><a href="#三种方式" class="headerlink" title="三种方式:"></a>三种方式:</h4><ol>
-<li><p>直接在主题配置文件里面禁用font:</p>
-<pre><code>font:
+</code></pre><p>Allow:允许抓取</p><p>Disallow:不允许抓取</p><h2 id="2-字体优化"><a href="#2-字体优化" class="headerlink" title="2. 字体优化"></a>2. 字体优化</h2><h4 id="三种方式"><a href="#三种方式" class="headerlink" title="三种方式:"></a>三种方式:</h4><ol><li><p>直接在主题配置文件里面禁用font:</p><pre><code>font:
       enable: true
-</code></pre></li>
-<li><p>修改font的host,因为默认是googleapis所以国内访问巨慢:</p>
-<pre><code>font:
+</code></pre></li><li><p>修改font的host,因为默认是googleapis所以国内访问巨慢:</p><pre><code>font:
       enable: true
 
       # Uri of fonts host. E.g. //fonts.googleapis.com (Default)
       host: fonts.useso.com
-</code></pre></li>
-<li><p>NexT主题的话如果不嫌麻烦还可以直接:</p>
-<p>themes&gt;next&gt;layout&gt;_partials&gt;head&gt;external-fonts.swig</p>
-</li>
-</ol>
-<pre><code>{% if font_families !== '' %}
+</code></pre></li><li><p>NexT主题的话如果不嫌麻烦还可以直接:</p><p>themes&gt;next&gt;layout&gt;_partials&gt;head&gt;external-fonts.swig</p></li></ol><pre><code>{% if font_families !== '' %}
 	 
     	{% set font_families += '&subset=latin,latin-ext' %}
     	{% set font_host = font_config.host | default('//fonts.useso.com') %}
@@ -726,94 +563,36 @@ hexo deploy
 <p>以上，完成本次优化。</p>
 <p>参考博文:</p>
 <blockquote>
-<p><a href="http://www.selfrebuild.net/2015/06/24/Github-Hexo-Next%E4%B8%BB%E9%A2%98%E4%B8%AA%E6%80%A7%E5%8C%96%E5%AE%9A%E5%88%B6/" target="_blank" rel="external">Hexo博客优化 - Next主题个性化定制</a></p>
-<p><a href="https://joway.wang/posts/Hexo/2016-05-17-hexo-compress-inline-static.html" target="_blank" rel="external">Hexo折腾记——通过压缩与内联提升访问速度</a></p>
-</blockquote>
-]]></content>
+<p><a href="http://www.selfrebuild.net/2015/06/24/Github-Hexo-Next%E4%B8%BB%E9%A2%98%E4%B8%AA%E6%80%A7%E5%8C%96%E5%AE%9A%E5%88%B6/" target="_blank" rel="noopener">Hexo博客优化 - Next主题个性化定制</a></p>
+<p><a href="https://joway.wang/posts/Hexo/2016-05-17-hexo-compress-inline-static.html" target="_blank" rel="noopener">Hexo折腾记——通过压缩与内联提升访问速度</a></p></blockquote>]]></content>
+      
+        
+        <tags>
+            
+            <tag> Hexo优化 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[当悲剧或失望来袭，要知道你们能扛过任何事]]></title>
       <url>http://yoursite.com/2016/05/23/%E5%BD%93%E6%82%B2%E5%89%A7%E6%88%96%E5%A4%B1%E6%9C%9B%E6%9D%A5%E8%A2%AD%EF%BC%8C%E8%A6%81%E7%9F%A5%E9%81%93%E4%BD%A0%E4%BB%AC%E8%83%BD%E6%89%9B%E8%BF%87%E4%BB%BB%E4%BD%95%E4%BA%8B.html</url>
-      <content type="html"><![CDATA[<p><img src="/images/sad.jpg" class="full-image"></p>
-<p><strong>以下是谢丽尔·桑德伯格在加州伯克利大学2016年毕业典礼上的演讲：</strong></p>
-<p>感谢玛丽，感谢各位尊敬的老师们、骄傲的父母、忠诚的朋友和各位同仁。</p>
-<p>祝贺你们所有人，尤其是2016届伯克利毕业生们！</p>
-<p>很荣幸能站在伯克利大学，这所学校培养了许多诺贝尔奖得主、图灵奖得主、宇航员、国会议员、奥运冠军……其中很多人都是女性！<br><a id="more"></a><br>伯克利始终走在时代的前沿。在20世纪60年代，从这里发起言论自由运动。回顾那个年代，当时的人们都留着长头发，雌雄莫辨。不过现在我们能区分了 —— manbuns（一种男式小发髻，丸子头）。</p>
-<p>很早之前伯克利的大门就对所有人开放了。早在1873年这所大学刚建成时，这所学校就接收了167名男生和222名女生。而我的母校在90年之后才有了第一位女性毕业生。</p>
-<p>有一位来这所学校进修的女性名叫罗瑟琳·努斯。罗瑟琳成年之前在布鲁克林公寓擦地为生。为了补贴家用她父母让她高中毕业之后便辍学。在其中一位老师的坚持下，她最终被送回学校。到了1937年，她坐在你们今天坐的位置，得到了伯克利大学的学位。罗瑟琳是我的祖母。她对我而言是巨大的鼓舞，而我今天仍然要感谢伯克利大学激发了她的潜能。我想花一点时间向在座的许多人表示特别的祝贺，你们是你们家庭中的第一代大学生，这是多么了不起的成就啊。</p>
-<p>今天是值得庆祝的一天，庆祝你们为了这一刻到来所付出的一切努力。</p>
-<p>今天是需要感谢的一天，感谢那些帮助你来到这里的人，那些曾经呵护你、教育你、鼓励你、安慰你的朋友。或者至少应该感谢那些当你在聚会上困得睡着的时候没有拿记号笔把你的脸画花的人。</p>
-<p>今天是值得反思的一天，因为今天注定是你生命里承前启后的一天。</p>
-<p>毕业典礼演讲本应是青春和智慧之舞，你们已拥有青春，期待着我为你们带来智慧的声音。等我站在这里告诉你们我的人生经历，然后你们可以将你们的帽子扔向空中，让你的家人为你多拍些照片——别忘了分享到Instragram——最后大家开开心心地回家。</p>
-<p>然而今天会有一点不同。当然，我们还是会扔帽子拍照。但是我不是来告诉你们我从生活中学到的东西。<strong>今天我是来告诉你们我从死亡中学到的东西。</strong></p>
-<p>我以前从未公开谈论这个话题，因为这对我来说很难。但是，我会尽量坚强，不让我的眼泪鼻涕把这身漂亮的伯克利礼服弄脏。</p>
-<p>一年零十三天之前，我失去了我的丈夫，戴夫。他离去得非常突然。当时我们在墨西哥参加朋友的五十岁生日会。当时我在小憩，戴夫去健身。接下来的事情谁都没想到——我走进健身房看到他躺在地上。我飞回家告诉我的孩子们他们的父亲走了，亲眼看着他的骨灰深埋入墓地。</p>
-<p>接下来好几个月，我无数次被哀伤吞没，一种无穷无尽的空虚感紧攥住我的心，让我无法思考，无法呼吸。</p>
-<p>戴夫的死彻底改变了我，让我理解了一个人的悲伤能有多深，一个人失去至爱是多残酷的事。但是，我也学到了当生活的漩涡把我们吸进深潭时，我们依然可以从潭底跃起，钻出水面，重见光明。我还学到了在面对空虚和面对任何挑战时，我们可以选择找到快乐和意义。</p>
-<p>我今天与你们分享这个，是希望你们在这充满希望，迈出人生的下一步的当下，能够学到希望、坚强以及内心光明永不熄灭，而这一课，是我经历了死亡才学到的。</p>
-<p>今天，每个人都已经经历过一些小挫折。你想要一个A，但是你只得到了一个B，好吧，就算你的到了A，你依然不满足，因为你申请Facebook实习却只得到了到Google实习的机会。你会觉得这个世界上最痛苦的莫过于“求不得”。</p>
-<p>《权力的游戏》电视剧和小说原著太不一样，但你又不想去读原著，因为这本书足足有4352页。</p>
-<p>生活中你有很大可能面临越来越深的困境。比如错过一些机会：得不到的工作，失去健康，或是遇到意外事故。比如颜面受损：偏见和不公会像针一样扎在你的心脏。比如失去挚爱：破坏的关系无法修复。有时还有可能会失去生命。</p>
-<p>你们当中有些人已经经历过那样刻骨铭心的困境。去年的大学奖章获得者拉狄卡由于她母亲的突然离世而发表了感人的演讲。</p>
-<p>问题不在于不幸是否会发生在你身上，因为它们总有一天会的。今天我只想谈谈不幸发生后我们该怎么做，我们该如何克服困境，无论它从我们生命里夺走了什么，无论它如何给予你沉重打击。轻松的日子很容易渡过，问题是那些艰难的日子，那些你内心直面的挑战，这些经历将决定你是谁。你的价值不仅由你的成就所决定，它也取决于你如何击败困境。</p>
-<p>在失去戴夫几周之后，我和我的朋友菲尔谈到一项亲子活动，而戴夫无法参加了。我们想了一个计划来弥补戴夫的空缺。我哭着对他说：“我想要戴夫”。菲尔搂住我说：“我们已经无法选择方案A了，所以我们只能把该死的问题从方案B中剔除。”</p>
-<p>我们都得在某种程度上向生活妥协，选择方案B。问题是：接下来我们该怎么做？</p>
-<p>作为硅谷的代表，有一份数据可以供我们参考。经过数十年研究人们如何应对挫折之后，心理学家马丁·塞利格曼发现人们一般会经历三个P——个人化、普适性和永久性——这对我们如何从挫折中挺过来至关重要。在我们处理挫折的过程中，重新振作的希望种子也随之植根于其中。</p>
-<p><strong>第一个P是个人化(personalization)，认为不幸是因为自己造成的。这与承担责任不是一回事，承担责任是我们时刻应该做的。在这一阶段我们要学会，不应将所有事情发生都归咎于我们自身。</strong></p>
-<p>当戴夫离开的时候，我有一个非常常见的反应，责怪自己。他在几秒钟内死于心律失常。我将他的病历翻来覆去，问自己我本可以或者说本应该做什么。直到我学会三个P之后我才接受了我无法阻止他死亡的事实。连他的医生都没能发现他有冠心病，主修经济学的我又怎么可能发现呢。</p>
-<p>研究显示渡过个人化阶段会让你变得更坚强。懂得通过学生的失败不断调整教学方法和课程体系的老师们最终能教得比别人更好。大学中那些表现不佳但相信自己能游得更快的游泳者最终能成功。别把失败都记在自己账上，那样我们就能从失败中恢复，甚至越战越勇。</p>
-<p><strong>第二个P是普适性(pervasiveness)——认为不幸会影响到生活的方方面面。你们听过那首歌《一切都是极好的》吧？还有另一首相反的《一切都是可怕的》。在吞噬一切的悲伤面前，我们无处可逃。</strong></p>
-<p>儿童心理学家鼓励我让孩子们尽快回归正常的生活。于是在戴夫离开的第十天，他们回到了学校，我也回到了工作岗位。我记得当我参加我丈夫去世后的第一次Facebook会议时，整个人还深深笼罩在悲伤中。我当时满脑子都在想，这些人到底在谈论些什么，这些内容和我有什么关系？但后来我被卷入了讨论，有那么一秒钟，很短暂的一秒钟，令我忘记了死亡。</p>
-<p>这短暂的一秒让我明白了我人生中的其他方面并不糟糕。我的孩子和我自己都很健康，我的朋友们和家人们都彼此相亲相爱。</p>
-<p>失去另一半通常会导致经济拮据，尤其是女人失去丈夫。许多单身母亲或单身父亲都得想尽办法让收支平衡，而且他们得忙于工作而没有时间照顾他们的小孩。但我有经济保障，有自由支配的时间，在Facebook从事着我喜爱的工作。渐渐地，我的孩子哭得少，玩得多，晚上睡觉也安稳了。</p>
-<p><strong>第三个P是永久性(permanence)——认为悲伤会永远持续。在几个月时间里，无论我做什么，我都觉得沉重的悲伤会永远持续下去。</strong></p>
-<p>我们常常觉得自己一时的情绪表现会持续到永久——并让这些负面情绪蔓延（桑德伯格在这里说情绪像二阶导数一样，一种学霸使用的抽象比喻，学渣表示不懂——译者注）。我们感到焦虑，然后我们又因为自己焦虑而更加焦虑。我们感到难过，然后我们又为我们的难过而难过。事实上，我们固然要正视我们的情绪，然而也要明白这些情绪不会是永久的。我的导师告诉我，时间会治愈我，但现在我应该先前进一步去控制情绪。这是个好建议，但不是我所指的“向前一步”。（桑德伯格写了一本书正好是《Lean In》中文名叫《向前一步》鼓励女性在职场中不断前进——译者注）</p>
-<p>第四个P就不用我来解释了吧……那当然是奶酪板上的披萨。</p>
-<p>我多么希望在我像你们这么年轻的时候就已经懂得这三个P了，那样的话之前经历的很多次挫折都会因此而受益。</p>
-<p>我离开学校开始工作的第一天，我的老板发现我不懂得如何在Lotus 1-2-3——一个你们父母这一辈人使用的古老电子表格软件——中输入数据。他惊讶地连下巴都快掉到地上了，他说，“不敢相信你竟然不会Lotus 1-2-3，你是怎么获得这份工作的？”然后他走出了房间。我回到家后觉得我马上要被炒掉了。我觉得自己做什么都不行……但结果我只是不善于做电子表格。如果我早点知道普适性，我就不会在那个星期感到如此焦虑了。</p>
-<p>在我甩了我男朋友的时候，我希望我早点知道永久性。如果我知道情绪不会永远持续下去，我就会觉得好受一点，而如果我对自己诚实一点，我会知道那种关系的情感也经不起时间的考验。</p>
-<p>在我被男朋友甩了的时候，我希望我早点知道个人化。有时候真的错不在你，而在他，比如说，这家伙从不洗澡。</p>
-<p>所有的三个P在我二十多岁第一段婚姻结束的时候都经历过。我当时觉得无论我做出了什么成就，我的人生都是巨大的失败。</p>
-<p>这三个P是我们经历许多事情时都会有的情绪反应，它们存在于我们的职业生涯中，存在于我们的私生活里，存在于我们的人际关系中。你很可能因为生活中的一些事正在经历其中一种反应。如果你意识到自己正在掉进这些陷阱，你就能自救。就如同我们的身体有生理免疫系统，我们的大脑也同样有心理免疫系统——你可以采取一些措施来加强免疫。</p>
-<p>一天，我的一位心理学家朋友亚当·格兰特，建议我想想情况究竟有多遭。这完全不合常理，通常恢复的方法不都是尽量找正能量吗？“更遭？”我说，“你不是在开玩笑吧？事情怎么可能变得更糟？”他的回答直击人心：“戴夫有可能在他开着车带着孩子们出去时发病。”真的，他说出来的那一刻，我很庆幸我其他的家庭成员们都健康地活着。这种感恩减轻了部分悲痛。</p>
-<p>寻找感恩是恢复的关键。那些花时间感恩的人比其他人过得更快乐和健康。事实证明计算你的祝福你会获得更多祝福。我今年的新年目标是在每天夜晚睡觉前写下三个愉快的时刻。这个简单的练习改变了我的生活，因为不管每天发生什么，我都会在睡前思考一些令人愉快的事情。你也可以尝试一下，从今晚开始写，有那么多有趣的事情，趁你睡觉前还记得它们，把它们写下来。</p>
-<p>上个月，在戴夫过世一周年纪念日的十一天之前，我在我的一位朋友面前痛哭。我们挤坐在浴室地板上。我说：“十一天，一年前的今天，他的生命只剩下十一天了。然而我们对此却一无所知。”我们泪眼朦胧地对视着，然后问自己如果我们知道我们只剩下十一天可活的话，我们会如何渡过。</p>
-<p>今天你们毕业了，你们能够回答如果你们只剩下十一天你们会如何渡过吗？我不是让你们去及时行乐——当然今晚例外。我的意思是要你们理解生命中的每一天是多么的珍贵，珍惜自己的每一天。</p>
-<p>几年前，我的母亲做了髋关节置换手术。在她年轻的时候，她走路从来没有疼痛。但是在她髋关节破碎之后，走每一步都很疼。现在，尽管已经手术过了很多年，她依然对走每一步不疼痛心存感激——这是她以前从未想到过的。</p>
-<p>今天我站在这里，在告别了我这辈子所经历的最遭糕的日子一年之后，有两件事情是真实的。那段经历在我内心深处留下了一个巨大的伤疤，它就在那里，我可以触碰到它。我以前从来不知道我可以那么经常哭泣，有那么多眼泪流。</p>
-<p>但我也意识到我走路不疼。第一次，我感谢每一次呼吸，感谢生命本身的恩赐。我过去每五年庆祝一次生日，偶尔参加朋友们的生日会。现在，我每年都庆祝。我过去常常在睡前为那一天我搞砸的事情忧心——相信我，不顺心的事情常常有很多。现在，我努力地去关注每一天快乐的时刻。</p>
-<p>直到我失去我的丈夫我才学会了更深刻的感恩，懂得感恩我朋友们的好意，感恩我家人的爱，感恩孩子们的欢笑，这对我来说是莫大的讽刺。我希望你们可以获得感恩，不仅仅是在今天这样的好日子里，在艰难的日子里，你们更需要这样的感恩。</p>
-<p>在人生的旅途中有许多快乐的时刻。一次一直想去的旅行，与你喜欢的人的初吻，获得一份你真心喜欢的工作，打败斯坦福（加油！）。所有的这些事情都可能发生，请尽情享受它们。</p>
-<p>我希望你珍惜你过的每一天，每天都过得快乐并有意义。</p>
-<p>我希望你们人生的每一步都没有痛苦，并充满感恩。</p>
-<p>当挑战来临的时候，我希望你们记得学习和成长的力量源自你们的内在。你们不是生来就具有从困境中恢复的韧性。如同肌肉一样，你可以锻炼出它们，在需要的时候依靠它们脱离困境。在那个过程中，你会弄清楚你究竟是谁，你能做最好的自己。</p>
-<p>2016届学生，当你们离开伯克利大学时，要建立起你们的韧性。</p>
-<p><strong>建立起你们自己的韧性，当悲剧或失望来袭，要知道你们能扛过任何事。我保证你们有这个能力。常言道，我们比我们想象的更脆弱，但我们比我们想象的更坚强。</strong></p>
-<p>建立韧性组织，如果普通人都能做到这一点，你也能，因为在伯克利大学的我们，是想让世界变得更美好的一群人。不要停下让世界更美好的脚步，无论是觉得会议室不具有代表性，还是觉得校园不够安全，大声说出来，特别是在像这样的一个你所拥有的宝贵环境里。我最喜欢的一句广告语是：“在Facebook里，没有什么是别人的问题。”当你看到什么东西出错了，去修正它。</p>
-<p>建立韧性社区，通过我们彼此的联系，我们能发现人性——生存的愿望和爱的能力。与你的家人和朋友在一起，我的意思是面对面，而不是仅仅发送一个爱心表情的短信。</p>
-<p>互相鼓励，互相帮助，把该死的问题从方案B中剔除，然后庆祝每一个人的每一刻的快乐。</p>
-<p>整个世界都展现在你们面前。我迫不及待地想看你们将做些什么。</p>
-<p>恭喜大家顺利毕业，继续加油！</p>
-<p>出自:<a href="http://www.zcfy.cc/article/283" target="_blank" rel="external">当悲剧或失望来袭，要知道你们能扛过任何事</a></p>
-]]></content>
+      <content type="html"><![CDATA[<p><img src="/images/sad.jpg" class="full-image"></p><p><strong>以下是谢丽尔·桑德伯格在加州伯克利大学2016年毕业典礼上的演讲：</strong></p><p>感谢玛丽，感谢各位尊敬的老师们、骄傲的父母、忠诚的朋友和各位同仁。</p><p>祝贺你们所有人，尤其是2016届伯克利毕业生们！</p><p>很荣幸能站在伯克利大学，这所学校培养了许多诺贝尔奖得主、图灵奖得主、宇航员、国会议员、奥运冠军……其中很多人都是女性！<br><a id="more"></a><br>伯克利始终走在时代的前沿。在20世纪60年代，从这里发起言论自由运动。回顾那个年代，当时的人们都留着长头发，雌雄莫辨。不过现在我们能区分了 —— manbuns（一种男式小发髻，丸子头）。</p><p>很早之前伯克利的大门就对所有人开放了。早在1873年这所大学刚建成时，这所学校就接收了167名男生和222名女生。而我的母校在90年之后才有了第一位女性毕业生。</p><p>有一位来这所学校进修的女性名叫罗瑟琳·努斯。罗瑟琳成年之前在布鲁克林公寓擦地为生。为了补贴家用她父母让她高中毕业之后便辍学。在其中一位老师的坚持下，她最终被送回学校。到了1937年，她坐在你们今天坐的位置，得到了伯克利大学的学位。罗瑟琳是我的祖母。她对我而言是巨大的鼓舞，而我今天仍然要感谢伯克利大学激发了她的潜能。我想花一点时间向在座的许多人表示特别的祝贺，你们是你们家庭中的第一代大学生，这是多么了不起的成就啊。</p><p>今天是值得庆祝的一天，庆祝你们为了这一刻到来所付出的一切努力。</p><p>今天是需要感谢的一天，感谢那些帮助你来到这里的人，那些曾经呵护你、教育你、鼓励你、安慰你的朋友。或者至少应该感谢那些当你在聚会上困得睡着的时候没有拿记号笔把你的脸画花的人。</p><p>今天是值得反思的一天，因为今天注定是你生命里承前启后的一天。</p><p>毕业典礼演讲本应是青春和智慧之舞，你们已拥有青春，期待着我为你们带来智慧的声音。等我站在这里告诉你们我的人生经历，然后你们可以将你们的帽子扔向空中，让你的家人为你多拍些照片——别忘了分享到Instragram——最后大家开开心心地回家。</p><p>然而今天会有一点不同。当然，我们还是会扔帽子拍照。但是我不是来告诉你们我从生活中学到的东西。<strong>今天我是来告诉你们我从死亡中学到的东西。</strong></p><p>我以前从未公开谈论这个话题，因为这对我来说很难。但是，我会尽量坚强，不让我的眼泪鼻涕把这身漂亮的伯克利礼服弄脏。</p><p>一年零十三天之前，我失去了我的丈夫，戴夫。他离去得非常突然。当时我们在墨西哥参加朋友的五十岁生日会。当时我在小憩，戴夫去健身。接下来的事情谁都没想到——我走进健身房看到他躺在地上。我飞回家告诉我的孩子们他们的父亲走了，亲眼看着他的骨灰深埋入墓地。</p><p>接下来好几个月，我无数次被哀伤吞没，一种无穷无尽的空虚感紧攥住我的心，让我无法思考，无法呼吸。</p><p>戴夫的死彻底改变了我，让我理解了一个人的悲伤能有多深，一个人失去至爱是多残酷的事。但是，我也学到了当生活的漩涡把我们吸进深潭时，我们依然可以从潭底跃起，钻出水面，重见光明。我还学到了在面对空虚和面对任何挑战时，我们可以选择找到快乐和意义。</p><p>我今天与你们分享这个，是希望你们在这充满希望，迈出人生的下一步的当下，能够学到希望、坚强以及内心光明永不熄灭，而这一课，是我经历了死亡才学到的。</p><p>今天，每个人都已经经历过一些小挫折。你想要一个A，但是你只得到了一个B，好吧，就算你的到了A，你依然不满足，因为你申请Facebook实习却只得到了到Google实习的机会。你会觉得这个世界上最痛苦的莫过于“求不得”。</p><p>《权力的游戏》电视剧和小说原著太不一样，但你又不想去读原著，因为这本书足足有4352页。</p><p>生活中你有很大可能面临越来越深的困境。比如错过一些机会：得不到的工作，失去健康，或是遇到意外事故。比如颜面受损：偏见和不公会像针一样扎在你的心脏。比如失去挚爱：破坏的关系无法修复。有时还有可能会失去生命。</p><p>你们当中有些人已经经历过那样刻骨铭心的困境。去年的大学奖章获得者拉狄卡由于她母亲的突然离世而发表了感人的演讲。</p><p>问题不在于不幸是否会发生在你身上，因为它们总有一天会的。今天我只想谈谈不幸发生后我们该怎么做，我们该如何克服困境，无论它从我们生命里夺走了什么，无论它如何给予你沉重打击。轻松的日子很容易渡过，问题是那些艰难的日子，那些你内心直面的挑战，这些经历将决定你是谁。你的价值不仅由你的成就所决定，它也取决于你如何击败困境。</p><p>在失去戴夫几周之后，我和我的朋友菲尔谈到一项亲子活动，而戴夫无法参加了。我们想了一个计划来弥补戴夫的空缺。我哭着对他说：“我想要戴夫”。菲尔搂住我说：“我们已经无法选择方案A了，所以我们只能把该死的问题从方案B中剔除。”</p><p>我们都得在某种程度上向生活妥协，选择方案B。问题是：接下来我们该怎么做？</p><p>作为硅谷的代表，有一份数据可以供我们参考。经过数十年研究人们如何应对挫折之后，心理学家马丁·塞利格曼发现人们一般会经历三个P——个人化、普适性和永久性——这对我们如何从挫折中挺过来至关重要。在我们处理挫折的过程中，重新振作的希望种子也随之植根于其中。</p><p><strong>第一个P是个人化(personalization)，认为不幸是因为自己造成的。这与承担责任不是一回事，承担责任是我们时刻应该做的。在这一阶段我们要学会，不应将所有事情发生都归咎于我们自身。</strong></p><p>当戴夫离开的时候，我有一个非常常见的反应，责怪自己。他在几秒钟内死于心律失常。我将他的病历翻来覆去，问自己我本可以或者说本应该做什么。直到我学会三个P之后我才接受了我无法阻止他死亡的事实。连他的医生都没能发现他有冠心病，主修经济学的我又怎么可能发现呢。</p><p>研究显示渡过个人化阶段会让你变得更坚强。懂得通过学生的失败不断调整教学方法和课程体系的老师们最终能教得比别人更好。大学中那些表现不佳但相信自己能游得更快的游泳者最终能成功。别把失败都记在自己账上，那样我们就能从失败中恢复，甚至越战越勇。</p><p><strong>第二个P是普适性(pervasiveness)——认为不幸会影响到生活的方方面面。你们听过那首歌《一切都是极好的》吧？还有另一首相反的《一切都是可怕的》。在吞噬一切的悲伤面前，我们无处可逃。</strong></p><p>儿童心理学家鼓励我让孩子们尽快回归正常的生活。于是在戴夫离开的第十天，他们回到了学校，我也回到了工作岗位。我记得当我参加我丈夫去世后的第一次Facebook会议时，整个人还深深笼罩在悲伤中。我当时满脑子都在想，这些人到底在谈论些什么，这些内容和我有什么关系？但后来我被卷入了讨论，有那么一秒钟，很短暂的一秒钟，令我忘记了死亡。</p><p>这短暂的一秒让我明白了我人生中的其他方面并不糟糕。我的孩子和我自己都很健康，我的朋友们和家人们都彼此相亲相爱。</p><p>失去另一半通常会导致经济拮据，尤其是女人失去丈夫。许多单身母亲或单身父亲都得想尽办法让收支平衡，而且他们得忙于工作而没有时间照顾他们的小孩。但我有经济保障，有自由支配的时间，在Facebook从事着我喜爱的工作。渐渐地，我的孩子哭得少，玩得多，晚上睡觉也安稳了。</p><p><strong>第三个P是永久性(permanence)——认为悲伤会永远持续。在几个月时间里，无论我做什么，我都觉得沉重的悲伤会永远持续下去。</strong></p><p>我们常常觉得自己一时的情绪表现会持续到永久——并让这些负面情绪蔓延（桑德伯格在这里说情绪像二阶导数一样，一种学霸使用的抽象比喻，学渣表示不懂——译者注）。我们感到焦虑，然后我们又因为自己焦虑而更加焦虑。我们感到难过，然后我们又为我们的难过而难过。事实上，我们固然要正视我们的情绪，然而也要明白这些情绪不会是永久的。我的导师告诉我，时间会治愈我，但现在我应该先前进一步去控制情绪。这是个好建议，但不是我所指的“向前一步”。（桑德伯格写了一本书正好是《Lean In》中文名叫《向前一步》鼓励女性在职场中不断前进——译者注）</p><p>第四个P就不用我来解释了吧……那当然是奶酪板上的披萨。</p><p>我多么希望在我像你们这么年轻的时候就已经懂得这三个P了，那样的话之前经历的很多次挫折都会因此而受益。</p><p>我离开学校开始工作的第一天，我的老板发现我不懂得如何在Lotus 1-2-3——一个你们父母这一辈人使用的古老电子表格软件——中输入数据。他惊讶地连下巴都快掉到地上了，他说，“不敢相信你竟然不会Lotus 1-2-3，你是怎么获得这份工作的？”然后他走出了房间。我回到家后觉得我马上要被炒掉了。我觉得自己做什么都不行……但结果我只是不善于做电子表格。如果我早点知道普适性，我就不会在那个星期感到如此焦虑了。</p><p>在我甩了我男朋友的时候，我希望我早点知道永久性。如果我知道情绪不会永远持续下去，我就会觉得好受一点，而如果我对自己诚实一点，我会知道那种关系的情感也经不起时间的考验。</p><p>在我被男朋友甩了的时候，我希望我早点知道个人化。有时候真的错不在你，而在他，比如说，这家伙从不洗澡。</p><p>所有的三个P在我二十多岁第一段婚姻结束的时候都经历过。我当时觉得无论我做出了什么成就，我的人生都是巨大的失败。</p><p>这三个P是我们经历许多事情时都会有的情绪反应，它们存在于我们的职业生涯中，存在于我们的私生活里，存在于我们的人际关系中。你很可能因为生活中的一些事正在经历其中一种反应。如果你意识到自己正在掉进这些陷阱，你就能自救。就如同我们的身体有生理免疫系统，我们的大脑也同样有心理免疫系统——你可以采取一些措施来加强免疫。</p><p>一天，我的一位心理学家朋友亚当·格兰特，建议我想想情况究竟有多遭。这完全不合常理，通常恢复的方法不都是尽量找正能量吗？“更遭？”我说，“你不是在开玩笑吧？事情怎么可能变得更糟？”他的回答直击人心：“戴夫有可能在他开着车带着孩子们出去时发病。”真的，他说出来的那一刻，我很庆幸我其他的家庭成员们都健康地活着。这种感恩减轻了部分悲痛。</p><p>寻找感恩是恢复的关键。那些花时间感恩的人比其他人过得更快乐和健康。事实证明计算你的祝福你会获得更多祝福。我今年的新年目标是在每天夜晚睡觉前写下三个愉快的时刻。这个简单的练习改变了我的生活，因为不管每天发生什么，我都会在睡前思考一些令人愉快的事情。你也可以尝试一下，从今晚开始写，有那么多有趣的事情，趁你睡觉前还记得它们，把它们写下来。</p><p>上个月，在戴夫过世一周年纪念日的十一天之前，我在我的一位朋友面前痛哭。我们挤坐在浴室地板上。我说：“十一天，一年前的今天，他的生命只剩下十一天了。然而我们对此却一无所知。”我们泪眼朦胧地对视着，然后问自己如果我们知道我们只剩下十一天可活的话，我们会如何渡过。</p><p>今天你们毕业了，你们能够回答如果你们只剩下十一天你们会如何渡过吗？我不是让你们去及时行乐——当然今晚例外。我的意思是要你们理解生命中的每一天是多么的珍贵，珍惜自己的每一天。</p><p>几年前，我的母亲做了髋关节置换手术。在她年轻的时候，她走路从来没有疼痛。但是在她髋关节破碎之后，走每一步都很疼。现在，尽管已经手术过了很多年，她依然对走每一步不疼痛心存感激——这是她以前从未想到过的。</p><p>今天我站在这里，在告别了我这辈子所经历的最遭糕的日子一年之后，有两件事情是真实的。那段经历在我内心深处留下了一个巨大的伤疤，它就在那里，我可以触碰到它。我以前从来不知道我可以那么经常哭泣，有那么多眼泪流。</p><p>但我也意识到我走路不疼。第一次，我感谢每一次呼吸，感谢生命本身的恩赐。我过去每五年庆祝一次生日，偶尔参加朋友们的生日会。现在，我每年都庆祝。我过去常常在睡前为那一天我搞砸的事情忧心——相信我，不顺心的事情常常有很多。现在，我努力地去关注每一天快乐的时刻。</p><p>直到我失去我的丈夫我才学会了更深刻的感恩，懂得感恩我朋友们的好意，感恩我家人的爱，感恩孩子们的欢笑，这对我来说是莫大的讽刺。我希望你们可以获得感恩，不仅仅是在今天这样的好日子里，在艰难的日子里，你们更需要这样的感恩。</p><p>在人生的旅途中有许多快乐的时刻。一次一直想去的旅行，与你喜欢的人的初吻，获得一份你真心喜欢的工作，打败斯坦福（加油！）。所有的这些事情都可能发生，请尽情享受它们。</p><p>我希望你珍惜你过的每一天，每天都过得快乐并有意义。</p><p>我希望你们人生的每一步都没有痛苦，并充满感恩。</p><p>当挑战来临的时候，我希望你们记得学习和成长的力量源自你们的内在。你们不是生来就具有从困境中恢复的韧性。如同肌肉一样，你可以锻炼出它们，在需要的时候依靠它们脱离困境。在那个过程中，你会弄清楚你究竟是谁，你能做最好的自己。</p><p>2016届学生，当你们离开伯克利大学时，要建立起你们的韧性。</p><p><strong>建立起你们自己的韧性，当悲剧或失望来袭，要知道你们能扛过任何事。我保证你们有这个能力。常言道，我们比我们想象的更脆弱，但我们比我们想象的更坚强。</strong></p><p>建立韧性组织，如果普通人都能做到这一点，你也能，因为在伯克利大学的我们，是想让世界变得更美好的一群人。不要停下让世界更美好的脚步，无论是觉得会议室不具有代表性，还是觉得校园不够安全，大声说出来，特别是在像这样的一个你所拥有的宝贵环境里。我最喜欢的一句广告语是：“在Facebook里，没有什么是别人的问题。”当你看到什么东西出错了，去修正它。</p><p>建立韧性社区，通过我们彼此的联系，我们能发现人性——生存的愿望和爱的能力。与你的家人和朋友在一起，我的意思是面对面，而不是仅仅发送一个爱心表情的短信。</p><p>互相鼓励，互相帮助，把该死的问题从方案B中剔除，然后庆祝每一个人的每一刻的快乐。</p><p>整个世界都展现在你们面前。我迫不及待地想看你们将做些什么。</p><p>恭喜大家顺利毕业，继续加油！</p><p>出自:<a href="http://www.zcfy.cc/article/283" target="_blank" rel="noopener">当悲剧或失望来袭，要知道你们能扛过任何事</a></p>]]></content>
+      
+        
+        <tags>
+            
+            <tag> 文摘 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Cocoa中使用NSTask运行脚本]]></title>
       <url>http://yoursite.com/2016/05/22/Cocoa%E4%B8%AD%E4%BD%BF%E7%94%A8NSTask%E8%BF%90%E8%A1%8Cshell.html</url>
-      <content type="html"><![CDATA[<h2 id="Cocoa中使用NSTask运行脚本"><a href="#Cocoa中使用NSTask运行脚本" class="headerlink" title="Cocoa中使用NSTask运行脚本"></a>Cocoa中使用NSTask运行脚本</h2><blockquote>
-<p>Cocoa编程中有时候会遇到需要运行一些脚本或者Shell命令的地方。这个时候，NSTask可能是一个不错的选择。</p>
-<p>NSTask是MAC OS X用来执行系统命令的一个类库。</p>
-<p>当然，也可以借助第三方封装的类库，比如:<a href="https://github.com/atg/taskit" target="_blank" rel="external">taskit</a></p>
-</blockquote>
-<h4 id="使用一个例子来知道怎么用"><a href="#使用一个例子来知道怎么用" class="headerlink" title="使用一个例子来知道怎么用:"></a>使用一个例子来知道怎么用:</h4><blockquote>
-<p>场景是这样的:</p>
-<p>假如，需要在程序内部嵌入一个nodejs工程，然后借助cocoa界面的一些操作是的外部与nodejs发生交互。</p>
-</blockquote>
-<a id="more"></a>
-<p>代码如下:</p>
-<pre><code>let task:NSTask! = NSTask();
+      <content type="html"><![CDATA[<h2 id="Cocoa中使用NSTask运行脚本"><a href="#Cocoa中使用NSTask运行脚本" class="headerlink" title="Cocoa中使用NSTask运行脚本"></a>Cocoa中使用NSTask运行脚本</h2><blockquote><p>Cocoa编程中有时候会遇到需要运行一些脚本或者Shell命令的地方。这个时候，NSTask可能是一个不错的选择。</p><p>NSTask是MAC OS X用来执行系统命令的一个类库。</p><p>当然，也可以借助第三方封装的类库，比如:<a href="https://github.com/atg/taskit" target="_blank" rel="noopener">taskit</a></p></blockquote><h4 id="使用一个例子来知道怎么用"><a href="#使用一个例子来知道怎么用" class="headerlink" title="使用一个例子来知道怎么用:"></a>使用一个例子来知道怎么用:</h4><blockquote><p>场景是这样的:</p><p>假如，需要在程序内部嵌入一个nodejs工程，然后借助cocoa界面的一些操作是的外部与nodejs发生交互。</p></blockquote><a id="more"></a><p>代码如下:</p><pre><code>let task:NSTask! = NSTask();
 let en:NSDictionary? = task.environment;
 if en == nil {
     task.environment = [&quot;PATH&quot;:&quot;/usr/bin;/usr/local/bin/node;/usr/local/bin/thinkjs;/usr/local/bin/npm&quot;];
@@ -823,84 +602,50 @@ task.launchPath = &quot;/bin/bash&quot;;
 task.arguments = [&quot;-l&quot;,&quot;-c&quot;,&quot;cd /Users/Tywin/Desktop/DemoDir/; /bin/echo 1234;/usr/local/bin/thinkjs new app; cd /Users/Tywin/Desktop/DemoDir/app; /usr/local/bin/npm install;/usr/local/bin/thinkjs module Test; /usr/local/bin/npm start;&quot;];
 task.launch();
 task.waitUntilExit();
-</code></pre><p><strong>首先</strong>，需要声明一个NSTask对象；</p>
-<p><strong>然后</strong>，如果需要用到除了系统之外的一些环境变量，需要为task对象设置环境变量，只有这样，才能完美运行后面的命令。</p>
-<p><strong>最后</strong>，设置launchPath，arguments，运行。</p>
-<p>–<br>整个过程比较简单，shell命令那边就是打开一个文件夹，创建一个thinkjs的工程，运行工程依赖，然后使用npm start启动服务器。</p>
-<p>这里需要注意的一个地方就是launchpath以及arguments里面的一些参数问题，发现在stackoverflow有个人是这样解释的，自我发觉解释的比较到位:</p>
-<blockquote>
-<p>bash has three main modes of operation:</p>
-<p>If you pass it -c “some command string”, it’ll execute that command string.<br>If you pass it a file path as an argument, it’ll read commands from that file and execute them (i.e. execute the file as a shell script).<br>If you don’t pass it any arguments, it’ll read and execute commands from standard input.<br>Since you passed it the arguments “/bin/echo” and “1234”, it’s assuming you want mode 2, so it tries to read shell commands from /bin/echo, and fails. I’m not clear on exactly what you’re trying to achieve, but I see several options that might be relevant:</p>
-<p>If you’re trying to execute a binary (e.g. /bin/echo), just execute that directly without using bash at all:<br>task.launchPath = “/bin/echo”<br>task.arguments = [“1234”]<br>If you need to execute a command string (i.e. if you need the shell to parse it before executing it, so e.g. wildcards get expanded, or there’s more than one command, or…), use bash -c:<br>task.launchPath = “/bin/bash”<br>task.arguments = [“-c”, “/bin/echo 1234; ls *”]<br>If you need to execute an actual script, i.e. a file with shell commands in it, then leave runTask alone, but pass it an actual script:<br>runTask([“/path/to/script”, “scriptarg”, “another argument”])</p>
-</blockquote>
-]]></content>
+</code></pre><p><strong>首先</strong>，需要声明一个NSTask对象；</p><p><strong>然后</strong>，如果需要用到除了系统之外的一些环境变量，需要为task对象设置环境变量，只有这样，才能完美运行后面的命令。</p><p><strong>最后</strong>，设置launchPath，arguments，运行。</p><p>–<br>整个过程比较简单，shell命令那边就是打开一个文件夹，创建一个thinkjs的工程，运行工程依赖，然后使用npm start启动服务器。</p><p>这里需要注意的一个地方就是launchpath以及arguments里面的一些参数问题，发现在stackoverflow有个人是这样解释的，自我发觉解释的比较到位:</p><blockquote><p>bash has three main modes of operation:</p><p>If you pass it -c “some command string”, it’ll execute that command string.<br>If you pass it a file path as an argument, it’ll read commands from that file and execute them (i.e. execute the file as a shell script).<br>If you don’t pass it any arguments, it’ll read and execute commands from standard input.<br>Since you passed it the arguments “/bin/echo” and “1234”, it’s assuming you want mode 2, so it tries to read shell commands from /bin/echo, and fails. I’m not clear on exactly what you’re trying to achieve, but I see several options that might be relevant:</p><p>If you’re trying to execute a binary (e.g. /bin/echo), just execute that directly without using bash at all:<br>task.launchPath = “/bin/echo”<br>task.arguments = [“1234”]<br>If you need to execute a command string (i.e. if you need the shell to parse it before executing it, so e.g. wildcards get expanded, or there’s more than one command, or…), use bash -c:<br>task.launchPath = “/bin/bash”<br>task.arguments = [“-c”, “/bin/echo 1234; ls *”]<br>If you need to execute an actual script, i.e. a file with shell commands in it, then leave runTask alone, but pass it an actual script:<br>runTask([“/path/to/script”, “scriptarg”, “another argument”])</p></blockquote>]]></content>
+      
+        
+        <tags>
+            
+            <tag> Cocoa </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[《人生对人生观开的玩笑》摘文]]></title>
       <url>http://yoursite.com/2016/05/21/%E3%80%8A%E4%BA%BA%E7%94%9F%E5%AF%B9%E4%BA%BA%E7%94%9F%E8%A7%82%E5%BC%80%E7%9A%84%E7%8E%A9%E7%AC%91%E3%80%8B.html</url>
-      <content type="html"><![CDATA[<p><img src="/images/maolu.jpg" class="full-image"></p>
-<p>一个人对有魅力的异性产生一时的迷恋的感觉，倾慕对方，这是很正常的事情，我偶尔也这样。关键是我们的迷恋是不是只是心思活络，而不是行为也跟着活络。很多人把心动，迷恋或者倾慕误认为爱情，殊不知心动跟真正的爱情根本无法相比。心动的光芒最多只是颗钻石的光芒，让你惊叹于它的华丽，恨不得立刻拥有；但真爱的光芒就像阳光，久了也许会让人觉得稀松平常，但这种光芒能温暖你，照耀你，一旦失去，你就会发现整个世界都黑暗了。可惜好多人没有意识到这一点</p>
-]]></content>
+      <content type="html"><![CDATA[<p><img src="/images/maolu.jpg" class="full-image"></p><p>一个人对有魅力的异性产生一时的迷恋的感觉，倾慕对方，这是很正常的事情，我偶尔也这样。关键是我们的迷恋是不是只是心思活络，而不是行为也跟着活络。很多人把心动，迷恋或者倾慕误认为爱情，殊不知心动跟真正的爱情根本无法相比。心动的光芒最多只是颗钻石的光芒，让你惊叹于它的华丽，恨不得立刻拥有；但真爱的光芒就像阳光，久了也许会让人觉得稀松平常，但这种光芒能温暖你，照耀你，一旦失去，你就会发现整个世界都黑暗了。可惜好多人没有意识到这一点</p>]]></content>
+      
+        
+        <tags>
+            
+            <tag> 文摘 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[移动端UI规范（针对切图命名与文件整理）]]></title>
       <url>http://yoursite.com/2016/05/21/%E7%A7%BB%E5%8A%A8%E7%AB%AFUI%E8%A7%84%E8%8C%83%EF%BC%88%E9%92%88%E5%AF%B9%E5%88%87%E5%9B%BE%E5%91%BD%E5%90%8D%E4%B8%8E%E6%96%87%E4%BB%B6%E6%95%B4%E7%90%86%EF%BC%89.html</url>
-      <content type="html"><![CDATA[<p>移动端UI规范（针对切图命名与文件整理）</p>
-<blockquote>
-<p>整理了移动端UI的命名规范与文件目录规范</p>
-</blockquote>
-<p><strong>切图命名英文缩写三个原则:</strong></p>
-<ol>
-<li>较短的单词可通过去掉“元音”形成缩写;</li>
-<li>较长的单词可取单词的头几个字母形成缩写;</li>
-<li>此外还有一些约定成俗的英文单词缩写<a id="more"></a>
-</li>
-</ol>
-<h4 id="第一部分设备尺寸及图标大小合集"><a href="#第一部分设备尺寸及图标大小合集" class="headerlink" title="第一部分设备尺寸及图标大小合集"></a>第一部分设备尺寸及图标大小合集</h4><p><img src="/images/image/chicun.jpg" alt=""><br><img src="/images/image/chicun1.jpg" alt=""><br><img src="/images/image/chicun2.jpg" alt=""><br><img src="/images/image/chicun3.jpg" alt=""><br><img src="/images/image/chicun4.jpg" alt=""><br><img src="/images/image/chicun5.jpg" alt=""><br><img src="/images/image/chicun6.jpg" alt=""></p>
-<h4 id="第二部分：iOS-APP界面设计切图命名规范"><a href="#第二部分：iOS-APP界面设计切图命名规范" class="headerlink" title="第二部分：iOS APP界面设计切图命名规范"></a>第二部分：iOS APP界面设计切图命名规范</h4><p><img src="/images/image/img_ios_1.jpg" alt=""><br><img src="/images/image/mingmin.png" alt=""></p>
-<h4 id="第三部分：手机APP切图文件整理"><a href="#第三部分：手机APP切图文件整理" class="headerlink" title="第三部分：手机APP切图文件整理"></a>第三部分：手机APP切图文件整理</h4><p><img src="/images/image/img_ios_2.png" alt=""></p>
-<h3 id="参考规范"><a href="#参考规范" class="headerlink" title="参考规范:"></a>参考规范:</h3><p><a href="http://www.xueui.cn/tutorials/app-tutorials/app-code-examples-with-ui-design-method.html" target="_blank" rel="external">http://www.xueui.cn/tutorials/app-tutorials/app-code-examples-with-ui-design-method.html</a></p>
-]]></content>
+      <content type="html"><![CDATA[<p>移动端UI规范（针对切图命名与文件整理）</p><blockquote><p>整理了移动端UI的命名规范与文件目录规范</p></blockquote><p><strong>切图命名英文缩写三个原则:</strong></p><ol><li>较短的单词可通过去掉“元音”形成缩写;</li><li>较长的单词可取单词的头几个字母形成缩写;</li><li>此外还有一些约定成俗的英文单词缩写<a id="more"></a></li></ol><h4 id="第一部分设备尺寸及图标大小合集"><a href="#第一部分设备尺寸及图标大小合集" class="headerlink" title="第一部分设备尺寸及图标大小合集"></a>第一部分设备尺寸及图标大小合集</h4><p><img src="/images/image/chicun.jpg" alt=""><br><img src="/images/image/chicun1.jpg" alt=""><br><img src="/images/image/chicun2.jpg" alt=""><br><img src="/images/image/chicun3.jpg" alt=""><br><img src="/images/image/chicun4.jpg" alt=""><br><img src="/images/image/chicun5.jpg" alt=""><br><img src="/images/image/chicun6.jpg" alt=""></p><h4 id="第二部分：iOS-APP界面设计切图命名规范"><a href="#第二部分：iOS-APP界面设计切图命名规范" class="headerlink" title="第二部分：iOS APP界面设计切图命名规范"></a>第二部分：iOS APP界面设计切图命名规范</h4><p><img src="/images/image/img_ios_1.jpg" alt=""><br><img src="/images/image/mingmin.png" alt=""></p><h4 id="第三部分：手机APP切图文件整理"><a href="#第三部分：手机APP切图文件整理" class="headerlink" title="第三部分：手机APP切图文件整理"></a>第三部分：手机APP切图文件整理</h4><p><img src="/images/image/img_ios_2.png" alt=""></p><h3 id="参考规范"><a href="#参考规范" class="headerlink" title="参考规范:"></a>参考规范:</h3><p><a href="http://www.xueui.cn/tutorials/app-tutorials/app-code-examples-with-ui-design-method.html" target="_blank" rel="noopener">http://www.xueui.cn/tutorials/app-tutorials/app-code-examples-with-ui-design-method.html</a></p>]]></content>
+      
+        
+        <tags>
+            
+            <tag> 切图 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[如何愉快的使用ESLint进行代码校验]]></title>
       <url>http://yoursite.com/2016/05/21/%E5%A6%82%E4%BD%95%E6%84%89%E5%BF%AB%E7%9A%84%E4%BD%BF%E7%94%A8ESLint%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%A0%81%E6%A0%A1%E9%AA%8C.html</url>
-      <content type="html"><![CDATA[<p>如何愉快的使用ESLint进行代码校验</p>
-<p>在团队协作中，为避免低级 Bug、产出风格统一的代码，会预先制定编码规范。我们使用ESLint这一代码规范检测工具进行最基本的语法检测，或者结合自定义的规则来使得ESLint完美运行在你的项目中</p>
-<h3 id="三个问题？"><a href="#三个问题？" class="headerlink" title="三个问题？"></a>三个问题？</h3><blockquote>
-<p>一. ESLint是什么？</p>
-<p>二. ESLint有什么用？</p>
-<p>三. ESLint怎么用？</p>
-</blockquote>
-<h3 id="一-ESLint是什么？"><a href="#一-ESLint是什么？" class="headerlink" title="一. ESLint是什么？"></a>一. ESLint是什么？</h3><p>ESLint 是一个开源的 JavaScript 代码校验工具，最初是由 Nicholas C. Zakas 在2013年创建的。经常被用来发现问题的模式或代码，不符合特定的风格准则。</p>
-<blockquote>
-<p>ESLint 创建的首要原因是为了让开发人员创建自己的校验规则，ESLint 的目的是让所有的规则完全可插拔。虽然ESLint将附带一些内置的规则，你可以在任何时间点动态加载规则。</p>
-</blockquote>
-<a id="more"></a>
-<h3 id="二-ESLint有什么用？"><a href="#二-ESLint有什么用？" class="headerlink" title="二. ESLint有什么用？"></a>二. ESLint有什么用？</h3><ul>
-<li>可以辅助编码规范执行，有效控制代码质量</li>
-<li>默认规则包含所有 JSLint、JSHint 中存在的规则，易迁移；</li>
-<li>规则可配置性高：可设置「警告」、「错误」两个 error 等级，或者直接禁用；</li>
-<li>包含代码风格检测的规则；</li>
-<li>支持插件扩展、自定义规则。</li>
-</ul>
-<p>例如：约定好ESLint的规则之后，不符合规范的代码会在编写期间报出错误或者异常信息:<br>(未配置示例)</p>
-<p><img src="/images/约束示例.png" alt=""></p>
-<h3 id="三-ESLint怎么用？"><a href="#三-ESLint怎么用？" class="headerlink" title="三. ESLint怎么用？"></a>三. ESLint怎么用？</h3><p><strong>以搭配WebStorm为例</strong></p>
-<blockquote>
-<p>环境: MAC OSX</p>
-<p>IDE: WebStorm 10</p>
-<p>Node版本: v5.4.1</p>
-</blockquote>
-<h4 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h4><p>建议全局安装</p>
-<pre><code>npm install -g eslint
-</code></pre><h4 id="2-配置（Thinkjs工程为例）"><a href="#2-配置（Thinkjs工程为例）" class="headerlink" title="2.配置（Thinkjs工程为例）"></a>2.配置（Thinkjs工程为例）</h4><ol>
-<li>初始化一个Thinkjs工程Demo，添加如下依赖工程:<br>在package.json文件中添加如下依赖（如果没有package.son文件需首先通过npm init 创建package.son 文件）：</li>
-</ol>
-<pre><code>&quot;devDependencies&quot;: {
+      <content type="html"><![CDATA[<p>如何愉快的使用ESLint进行代码校验</p><p>在团队协作中，为避免低级 Bug、产出风格统一的代码，会预先制定编码规范。我们使用ESLint这一代码规范检测工具进行最基本的语法检测，或者结合自定义的规则来使得ESLint完美运行在你的项目中</p><h3 id="三个问题？"><a href="#三个问题？" class="headerlink" title="三个问题？"></a>三个问题？</h3><blockquote><p>一. ESLint是什么？</p><p>二. ESLint有什么用？</p><p>三. ESLint怎么用？</p></blockquote><h3 id="一-ESLint是什么？"><a href="#一-ESLint是什么？" class="headerlink" title="一. ESLint是什么？"></a>一. ESLint是什么？</h3><p>ESLint 是一个开源的 JavaScript 代码校验工具，最初是由 Nicholas C. Zakas 在2013年创建的。经常被用来发现问题的模式或代码，不符合特定的风格准则。</p><blockquote><p>ESLint 创建的首要原因是为了让开发人员创建自己的校验规则，ESLint 的目的是让所有的规则完全可插拔。虽然ESLint将附带一些内置的规则，你可以在任何时间点动态加载规则。</p></blockquote><a id="more"></a><h3 id="二-ESLint有什么用？"><a href="#二-ESLint有什么用？" class="headerlink" title="二. ESLint有什么用？"></a>二. ESLint有什么用？</h3><ul><li>可以辅助编码规范执行，有效控制代码质量</li><li>默认规则包含所有 JSLint、JSHint 中存在的规则，易迁移；</li><li>规则可配置性高：可设置「警告」、「错误」两个 error 等级，或者直接禁用；</li><li>包含代码风格检测的规则；</li><li>支持插件扩展、自定义规则。</li></ul><p>例如：约定好ESLint的规则之后，不符合规范的代码会在编写期间报出错误或者异常信息:<br>(未配置示例)</p><p><img src="/images/约束示例.png" alt=""></p><h3 id="三-ESLint怎么用？"><a href="#三-ESLint怎么用？" class="headerlink" title="三. ESLint怎么用？"></a>三. ESLint怎么用？</h3><p><strong>以搭配WebStorm为例</strong></p><blockquote><p>环境: MAC OSX</p><p>IDE: WebStorm 10</p><p>Node版本: v5.4.1</p></blockquote><h4 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h4><p>建议全局安装</p><pre><code>npm install -g eslint
+</code></pre><h4 id="2-配置（Thinkjs工程为例）"><a href="#2-配置（Thinkjs工程为例）" class="headerlink" title="2.配置（Thinkjs工程为例）"></a>2.配置（Thinkjs工程为例）</h4><ol><li>初始化一个Thinkjs工程Demo，添加如下依赖工程:<br>在package.json文件中添加如下依赖（如果没有package.son文件需首先通过npm init 创建package.son 文件）：</li></ol><pre><code>&quot;devDependencies&quot;: {
     &quot;babel-core&quot;: &quot;^6.5.2&quot;,
     &quot;babel-eslint&quot;: &quot;^4.1.8&quot;,
     &quot;eslint&quot;: &quot;^2.1.0&quot;,
@@ -908,36 +653,11 @@ task.waitUntilExit();
     &quot;eslint-plugin-standard&quot;: &quot;^1.3.2&quot;,
     &quot;eslint-plugin-react&quot;: &quot;^4.2.3&quot;
   }
-</code></pre><p>在工程根目录下运行如下命令：</p>
-<pre><code>npm install
-</code></pre><blockquote>
-<p><strong>如遇依赖报错，请全局安装依赖组件。</strong></p>
-<p>如:提示eslint-plugin-promise、eslint-plugin-standard安装失败的信息，保险期间需要全局安装</p>
-<pre><code>npm install -g eslint-plugin-promise
+</code></pre><p>在工程根目录下运行如下命令：</p><pre><code>npm install
+</code></pre><blockquote><p><strong>如遇依赖报错，请全局安装依赖组件。</strong></p><p>如:提示eslint-plugin-promise、eslint-plugin-standard安装失败的信息，保险期间需要全局安装</p><pre><code>npm install -g eslint-plugin-promise
 
 npm install -g eslint-plugin-standard
-</code></pre></blockquote>
-<ol>
-<li>检查WebStorm的配置信息</li>
-</ol>
-<blockquote>
-<p>ESLint安装成功之后，在WebStorm可以看到代码质量检查工具中存在ESLint工具</p>
-</blockquote>
-<p><img src="/images/webstorm.png" alt=""></p>
-<hr>
-<p><strong>可以通过以下三种方式配置 ESLint:</strong></p>
-<ul>
-<li>使用 .eslintrc 文件（支持 JSON 和 YAML 两种语法）；</li>
-<li>在 package.json 中添加 eslintConfig 配置块；</li>
-<li>直接在代码文件中定义。</li>
-</ul>
-<blockquote>
-<p>为了更好的保持团队协作的规范性和一致性，推荐使用.eslintrc 文件进行配置</p>
-</blockquote>
-<p>将eslintrc.json重命名为.eslintrc放置于工程根目录并修改WebStorm的ESLint插件配置:<br><img src="/images/配置.png" alt=""></p>
-<p>规则已经参照<a href="https://coding.net/u/senon-ye/p/wiki/git/blob/master/JS:React%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83.md" target="_blank" rel="external">JS/React代码简要规范</a>做出大部分调整</p>
-<h3 id="完成配置后，使用WebStorm编写时，即可检测语法问题"><a href="#完成配置后，使用WebStorm编写时，即可检测语法问题" class="headerlink" title="完成配置后，使用WebStorm编写时，即可检测语法问题:"></a>完成配置后，使用WebStorm编写时，即可检测语法问题:</h3><p>配置规范与说明参照Rules文件夹下各种配置规范</p>
-<h3 id="规则一览"><a href="#规则一览" class="headerlink" title="规则一览"></a>规则一览</h3><pre><code>&quot;no-alert&quot;: 0,//禁止使用alert confirm prompt
+</code></pre></blockquote><ol><li>检查WebStorm的配置信息</li></ol><blockquote><p>ESLint安装成功之后，在WebStorm可以看到代码质量检查工具中存在ESLint工具</p></blockquote><p><img src="/images/webstorm.png" alt=""></p><hr><p><strong>可以通过以下三种方式配置 ESLint:</strong></p><ul><li>使用 .eslintrc 文件（支持 JSON 和 YAML 两种语法）；</li><li>在 package.json 中添加 eslintConfig 配置块；</li><li>直接在代码文件中定义。</li></ul><blockquote><p>为了更好的保持团队协作的规范性和一致性，推荐使用.eslintrc 文件进行配置</p></blockquote><p>将eslintrc.json重命名为.eslintrc放置于工程根目录并修改WebStorm的ESLint插件配置:<br><img src="/images/配置.png" alt=""></p><p>规则已经参照<a href="https://coding.net/u/senon-ye/p/wiki/git/blob/master/JS:React%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83.md" target="_blank" rel="noopener">JS/React代码简要规范</a>做出大部分调整</p><h3 id="完成配置后，使用WebStorm编写时，即可检测语法问题"><a href="#完成配置后，使用WebStorm编写时，即可检测语法问题" class="headerlink" title="完成配置后，使用WebStorm编写时，即可检测语法问题:"></a>完成配置后，使用WebStorm编写时，即可检测语法问题:</h3><p>配置规范与说明参照Rules文件夹下各种配置规范</p><h3 id="规则一览"><a href="#规则一览" class="headerlink" title="规则一览"></a>规则一览</h3><pre><code>&quot;no-alert&quot;: 0,//禁止使用alert confirm prompt
  &quot;no-array-constructor&quot;: 2,//禁止使用数组构造器
  &quot;no-bitwise&quot;: 0,//禁止使用按位运算符
  &quot;no-caller&quot;: 1,//禁止使用arguments.caller或arguments.callee
@@ -1111,66 +831,28 @@ npm install -g eslint-plugin-standard
  &quot;wrap-iife&quot;: [2, &quot;inside&quot;],//立即执行函数表达式的小括号风格
  &quot;wrap-regex&quot;: 0,//正则表达式字面量用小括号包起来
  &quot;yoda&quot;: [2, &quot;never&quot;]//禁止尤达条件
-</code></pre><hr>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考:"></a>参考:</h2><ul>
-<li><a href="https://www.npmjs.com/package/eslint-plugin-react" target="_blank" rel="external">eslint-plugin-react</a></li>
-<li><a href="http://www.tuicool.com/articles/7JZZJzn" target="_blank" rel="external">ESLint 使用入门</a></li>
-<li><a href="https://github.com/Jocs/ESLint_docs" target="_blank" rel="external">ESLint_docs</a></li>
-<li><a href="http://eslint.org/docs" target="_blank" rel="external">http://eslint.org/</a></li>
-<li><a href="http://www.kancloud.cn/manual/thinkjs/76367" target="_blank" rel="external">ThinkJs 2.0 编码规范</a></li>
-</ul>
-]]></content>
+</code></pre><hr><h2 id="参考"><a href="#参考" class="headerlink" title="参考:"></a>参考:</h2><ul><li><a href="https://www.npmjs.com/package/eslint-plugin-react" target="_blank" rel="noopener">eslint-plugin-react</a></li><li><a href="http://www.tuicool.com/articles/7JZZJzn" target="_blank" rel="noopener">ESLint 使用入门</a></li><li><a href="https://github.com/Jocs/ESLint_docs" target="_blank" rel="noopener">ESLint_docs</a></li><li><a href="http://eslint.org/docs" target="_blank" rel="noopener">http://eslint.org/</a></li><li><a href="http://www.kancloud.cn/manual/thinkjs/76367" target="_blank" rel="noopener">ThinkJs 2.0 编码规范</a></li></ul>]]></content>
+      
+        
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[使用Sublime Text3 开发React-Native的配置]]></title>
       <url>http://yoursite.com/2016/05/21/%E4%BD%BF%E7%94%A8Sublime-Text3-%E5%BC%80%E5%8F%91React-Native%E7%9A%84%E9%85%8D%E7%BD%AE.html</url>
-      <content type="html"><![CDATA[<p>使用Sublime Text3 开发React-Native的配置</p>
-<blockquote>
-<p>Sublime Text3作为功能强大，使用较为广泛的编辑器，有很强的自定义功能，插件库很庞大，针对新语言插件更新很快，配合使用可以快速搭建适配语言的开发环境。<br>Sublime Text3为共享软件，可在网上搜索下载破解版。</p>
-</blockquote>
-<h3 id="使用Package-Control组件安装所需插件"><a href="#使用Package-Control组件安装所需插件" class="headerlink" title="使用Package Control组件安装所需插件"></a>使用Package Control组件安装所需插件</h3><p>在使用Package Control之前首先要安装Package Control。<br>一、简单的安装方法</p>
-<p>使用Ctrl+`快捷键或者通过View-&gt;Show Console菜单打开命令行，粘贴如下代码：</p>
-<pre><code>import urllib.request,os,hashlib; h = &apos;2915d1851351e5ee549c20394736b442&apos; + &apos;8bc59f460fa1548d1514676163dafc88&apos;; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( &apos;http://packagecontrol.io/&apos; + pf.replace(&apos; &apos;, &apos;%20&apos;)).read(); dh = hashlib.sha256(by).hexdigest(); print(&apos;Error validating download (got %s instead of %s), please try manual install&apos; % (dh, h)) if dh != h else open(os.path.join( ipp, pf), &apos;wb&apos; ).write(by)
-</code></pre><p>如果顺利的话，此时就可以在Preferences菜单下看到Package Settings和Package Control两个菜单了。<br><a id="more"></a><br>二、手动安装</p>
-<p>可能由于各种原因，无法使用代码安装，那可以通过以下步骤手动安装Package Control：</p>
-<p>1.点击Preferences &gt; Browse Packages菜单</p>
-<p>2.进入打开的目录的上层目录，然后再进入Installed Packages/目录</p>
-<p>3.下载Package Control.sublime-package并复制到Installed Packages/目录</p>
-<p>4.重启Sublime Text。</p>
-<hr>
-<p>安装好Package Control之后就可以开始配置React-Native所用到的插件。</p>
-<p><strong>babel-sublime</strong></p>
-<p><strong>sublimeLinter-jsxhint</strong></p>
-<p><strong>JsFormat</strong></p>
-<p><strong><a href="https://github.com/reactjs/sublime-react" target="_blank" rel="external">sublime-react</a></strong></p>
-<h3 id="1-BABEL-SUBLIME"><a href="#1-BABEL-SUBLIME" class="headerlink" title="1. BABEL-SUBLIME"></a>1. BABEL-SUBLIME</h3><p>支持ES6， React.js, jsx代码高亮，对 JavaScript, jQuery 也有很好的扩展。</p>
-<p>安装</p>
-<p>PC：Ctrl+shift+p<br>Mac：Cmd+shift+p<br>选择Package Control:install package<br>输入babel进行安装</p>
-<p>配置</p>
-<p>打开.js, .jsx 后缀的文件;<br>打开菜单view， Syntax -&gt; Open all with current extension as… -&gt; Babel -&gt; JavaScript (Babel)，选择babel为默认 javascript 打开syntax</p>
-<h3 id="2-SUBLIMELINTER-JSXHINT"><a href="#2-SUBLIMELINTER-JSXHINT" class="headerlink" title="2. SUBLIMELINTER-JSXHINT"></a>2. SUBLIMELINTER-JSXHINT</h3><p>JSX 代码审查，实时提示语法错误, 帮助快速定位错误点.</p>
-<p>安装 node.js<br>安装 jsxhint<br>jsxhint安装:</p>
-<pre><code>npm install -g jsxhint
-</code></pre><p>PC上ctrl+shift+p（Mac:Cmd+shift+p）打开面板输入sublimeLinter-jsx安装(依赖于 sublimeLinter)</p>
-<h3 id="3-JSFORMAT-格式化-JS-代码"><a href="#3-JSFORMAT-格式化-JS-代码" class="headerlink" title="3. JSFORMAT 格式化 JS 代码"></a>3. JSFORMAT 格式化 JS 代码</h3><p>jsformat 是 sublime 上 js 格式化比较好用的插件之一，通过修改它的e4x 属性可以使它支持 jsx。</p>
-<p>安装</p>
-<p>PC上ctrl+shift+p（Mac:Cmd+shift+p）打开面板输入JsFormat安装.</p>
-<p>使用</p>
-<p>打开preferences -&gt; Package Settings -&gt; JsFormat -&gt; Setting - Users,输入以下代码：</p>
-<pre><code>{
+      <content type="html"><![CDATA[<p>使用Sublime Text3 开发React-Native的配置</p><blockquote><p>Sublime Text3作为功能强大，使用较为广泛的编辑器，有很强的自定义功能，插件库很庞大，针对新语言插件更新很快，配合使用可以快速搭建适配语言的开发环境。<br>Sublime Text3为共享软件，可在网上搜索下载破解版。</p></blockquote><h3 id="使用Package-Control组件安装所需插件"><a href="#使用Package-Control组件安装所需插件" class="headerlink" title="使用Package Control组件安装所需插件"></a>使用Package Control组件安装所需插件</h3><p>在使用Package Control之前首先要安装Package Control。<br>一、简单的安装方法</p><p>使用Ctrl+`快捷键或者通过View-&gt;Show Console菜单打开命令行，粘贴如下代码：</p><pre><code>import urllib.request,os,hashlib; h = &apos;2915d1851351e5ee549c20394736b442&apos; + &apos;8bc59f460fa1548d1514676163dafc88&apos;; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( &apos;http://packagecontrol.io/&apos; + pf.replace(&apos; &apos;, &apos;%20&apos;)).read(); dh = hashlib.sha256(by).hexdigest(); print(&apos;Error validating download (got %s instead of %s), please try manual install&apos; % (dh, h)) if dh != h else open(os.path.join( ipp, pf), &apos;wb&apos; ).write(by)
+</code></pre><p>如果顺利的话，此时就可以在Preferences菜单下看到Package Settings和Package Control两个菜单了。<br><a id="more"></a><br>二、手动安装</p><p>可能由于各种原因，无法使用代码安装，那可以通过以下步骤手动安装Package Control：</p><p>1.点击Preferences &gt; Browse Packages菜单</p><p>2.进入打开的目录的上层目录，然后再进入Installed Packages/目录</p><p>3.下载Package Control.sublime-package并复制到Installed Packages/目录</p><p>4.重启Sublime Text。</p><hr><p>安装好Package Control之后就可以开始配置React-Native所用到的插件。</p><p><strong>babel-sublime</strong></p><p><strong>sublimeLinter-jsxhint</strong></p><p><strong>JsFormat</strong></p><p><strong><a href="https://github.com/reactjs/sublime-react" target="_blank" rel="noopener">sublime-react</a></strong></p><h3 id="1-BABEL-SUBLIME"><a href="#1-BABEL-SUBLIME" class="headerlink" title="1. BABEL-SUBLIME"></a>1. BABEL-SUBLIME</h3><p>支持ES6， React.js, jsx代码高亮，对 JavaScript, jQuery 也有很好的扩展。</p><p>安装</p><p>PC：Ctrl+shift+p<br>Mac：Cmd+shift+p<br>选择Package Control:install package<br>输入babel进行安装</p><p>配置</p><p>打开.js, .jsx 后缀的文件;<br>打开菜单view， Syntax -&gt; Open all with current extension as… -&gt; Babel -&gt; JavaScript (Babel)，选择babel为默认 javascript 打开syntax</p><h3 id="2-SUBLIMELINTER-JSXHINT"><a href="#2-SUBLIMELINTER-JSXHINT" class="headerlink" title="2. SUBLIMELINTER-JSXHINT"></a>2. SUBLIMELINTER-JSXHINT</h3><p>JSX 代码审查，实时提示语法错误, 帮助快速定位错误点.</p><p>安装 node.js<br>安装 jsxhint<br>jsxhint安装:</p><pre><code>npm install -g jsxhint
+</code></pre><p>PC上ctrl+shift+p（Mac:Cmd+shift+p）打开面板输入sublimeLinter-jsx安装(依赖于 sublimeLinter)</p><h3 id="3-JSFORMAT-格式化-JS-代码"><a href="#3-JSFORMAT-格式化-JS-代码" class="headerlink" title="3. JSFORMAT 格式化 JS 代码"></a>3. JSFORMAT 格式化 JS 代码</h3><p>jsformat 是 sublime 上 js 格式化比较好用的插件之一，通过修改它的e4x 属性可以使它支持 jsx。</p><p>安装</p><p>PC上ctrl+shift+p（Mac:Cmd+shift+p）打开面板输入JsFormat安装.</p><p>使用</p><p>打开preferences -&gt; Package Settings -&gt; JsFormat -&gt; Setting - Users,输入以下代码：</p><pre><code>{
   &quot;e4x&quot;: true,
   // jsformat options
   &quot;format_on_save&quot;: true,
 }
-</code></pre><p>即可保存时自动格式化，并支持 jsx 类型文件.</p>
-<h3 id="4-sublime-react"><a href="#4-sublime-react" class="headerlink" title="4. sublime-react"></a>4. sublime-react</h3><p>首先必须安装 Sublime Package Manager.</p>
-<p>安装: ⌘+shift+p on MacOS/Linux, ctrl+shift+p on Windows</p>
-<p>输入 install, 选择 Package Control: Install Package</p>
-<p>输入 React, 选择 ReactJS</p>
-<p><img src="/images/pic.gif" alt="pic.gif"></p>
-<p>快捷键列表:</p>
-<pre><code>cdm→  componentDidMount: fn() { ... }
+</code></pre><p>即可保存时自动格式化，并支持 jsx 类型文件.</p><h3 id="4-sublime-react"><a href="#4-sublime-react" class="headerlink" title="4. sublime-react"></a>4. sublime-react</h3><p>首先必须安装 Sublime Package Manager.</p><p>安装: ⌘+shift+p on MacOS/Linux, ctrl+shift+p on Windows</p><p>输入 install, 选择 Package Control: Install Package</p><p>输入 React, 选择 ReactJS</p><p><img src="/images/pic.gif" alt="pic.gif"></p><p>快捷键列表:</p><pre><code>cdm→  componentDidMount: fn() { ... }
 
 cdup→  componentDidUpdate: fn(pp, ps) { ... }
 
@@ -1211,44 +893,39 @@ scu→  shouldComponentUpdate: fn(np, ns) { ... }
 sst→  this.setState({ ... })
 
 state→  this.state.
-</code></pre><hr>
-<blockquote>
-<p>参考:</p>
-<p><a href="http://www.07net01.com/2015/11/962545.html" target="_blank" rel="external">在SublimeText上搭建ReactJS开发环境</a></p>
-<p><a href="http://www.cnblogs.com/terrylin/p/4942332.html" target="_blank" rel="external">Sublime Text 3 搭建 React.js 开发环境</a></p>
-</blockquote>
-]]></content>
+</code></pre><hr><blockquote><p>参考:</p><p><a href="http://www.07net01.com/2015/11/962545.html" target="_blank" rel="noopener">在SublimeText上搭建ReactJS开发环境</a></p><p><a href="http://www.cnblogs.com/terrylin/p/4942332.html" target="_blank" rel="noopener">Sublime Text 3 搭建 React.js 开发环境</a></p></blockquote>]]></content>
+      
+        
+        <tags>
+            
+            <tag> ReactNative </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[CenterOS配置Node服务器与MongoDB]]></title>
       <url>http://yoursite.com/2016/05/20/CenterOS%E9%85%8D%E7%BD%AENode%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8EMongoDB.html</url>
-      <content type="html"><![CDATA[<h2 id="CenterOS-nodejs-配置说明"><a href="#CenterOS-nodejs-配置说明" class="headerlink" title="CenterOS nodejs 配置说明"></a>CenterOS nodejs 配置说明</h2><blockquote>
-<p>vps:搬瓦工</p>
-<p>os:centeros 6.5 x86</p>
-</blockquote>
-<h3 id="1-安装node"><a href="#1-安装node" class="headerlink" title="1. 安装node:"></a>1. 安装node:</h3><p>从EPEL库安装Node.js</p>
-<p>另一个有效且简单的方法来安装Node.js就是从官方库。这同样确保您可以访问到EPEL库，可以通过运行以下命令。</p>
-<pre><code>sudo yum install epel-release
-</code></pre><p>现在可以使用yum命令安装Node.js了。</p>
-<pre><code>sudo yum install nodejs
-</code></pre><p>因为在开发过程中我需要管理节点包，我还要安装新公共管理的软件包管理器，使用以下命令。</p>
-<pre><code>sudo yum install npm
-</code></pre><a id="more"></a>
-<h3 id="2-安装git"><a href="#2-安装git" class="headerlink" title="2. 安装git"></a>2. 安装git</h3><pre><code>yum  group install &quot;Development Tools&quot;
-</code></pre><h3 id="3-mongodDB"><a href="#3-mongodDB" class="headerlink" title="3. mongodDB"></a>3. mongodDB</h3><blockquote>
-<p>一种使用MongoDB安装文件安装<br><a href="http://blog.csdn.net/zhangfeng19880710/article/details/20166853" target="_blank" rel="external">http://blog.csdn.net/zhangfeng19880710/article/details/20166853</a><br><a href="http://www.cnblogs.com/shanyou/archive/2012/07/14/2591838.html" target="_blank" rel="external">http://www.cnblogs.com/shanyou/archive/2012/07/14/2591838.html</a></p>
-</blockquote>
-<pre><code>yum install mongodb
+      <content type="html"><![CDATA[<h2 id="CenterOS-nodejs-配置说明"><a href="#CenterOS-nodejs-配置说明" class="headerlink" title="CenterOS nodejs 配置说明"></a>CenterOS nodejs 配置说明</h2><blockquote><p>vps:搬瓦工</p><p>os:centeros 6.5 x86</p></blockquote><h3 id="1-安装node"><a href="#1-安装node" class="headerlink" title="1. 安装node:"></a>1. 安装node:</h3><p>从EPEL库安装Node.js</p><p>另一个有效且简单的方法来安装Node.js就是从官方库。这同样确保您可以访问到EPEL库，可以通过运行以下命令。</p><pre><code>sudo yum install epel-release
+</code></pre><p>现在可以使用yum命令安装Node.js了。</p><pre><code>sudo yum install nodejs
+</code></pre><p>因为在开发过程中我需要管理节点包，我还要安装新公共管理的软件包管理器，使用以下命令。</p><pre><code>sudo yum install npm
+</code></pre><a id="more"></a><h3 id="2-安装git"><a href="#2-安装git" class="headerlink" title="2. 安装git"></a>2. 安装git</h3><pre><code>yum  group install &quot;Development Tools&quot;
+</code></pre><h3 id="3-mongodDB"><a href="#3-mongodDB" class="headerlink" title="3. mongodDB"></a>3. mongodDB</h3><blockquote><p>一种使用MongoDB安装文件安装<br><a href="http://blog.csdn.net/zhangfeng19880710/article/details/20166853" target="_blank" rel="noopener">http://blog.csdn.net/zhangfeng19880710/article/details/20166853</a><br><a href="http://www.cnblogs.com/shanyou/archive/2012/07/14/2591838.html" target="_blank" rel="noopener">http://www.cnblogs.com/shanyou/archive/2012/07/14/2591838.html</a></p></blockquote><pre><code>yum install mongodb
 yum install mongodb-server
-</code></pre><p>前面安装来说都是很顺利的，但是在启动的时候遇到了这么一个问题</p>
-<pre><code>ERROR: dbpath (/data/db/) does not exist.
+</code></pre><p>前面安装来说都是很顺利的，但是在启动的时候遇到了这么一个问题</p><pre><code>ERROR: dbpath (/data/db/) does not exist.
 Create this directory or give existing directory in --dbpath. See http://dochub.mongodb.org/core/startingandstoppingmongo
-</code></pre><p>从这个问题来看 ，应该是没有创建 /data/db 目录，那么就用 </p>
-<pre><code>sudo mkdir -p /data/db
-</code></pre><p>命令创建。但问题是重新启动还是出现了同样的问题，原因是文件夹的权限不够，那么解决的方法就是允许文件夹有读写的权限即可，那么运行下面的命令</p>
-<pre><code>sudo chmod 777 -R /data
+</code></pre><p>从这个问题来看 ，应该是没有创建 /data/db 目录，那么就用</p><pre><code>sudo mkdir -p /data/db
+</code></pre><p>命令创建。但问题是重新启动还是出现了同样的问题，原因是文件夹的权限不够，那么解决的方法就是允许文件夹有读写的权限即可，那么运行下面的命令</p><pre><code>sudo chmod 777 -R /data
 </code></pre>]]></content>
+      
+        
+        <tags>
+            
+            <tag> nodejs </tag>
+            
+        </tags>
+        
     </entry>
     
   
