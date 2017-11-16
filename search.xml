@@ -127,10 +127,20 @@ print(tfidf.toarray())
 </li>
 <li><a href="http://blog.csdn.net/eastmount/article/details/50323063" target="_blank" rel="noopener">http://blog.csdn.net/eastmount/article/details/50323063</a></li></ul>]]></content>
       
+        <categories>
+            
+            <category> 机器学习 </category>
+            
+        </categories>
+        
         
         <tags>
             
-            <tag> 机器学习、Scikit-Learn、中文词频 </tag>
+            <tag> 机器学习 </tag>
+            
+            <tag> Scikit-Learn </tag>
+            
+            <tag> 中文词频 </tag>
             
         </tags>
         
