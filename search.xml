@@ -394,10 +394,22 @@ bundle.js  1.07 MB       0  [emitted]  main
 [2016-05-29 01:18:49] [THINK] App Enviroment: development
 </code></pre><p><img src="/images/thinjs运行效果图.jpg" alt=""><br>运行正常，配置成功</p><p>git: <a href="https://github.com/ilioner/thinkjs-material-ui" target="_blank" rel="noopener">thinkjs-material-ui</a></p><blockquote><p>webpack资料:</p><ul><li><a href="https://zhuanlan.zhihu.com/p/20367175" target="_blank" rel="noopener">Webpack傻瓜式指南</a></li><li><a href="http://gold.xitu.io/entry/5691c20ba5b43198e5ce87eb" target="_blank" rel="noopener">应该是最好懂的 Webpack 教程</a></li><li><a href="https://segmentfault.com/a/1190000002551952" target="_blank" rel="noopener">Webpack 入门指迷</a></li><li><a href="http://code.oneapm.com/javascript/2015/07/07/webpack_performance_1/" target="_blank" rel="noopener">Webpack 性能优化</a></li></ul></blockquote>]]></content>
       
+        <categories>
+            
+            <category> nodejs </category>
+            
+        </categories>
+        
         
         <tags>
             
-            <tag> nodejs,react,thinkjs,material-ui </tag>
+            <tag> nodejs </tag>
+            
+            <tag> react </tag>
+            
+            <tag> thinkjs </tag>
+            
+            <tag> material-ui </tag>
             
         </tags>
         
