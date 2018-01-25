@@ -4,6 +4,14 @@
   
     
     <entry>
+      <title><![CDATA[今天上午修整了一下SS]]></title>
+      <url>http://yoursite.com/2018/01/25/%E4%BB%8A%E5%A4%A9%E4%B8%8A%E5%8D%88%E4%BF%AE%E6%95%B4%E4%BA%86%E4%B8%80%E4%B8%8BSS.html</url>
+      <content type="html"></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[ML：sklearn中文文本分类]]></title>
       <url>http://yoursite.com/2017/11/15/ML%EF%BC%9Asklearn%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB.html</url>
       <content type="html"><![CDATA[<h3 id="一、基本概念"><a href="#一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念</h3><p>文本分类是文本挖掘中的一个重要领域，所谓文本分类，事实上指的是为用户给出每个文档，文本片段等所要归属于哪一类(类别，主题等)的问题。</p><pre><code>文本挖掘
