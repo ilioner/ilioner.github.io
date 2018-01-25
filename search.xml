@@ -11,7 +11,8 @@
 <p>或者：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -q -N --no-check-certificate https://raw.githubusercontent.com/hotmop/SSR-duoyonghu/master/install.sh &amp;&amp; bash install.sh</span><br></pre></td></tr></table></figure>
 <h3 id="3-关于加速"><a href="#3-关于加速" class="headerlink" title="3. 关于加速"></a>3. 关于加速</h3><p>测试BBR加速比锐速舒服，一键脚本里面有包含，或者</p>
-<p>还有网上各种魔改版</p>]]></content>
+<p>还有网上各种魔改版</p>
+<h3 id="4-关于客户端"><a href="#4-关于客户端" class="headerlink" title="4. 关于客户端"></a>4. 关于客户端</h3><p><strong>Windows 客户端</strong></p>]]></content>
       
         
     </entry>
