@@ -6,7 +6,12 @@
     <entry>
       <title><![CDATA[今天上午修整了一下SS]]></title>
       <url>http://yoursite.com/2018/01/25/%E4%BB%8A%E5%A4%A9%E4%B8%8A%E5%8D%88%E4%BF%AE%E6%95%B4%E4%BA%86%E4%B8%80%E4%B8%8BSS.html</url>
-      <content type="html"></content>
+      <content type="html"><![CDATA[<p>记录一下对SS-&gt;SSR的过程，以备后用。</p><h3 id="1-系统"><a href="#1-系统" class="headerlink" title="1.系统"></a>1.系统</h3><pre><code>__Debian 7 x64 (wheezy) __
+</code></pre><h3 id="2-ssr脚本"><a href="#2-ssr脚本" class="headerlink" title="2.ssr脚本"></a>2.ssr脚本</h3><p>一键安装最方便快捷</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">一键部署ssr代码CentOS/Debian/Ubuntu ShadowsocksR单/多端口</span><br><span class="line">        </span><br><span class="line">一键管理脚本：</span><br><span class="line"></span><br><span class="line">        yum -y install wget</span><br><span class="line"></span><br><span class="line">        wget -N --no-check-certificate https://softs.fun/Bash/ssr.sh &amp;&amp; chmod +x ssr.sh &amp;&amp; bash ssr.sh</span><br><span class="line"></span><br><span class="line">备用下载地址：</span><br><span class="line"></span><br><span class="line">        yum -y install wget</span><br><span class="line"></span><br><span class="line">        wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh &amp;&amp; chmod +x ssr.sh &amp;&amp; bash ssr.sh</span><br></pre></td></tr></table></figure>
+<p>或者：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -q -N --no-check-certificate https://raw.githubusercontent.com/hotmop/SSR-duoyonghu/master/install.sh &amp;&amp; bash install.sh</span><br></pre></td></tr></table></figure>
+<h3 id="3-关于加速"><a href="#3-关于加速" class="headerlink" title="3. 关于加速"></a>3. 关于加速</h3><p>测试BBR加速比锐速舒服，一键脚本里面有包含，或者</p>
+<p>还有网上各种魔改版</p>]]></content>
       
         
     </entry>
